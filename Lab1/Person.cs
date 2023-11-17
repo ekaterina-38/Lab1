@@ -28,13 +28,13 @@ namespace Lab1
         /// <summary>
         /// Конструктор класса Человек.
         /// </summary>
-        /// <param name="lastname">Фамилия.</param>
+        /// <param name="lastName">Фамилия.</param>
         /// <param name="name">Имя.</param>
         /// <param name="age">Возраст.</param>
         /// <param name="gender">Пол.</param>
-        public Person(string lastname, string name, int age, Gender gender)
+        public Person(string lastName, string name, int age, Gender gender)
         {
-            LastName = lastname;
+            LastName = lastName;
             Name = name;
             Age = age;
             Gender = gender;
