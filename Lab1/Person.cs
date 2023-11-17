@@ -34,10 +34,10 @@ namespace Lab1
         /// <param name="gender">Пол.</param>
         public Person(string lastname, string name, int age, Gender gender)
         {
-            _lastName = lastname;
-            _name = name;
-            _age = age;
-            _gender = gender;
+            LastName = lastname;
+            Name = name;
+            Age = age;
+            Gender = gender;
         }
 
         /// <summary>
