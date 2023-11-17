@@ -21,18 +21,9 @@ namespace Lab1
         public int Age;
 
         /// <summary>
-        /// Возможный пол человека 
-        /// </summary>
-        public enum EnunGender
-        {
-            мужской,
-            женский
-        }
-
-        /// <summary>
         /// Пол человека
         /// </summary>
-        public EnunGender Gender;
+        public Gender Gender;
 
         /// <summary>
         /// Конструктор класса Человек
@@ -41,7 +32,7 @@ namespace Lab1
         /// <param name="name">имя</param>
         /// <param name="age">возраст</param>
         /// <param name="gender">пол</param>
-        public Person(string lastname, string name, int age, EnunGender gender)
+        public Person(string lastname, string name, int age, Gender gender)
         {
             LastName = lastname;
             Name = name;
