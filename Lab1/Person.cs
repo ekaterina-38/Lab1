@@ -1,51 +1,87 @@
 namespace Lab1
 {
     /// <summary>
-    /// Класс Человек
+    /// Класс Человек.
     /// </summary>
     public class Person
     {
         /// <summary>
-        /// Фамилия
+        /// Фамилия.
         /// </summary>
-        public string LastName;
+        private string _lastName;
 
         /// <summary>
-        /// Имя
+        /// Имя.
         /// </summary>
-        public string Name;
+        private string _name;
 
         /// <summary>
-        /// Возраст
+        /// Возраст.
         /// </summary>
-        public int Age;
+        private int _age;
 
         /// <summary>
-        /// Пол человека
+        /// Пол человека.
         /// </summary>
-        public Gender Gender;
+        private Gender _gender;
 
         /// <summary>
-        /// Конструктор класса Человек
+        /// Конструктор класса Человек.
         /// </summary>
-        /// <param name="lastname">фамилия</param>
-        /// <param name="name">имя</param>
-        /// <param name="age">возраст</param>
-        /// <param name="gender">пол</param>
+        /// <param name="lastname">Фамилия.</param>
+        /// <param name="name">Имя.</param>
+        /// <param name="age">Возраст.</param>
+        /// <param name="gender">Пол.</param>
         public Person(string lastname, string name, int age, Gender gender)
         {
-            LastName = lastname;
-            Name = name;
-            Age = age;
-            Gender = gender;
+            _lastName = lastname;
+            _name = name;
+            _age = age;
+            _gender = gender;
         }
 
         /// <summary>
-        /// Вывод данных о человеке
+        /// Определение свойства Фамилия.
+        /// </summary>
+        public string LastName
+        {
+            get { return _lastName; }
+            set { _lastName = value; }
+        }
+
+        /// <summary>
+        /// Определение свойства Имя.
+        /// </summary>
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        /// <summary>
+        /// Определение свойства Возраст.
+        /// </summary>
+        public int Age
+        {
+            get { return _age; }
+            set { _age = value; }
+        }
+
+        /// <summary>
+        /// Определение свойства Пол человека.
+        /// </summary>
+        public Gender Gender
+        {
+            get { return _gender; }
+            set { _gender = value; }
+        }
+
+        /// <summary>
+        /// Метод вывода данных о человеке.
         /// </summary>
         public void Print()
         {
-            Console.WriteLine($"{LastName} {Name}, возраст: {Age}, пол: {Gender}");
+            Console.WriteLine($"{_lastName} {_name}, возраст: {_age}, пол: {_gender}");
         }
     }
 }

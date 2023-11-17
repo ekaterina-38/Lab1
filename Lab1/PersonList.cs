@@ -71,10 +71,10 @@ namespace Lab1
         {
             if ((ListPerson.Count - 1) >= index)
             {
-                Console.WriteLine($"Элемент с индексом {index}: {ListPerson[index].LastName}" +
-                                                                $" {ListPerson[index].Name}, " +
-                                                                $"возраст: {ListPerson[index].Age}, " +
-                                                                $"пол: {ListPerson[index].Gender}");
+                Console.WriteLine($"Элемент с индексом {index}: {ListPerson[index]._lastName}" +
+                                                                $" {ListPerson[index]._name}, " +
+                                                                $"возраст: {ListPerson[index]._age}, " +
+                                                                $"пол: {ListPerson[index]._gender}");
             }
             else
             {
@@ -107,10 +107,10 @@ namespace Lab1
             {
                 if (ListPerson.Count > 0)
                 {
-                    Console.WriteLine($"Список 1: {ListPerson[i].LastName} " +
-                                              $"{ListPerson[i].Name}, " +
-                                              $"возраст: {ListPerson[i].Age}, " +
-                                              $"пол: {ListPerson[i].Gender} ");
+                    Console.WriteLine($"Список 1: {ListPerson[i]._lastName} " +
+                                              $"{ListPerson[i]._name}, " +
+                                              $"возраст: {ListPerson[i]._age}, " +
+                                              $"пол: {ListPerson[i]._gender} ");
                 }
                 else
                 {
