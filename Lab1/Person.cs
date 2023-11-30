@@ -26,7 +26,7 @@ namespace Lab1
         private Gender _gender;
 
         /// <summary>
-        /// Конструктор класса Человек.
+        /// Конструктор класса Персонаж.
         /// </summary>
         /// <param name="lastName">Фамилия.</param>
         /// <param name="name">Имя.</param>
