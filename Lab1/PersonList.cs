@@ -11,11 +11,29 @@ namespace Lab1
         private List<Person> _listPerson;
 
         /// <summary>
+        /// Название списка.
+        /// </summary>
+        private string _namelistPerson;
+
+        /// <summary>
         /// Конструктор класса Список Людей.
         /// </summary>
-        public PersonList()
+        /// <param name="namelistPerson">Название Списка.</param>
+        public PersonList(string namelistPerson)
         {
+            _namelistPerson = namelistPerson;
             _listPerson = new List<Person>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonList"/> class.
+        /// </summary>
+        /// <param name="listPerson">Список Персон.</param>
+        /// <param name="namelistPerson">Название Списка.</param>
+        public PersonList(List<Person> listPerson, string namelistPerson)
+        {
+            _namelistPerson = namelistPerson;
+            _listPerson = listPerson;
         }
 
         /// <summary>
@@ -66,18 +84,16 @@ namespace Lab1
         /// Метод поиска элемента по индексу.
         /// </summary>
         /// <param name="index">интересующий пользователя индекс.</param>
-        public void LookForIndexList(int index)
+        /// <returns>person.</returns>
+        public Person LookForIndexList(int index)
         {
-            if ((_listPerson.Count - 1) >= index)
+            if ((_listPerson.Count - 1) >= index && index >= 0)
             {
-                Console.WriteLine($"Элемент с индексом {index}: {_listPerson[index].LastName}" +
-                                                                $" {_listPerson[index].Name}, " +
-                                                                $"возраст: {_listPerson[index].Age}, " +
-                                                                $"пол: {_listPerson[index].Gender}");
+                return _listPerson[index];
             }
             else
             {
-                Console.WriteLine($"Элемента с индексом {index} нет в списке");
+                throw new IndexOutOfRangeException($"Элемента с индексом {index} нет в списке");
             }
         }
 
@@ -104,20 +120,24 @@ namespace Lab1
         /// </summary>
         public void Print()
         {
+            Console.WriteLine($"{_namelistPerson}:");
+
             for (int i = 0; i <= (_listPerson.Count - 1); i++)
             {
                 if (_listPerson.Count > 0)
                 {
-                    Console.WriteLine($"Список 1: {_listPerson[i].LastName} " +
-                                              $"{_listPerson[i].Name}, " +
-                                              $"возраст: {_listPerson[i].Age}, " +
-                                              $"пол: {_listPerson[i].Gender} ");
+                    Console.WriteLine($"{_listPerson[i].LastName} " +
+                                      $"{_listPerson[i].Name}, " +
+                                      $"возраст: {_listPerson[i].Age}, " +
+                                      $"пол: {_listPerson[i].Gender}");
                 }
                 else
                 {
                     Console.WriteLine("Список пуст");
                 }
             }
+
+            Console.WriteLine("");
         }
     }
 }
