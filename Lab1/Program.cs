@@ -1,5 +1,3 @@
-
-
 namespace Lab1
 {
     /// <summary>
