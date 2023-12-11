@@ -58,5 +58,38 @@ namespace Lab1
 
             return new Person(readLastName, readName, readAge, gender);
         }
+
+        /// <summary>
+        /// Метод рандомного создания людей.
+        /// </summary>
+        /// <returns>Созданного человека.</returns>
+        public static Person GetRandomPerson()
+        {
+            Random random = new Random();
+
+            string[] namesWonem = { "Екатерина", "Ольга", "Надежда", "Любовь", "Ирина", "Анастасия", "Кира" };
+            string[] namesMen = { "Владимир", "Артем", "Степан", "Виктор", "Александр", "Дмитрий", "Валентин" };
+            string[] firstNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин", "Ефремов", "Ласточкин", "Морозов", "Туклинин" };
+
+            Gender gender = (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
+
+            string name = "";
+            string firstName = "";
+
+            if (gender == Gender.женский)
+            {
+                name = namesWonem[random.Next(namesWonem.Length)];
+                firstName = firstNames[random.Next(firstNames.Length)] + "а";
+            }
+            else if (gender == Gender.мужской)
+            {
+                name = namesMen[random.Next(namesMen.Length)];
+                firstName = firstNames[random.Next(firstNames.Length)];
+            }
+
+            int age = random.Next(1, 101);
+
+            return new Person(firstName, name, age, gender);
+        }
     }
 }

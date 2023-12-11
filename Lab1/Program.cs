@@ -76,15 +76,19 @@ namespace Lab1
 
             _ = Console.ReadKey();
 
-            Console.WriteLine("4 пункт. Ввод пользователя с клавиатуры");
+            Console.WriteLine("\n4 пункт. Ввод пользователя с клавиатуры\n");
 
-            Person personRead = ConsolePerson.ConsoleReadPerson();
+            firstList.AddPersonList(ConsolePerson.ConsoleReadPerson());
+            ConsolePerson.Print(firstList);
 
-            Console.WriteLine(personRead.GetInfo());
-            List<Person> listPersonRead1 = new List<Person> { ConsolePerson.ConsoleReadPerson() };
-            PersonList readList = new PersonList(listPersonRead1, "readList");
-            ConsolePerson.Print(readList);
+            _ = Console.ReadKey();
 
+            Console.WriteLine("\n5 пункт. Рандомное создание людей\n");
+
+            firstList.AddPersonList(ConsolePerson.GetRandomPerson());
+            ConsolePerson.Print(firstList);
+
+            _ = Console.ReadKey();
         }
     }
 }
