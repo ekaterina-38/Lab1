@@ -63,8 +63,19 @@ namespace Lab1
         /// </summary>
         public int Age
         {
-            get { return _age; }
-            set { _age = value; }
+            get 
+            {
+                return _age;
+            }
+            set 
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Age), "Возраст должен быть больше нуля.");
+                }
+
+                _age = value; 
+            } 
         }
 
         /// <summary>

@@ -35,9 +35,28 @@ namespace Lab1
 
             Console.Write($"\nВведите Имя человека: ");
             string readName = Console.ReadLine();
+            int age;
 
-            Console.Write($"\nВведите Возраст человека: ");
-            int readAge = Convert.ToInt32(Console.ReadLine());
+            do
+            {
+                Console.Write($"\nВведите Возраст человека: ");
+                string readAge = Console.ReadLine();
+
+                if (!int.TryParse(readAge, out age))
+                {
+                    Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                    age = -1;
+                    continue;
+                }
+
+                // Проверяем, если возраст отрицательный
+                if (age < 0)
+                {
+                    Console.WriteLine("Возраст не может быть отрицательным. Попробуйте еще раз.");
+                }
+            }
+            while (age < 0);
+            Console.WriteLine("Ваш возраст: " + age);
 
             Console.Write($"\nВведите Пол человека: ");
             string readGender = Console.ReadLine();
@@ -56,7 +75,7 @@ namespace Lab1
                 throw new Exception("Ошибка в gender");
             }
 
-            return new Person(readLastName, readName, readAge, gender);
+            return new Person(readLastName, readName, age, gender);
         }
 
         /// <summary>
