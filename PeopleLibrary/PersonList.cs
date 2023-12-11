@@ -39,6 +39,12 @@ namespace Lab1
             _listPerson = listPerson;
         }
 
+        public string NamelistPerson 
+        { 
+            get { return _namelistPerson; }
+            set { _namelistPerson = value; } 
+        }
+
         /// <summary>
         /// Метод добавления людей в список.
         /// </summary>

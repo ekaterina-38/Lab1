@@ -33,10 +33,10 @@ namespace Lab1
             Console.WriteLine("b. Вывод содержимого списков: \n");
 
             // Первый список
-            ConsolePerson.Print(firstList, "Первый список");
+            ConsolePerson.Print(firstList);
 
             // Второй список
-            ConsolePerson.Print(secondList, "Второй список");
+            ConsolePerson.Print(secondList);
 
             _ = Console.ReadKey();
             Console.WriteLine("c. Добавление нового человека в первый список: \n");
@@ -45,7 +45,7 @@ namespace Lab1
             firstList.AddPersonList(new Person("Евстатов", "Данил", 17, Gender.мужской));
 
             // Первый список
-            ConsolePerson.Print(firstList, "Первый список");
+            ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
             Console.WriteLine("d. Добавление второго человека первого списка в конец второго списка\n" +
@@ -54,8 +54,8 @@ namespace Lab1
 
             secondList.AddPersonList(firstList.LookForIndexList(index));
 
-            ConsolePerson.Print(secondList, "Второй список");
-            ConsolePerson.Print(firstList, "Первый список");
+            ConsolePerson.Print(secondList);
+            ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
             Console.WriteLine("\ne. Удаление второго человека из первого списка.\n" +
@@ -63,8 +63,8 @@ namespace Lab1
                                 "к уничтожению этого же человека во втором списке\n");
 
             firstList.ClearListindex(index);
-            ConsolePerson.Print(secondList, "Второй список");
-            ConsolePerson.Print(firstList, "Первый список");
+            ConsolePerson.Print(secondList);
+            ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
             Console.WriteLine("\nf. Очищение второго списка\n");
@@ -72,7 +72,18 @@ namespace Lab1
             secondList.ClearList();
 
             // Второй список
-            ConsolePerson.Print(secondList, "Второй список");
+            ConsolePerson.Print(secondList);
+
+            _ = Console.ReadKey();
+
+            Console.WriteLine("4 пункт. Ввод пользователя с клавиатуры");
+
+            Person personRead = ConsolePerson.ConsoleReadPerson();
+
+            Console.WriteLine(personRead.GetInfo());
+            List<Person> listPersonRead1 = new List<Person> { ConsolePerson.ConsoleReadPerson() };
+            PersonList readList = new PersonList(listPersonRead1, "readList");
+            ConsolePerson.Print(readList);
 
         }
     }
