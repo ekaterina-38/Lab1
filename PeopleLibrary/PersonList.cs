@@ -1,3 +1,6 @@
+using System;
+using System.Reflection;
+
 namespace Lab1
 {
     /// <summary>
@@ -26,9 +29,9 @@ namespace Lab1
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PersonList"/> class.
+        /// Конструктор класса Список Людей 2.
         /// </summary>
-        /// <param name="listPerson">Список Персон.</param>
+        /// <param name="listPerson">Список Людей.</param>
         /// <param name="namelistPerson">Название Списка.</param>
         public PersonList(List<Person> listPerson, string namelistPerson)
         {
@@ -59,25 +62,43 @@ namespace Lab1
         /// <param name="index">индекс элемента,который нужно удалить.</param>
         public void ClearListindex(int index)
         {
-            _listPerson.RemoveAt(index);
+            if ((_listPerson.Count - 1) < index || index < 0)
+            {
+                throw new IndexOutOfRangeException($"Элемента с индексом {index} нет в списке");
+            }
+            else
+            {
+                _listPerson.RemoveAt(index);
+            }
         }
 
         /// <summary>
         /// Метод удаления диапазона элементов из списка.
         /// </summary>
         /// <param name="index1">индекс элемента,соответвующий началу диапазона.</param>
-        /// <param name="index2">индекс элемента,соответвующий концу диапазона.</param>
-        public void ClearListRange(int index1, int index2)
+        /// <param name="count">число удаляемых элементов.</param>
+        public void ClearListRange(int index1, int count)
         {
-            _listPerson.RemoveRange(index1, index2);
+            if (((_listPerson.Count - 1) < index1 || index1 < 0))
+            {
+                throw new IndexOutOfRangeException($"Элемента с индексом {index1} нет в списке");
+            }
+            else if ((_listPerson.Count - 1) < index1 + count || count < 0)
+            {
+                throw new IndexOutOfRangeException($"Число удаляемых элементов {count} за пределами данного списка");
+            }
+            else
+            {
+                _listPerson.RemoveRange(index1, count);
+            }  
         }
 
         /// <summary>
         /// Метод получения количества элементов в списке.
         /// </summary>
-        public void CountList()
+        public int CountList()
         {
-            Console.WriteLine(_listPerson.Count());
+            return _listPerson.Count()-1;
         }
 
         /// <summary>
@@ -87,13 +108,13 @@ namespace Lab1
         /// <returns>person.</returns>
         public Person LookForIndexList(int index)
         {
-            if ((_listPerson.Count - 1) >= index && index >= 0)
+            if ((_listPerson.Count - 1) < index || index < 0)
             {
-                return _listPerson[index];
+                throw new IndexOutOfRangeException($"Элемента с индексом {index} нет в списке");
             }
             else
             {
-                throw new IndexOutOfRangeException($"Элемента с индексом {index} нет в списке");
+                return _listPerson[index];
             }
         }
 
@@ -104,40 +125,19 @@ namespace Lab1
         /// <returns>Возврат индекса элемента,если он есть в списке, иначе -1.</returns>
         public int LookForElementList(Person person)
         {
-            for (int i = 0; i <= (_listPerson.Count - 1); i++)
+            if (person == null)
             {
-                if (_listPerson[i] == person)
+                throw new ArgumentNullException("Аргумент person не может быть null");
+            }
+            for (int index = 0; index <= (_listPerson.Count - 1); index++)
+            {
+                if (_listPerson[index] == person)
                 {
-                    return i;
+                    return index;
                 }
             }
 
-            return -1;
-        }
-
-        /// <summary>
-        /// Метод вывода списка людей.
-        /// </summary>
-        public void Print()
-        {
-            Console.WriteLine($"{_namelistPerson}:");
-
-            for (int i = 0; i <= (_listPerson.Count - 1); i++)
-            {
-                if (_listPerson.Count > 0)
-                {
-                    Console.WriteLine($"{_listPerson[i].LastName} " +
-                                      $"{_listPerson[i].Name}, " +
-                                      $"возраст: {_listPerson[i].Age}, " +
-                                      $"пол: {_listPerson[i].Gender}");
-                }
-                else
-                {
-                    Console.WriteLine("Список пуст");
-                }
-            }
-
-            Console.WriteLine("");
+            throw new InvalidOperationException($"Элемента {person} нет в списке");
         }
     }
 }

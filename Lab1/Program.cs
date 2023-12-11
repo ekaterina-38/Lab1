@@ -10,6 +10,7 @@ namespace Lab1
         /// </summary>
         internal static void Main()
         {
+
             Console.WriteLine("a. Автоматически создано два списка людей.\n " +
                               "В каждом из списков содержатся записи о трех людях.\n " +
                               "Для продолжения нажмите любую кнопку\n");
@@ -32,19 +33,19 @@ namespace Lab1
             Console.WriteLine("b. Вывод содержимого списков: \n");
 
             // Первый список
-            firstList.Print();
+            ConsolePerson.Print(firstList, "Первый список");
 
             // Второй список
-            secondList.Print();
+            ConsolePerson.Print(secondList, "Второй список");
 
             _ = Console.ReadKey();
             Console.WriteLine("c. Добавление нового человека в первый список: \n");
 
             // Добавление человека в первый список.
-            firstList.AddPersonList(new Person("Казакова", "Ольга", 27, Gender.женский));
+            firstList.AddPersonList(new Person("Евстатов", "Данил", 17, Gender.мужской));
 
             // Первый список
-            firstList.Print();
+            ConsolePerson.Print(firstList, "Первый список");
 
             _ = Console.ReadKey();
             Console.WriteLine("d. Добавление второго человека первого списка в конец второго списка\n" +
@@ -53,45 +54,26 @@ namespace Lab1
 
             secondList.AddPersonList(firstList.LookForIndexList(index));
 
-            secondList.LookForIndexList(secondList.LookForElementList(firstList.LookForIndexList(index))).Print();
-            firstList.LookForIndexList(index).Print();
+            ConsolePerson.Print(secondList, "Второй список");
+            ConsolePerson.Print(firstList, "Первый список");
 
             _ = Console.ReadKey();
             Console.WriteLine("\ne. Удаление второго человека из первого списка.\n" +
                                 "В результате, удаление человека из первого списка не привело " +
                                 "к уничтожению этого же человека во втором списке\n");
 
-            Person a = firstList.LookForIndexList(index);
-
             firstList.ClearListindex(index);
-            secondList.LookForIndexList(secondList.LookForElementList(a)).Print();
+            ConsolePerson.Print(secondList, "Второй список");
+            ConsolePerson.Print(firstList, "Первый список");
 
             _ = Console.ReadKey();
             Console.WriteLine("\nf. Очищение второго списка\n");
+
             secondList.ClearList();
 
             // Второй список
-            secondList.Print();
+            ConsolePerson.Print(secondList, "Второй список");
 
-            /* Вызов метода удаления элемента по индексу.
-            list.ClearListindex(0);
-            list.Print();*/
-
-            /* Вызов метода очищения списка.
-            list.ClearList();
-            list.Print();*/
-
-            // Метод возврата индекса элемента при наличии его в списке.
-            // Console.WriteLine(firstList.LookForElementList(kate));
-
-            // Вызов метода удаления диапазона элементов в списке.
-            // firstList.ClearListRange(0, 1);
-
-            // Вызов метода подсчета количества элементов в списке.
-            // firstList.CountList();
-
-            // Вызов метода поиска элемента по индексу.
-            // firstList.LookForIndexList(0);
         }
     }
 }

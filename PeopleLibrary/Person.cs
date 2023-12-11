@@ -79,9 +79,10 @@ namespace Lab1
         /// <summary>
         /// Метод вывода данных о человеке.
         /// </summary>
-        public void Print()
+        public string GetInfo()
         {
-            Console.WriteLine($"{_lastName} {_name}, возраст: {_age}, пол: {_gender}");
+            return $"Имя: {_name}, Фамилия: {_lastName}," +
+                $" возраст: {_age}, пол: {_gender}";
         }
     }
 }
