@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Lab1
 {
     /// <summary>
@@ -27,14 +29,106 @@ namespace Lab1
         /// <summary>
         /// .
         /// </summary>
+        /// <param name="fullName">.</param>
+        /// <returns>.</returns>
+        public static bool IsValidName(string fullName)
+        {
+            Regex regex = new Regex("(^[a-zA-Z]+$)|(^[а-яА-Я]+$)");
+            return regex.IsMatch(fullName);
+        }
+
+        /// <summary>
+        /// .
+        /// </summary>
         /// <returns>jj.</returns>
         public static Person ConsoleReadPerson()
         {
-            Console.Write($"\nВведите Фамилию человека: ");
-            string readLastName = Console.ReadLine();
+            string fullName;
+            string readLastName;
+            string readName;
+            string result = string.Empty;
+            do
+            {
+                do
+                {
+                    Console.Write($"\nВведите Фамилию человека: ");
+                    readLastName = Console.ReadLine();
 
-            Console.Write($"\nВведите Имя человека: ");
-            string readName = Console.ReadLine();
+                    bool containsDash = readLastName.Contains("-");
+
+                    if (containsDash)
+                    {
+                        string[] parts = readLastName.Split('-');
+                        if (parts.Length == 2)
+                        {
+                            result = string.Join("", parts);
+
+                            if (!IsValidName(result))
+                            {
+                                Console.WriteLine("Фамилия должна содержать буквы только одного языка " +
+                                                  "(либо русского, либо английского алфавита)!");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Фамилия должна 2 или 1 ");
+                        }
+                    }
+
+                    else if (!IsValidName(readLastName))
+                    {
+                        Console.WriteLine("Фамилия должна содержать буквы только одного языка " +
+                                          "(либо русского, либо английского алфавита)!");
+                        result = readLastName;
+                    }
+                }
+                while (!IsValidName(result));
+
+                do
+                {
+                    Console.Write($"\nВведите Имя человека: ");
+                    readName = Console.ReadLine();
+
+                    bool containsDash = readLastName.Contains("-");
+
+                    if (containsDash)
+                    {
+                        string[] parts = readName.Split('-');
+                        if (parts.Length == 2)
+                        {
+                            result = string.Join("", parts);
+
+                            if (!IsValidName(result))
+                            {
+                                Console.WriteLine("Имя должно содержать буквы только одного языка" +
+                                                   "(либо русского, либо английского алфавита)!");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Имя должно 2 или 1 ");
+                        }
+                    }
+
+                    else if (!IsValidName(readName))
+                    {
+                        Console.WriteLine("Имя должно содержать буквы только одного языка" +
+                                          "(либо русского, либо английского алфавита)!");
+                        result = readName;
+                    }
+                }
+                while (!IsValidName(result));
+
+                fullName = readLastName + readName;
+
+                if (!IsValidName(fullName))
+                {
+                    Console.WriteLine("Имя и Фамилия должны быть " +
+                                      "на одном языке (русском, либо английском)!");
+                }
+            }
+            while (!IsValidName(fullName));
+
             int age;
 
             do
@@ -56,7 +150,6 @@ namespace Lab1
                 }
             }
             while (age < 0);
-            Console.WriteLine("Ваш возраст: " + age);
 
             Console.Write($"\nВведите Пол человека: ");
             string readGender = Console.ReadLine();

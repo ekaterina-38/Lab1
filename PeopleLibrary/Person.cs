@@ -69,7 +69,7 @@ namespace Lab1
             }
             set 
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(Age), "Возраст должен быть больше нуля.");
                 }
