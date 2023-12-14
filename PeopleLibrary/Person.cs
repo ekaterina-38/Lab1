@@ -85,8 +85,10 @@ namespace Lab1
                 {
                     throw new ArgumentOutOfRangeException(nameof(Age), "Возраст должен быть больше нуля.");
                 }
-
-                _age = value;
+                else
+                {
+                    _age = value;
+                }
             }
         }
 
