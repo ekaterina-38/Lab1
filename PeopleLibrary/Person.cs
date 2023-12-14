@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Lab1
 {
     /// <summary>
@@ -113,7 +115,72 @@ namespace Lab1
         public string GetInfo()
         {
             return $"Имя: {_name}, Фамилия: {_lastName}," +
-                $" возраст: {_age}, пол: {_gender}";
+                   $" возраст: {_age}, пол: {_gender}";
+        }
+
+        /// <summary>
+        /// Регулярное выражение для проверки Фамилии и Имени по требованию языка.
+        /// </summary>
+        /// <param name="name">слово, которое требует проверки.</param>
+        /// <returns>результат проверки(true/false).</returns>
+        public static bool IsValidName(string name)
+        {
+            Regex regex = new Regex("(^[a-zA-Z]+$)|(^[а-яА-Я]+$)");
+            return regex.IsMatch(name);
+        }
+
+        /// <summary>
+        /// Проверка отдельно Имени, Фамилии.
+        /// </summary>
+        /// <param name="read">Проверяемое слово.</param>
+        /// <returns>Результат проверки.</returns>
+        public static bool СheckLanguage(string read)
+        {
+            bool accuracy = true;
+
+            if (read.Contains("-"))
+            {
+                string[] parts = read.Split('-');
+                if (parts.Length == 2)
+                {
+                    string result = string.Join("", parts);
+
+                    if (!IsValidName(result))
+                    {
+                        accuracy = false;
+                    }
+                }
+                else
+                {
+                    accuracy = false;
+                }
+            }
+            else if (!IsValidName(read))
+            {
+                accuracy = false;
+            }
+
+            return accuracy;
+        }
+
+        /// <summary>
+        /// Проверка соответвия Фамилии и Имени.
+        /// </summary>
+        /// <param name="readName">имя с клавиатуры.</param>
+        /// <param name="readLastName">фамилия с клавиатуры.</param>
+        /// <returns>результат проверки(true/false).</returns>
+        public static bool СheckFullName(string readName, string readLastName)
+        {
+            bool boolName = true;
+            string fullName = readLastName + readName;
+            fullName = string.Join("", fullName.Split('-'));
+
+            if (!IsValidName(fullName))
+            {
+                boolName = false;
+            }
+
+            return boolName;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Lab1
         /// </summary>
         /// <param name="read">проверяемое слово.</param>
         /// <returns>проверенное слово.</returns>
-        public static string СheckLanguage()
+        public static string СheckWord()
         {
             string read;
 
@@ -51,58 +51,15 @@ namespace Lab1
             {
                 read = Console.ReadLine();
 
-                if (read.Contains("-"))
+                if (!Person.СheckLanguage(read))
                 {
-                    string[] parts = read.Split('-');
-                    if (parts.Length == 2)
-                    {
-                        string result = string.Join("", parts);
-
-                        if (!IsValidName(result))
-                        {
-                            Console.WriteLine($"Некорректный ввод! Имя и Фамилия должны содержать буквы только одного языка " +
-                                              "(либо русского, либо английского алфавита)!\n Введите еще раз:");
-                            read = string.Empty;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Некорректный ввод! Проверте введенные данные.");
-                        read = string.Empty;
-                    }
-                }
-                else if (!IsValidName(read))
-                {
-                    Console.WriteLine("Некорректный ввод! Имя и Фамилия должны содержать буквы только одного языка " +
-                                      "(либо русского, либо английского алфавита)!\n Введите еще раз:");
                     read = string.Empty;
+                    Console.WriteLine("Некорректный ввод! Проверте введенные данные.");
                 }
             }
             while (string.IsNullOrEmpty(read));
 
             return read;
-        }
-
-        /// <summary>
-        /// Проверка соответвия Фамилии и Имени.
-        /// </summary>
-        /// <param name="readName">имя с клавиатуры.</param>
-        /// <param name="readLastName">фамилия с клавиатуры.</param>
-        /// <returns>результат проверки(true/false).</returns>
-        public static bool СheckFullName(string readName, string readLastName)
-        {
-            bool boolName = true;
-            string fullName = readLastName + readName;
-            fullName = string.Join("", fullName.Split('-'));
-
-            if (!IsValidName(fullName))
-            {
-                Console.WriteLine("Имя и Фамилия должны быть " +
-                                  "на одном языке (русском, либо английском)!");
-                boolName = false;
-            }
-
-            return boolName;
         }
 
         /// <summary>
@@ -143,18 +100,17 @@ namespace Lab1
         {
             string readLastName;
             string readName;
-            string result;
 
             // Ввод Фамилии и имени.
             do
             {
                 Console.Write($"Введите Фамилию человека: ");
-                readLastName = СheckLanguage();
+                readLastName = СheckWord();
 
                 Console.Write($"\nВведите Имя человека: ");
-                readName = СheckLanguage();
+                readName = СheckWord();
             }
-            while (!СheckFullName(readName, readLastName));
+            while (!Person.СheckFullName(readName, readLastName));
 
             // Преобразование регистров Фамилии и Имени.
             readName = Upper(readName);
