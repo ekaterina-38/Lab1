@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Lab1
@@ -5,7 +6,7 @@ namespace Lab1
     /// <summary>
     /// Класс вывода.
     /// </summary>
-    public static class ConsolePerson
+    public class ConsolePerson
     {
         /// <summary>
         /// Метод вывода списка людей.
@@ -27,108 +28,139 @@ namespace Lab1
         }
 
         /// <summary>
-        /// .
+        /// Регулярное выражение для проверки Фамилии и Имени по требованию языка.
         /// </summary>
-        /// <param name="fullName">.</param>
-        /// <returns>.</returns>
-        public static bool IsValidName(string fullName)
+        /// <param name="name">слово, которое требует проверки.</param>
+        /// <returns>результат проверки(true/false).</returns>
+        public static bool IsValidName(string name)
         {
             Regex regex = new Regex("(^[a-zA-Z]+$)|(^[а-яА-Я]+$)");
-            return regex.IsMatch(fullName);
+            return regex.IsMatch(name);
         }
 
         /// <summary>
-        /// .
+        /// Проверка отдельно Имени, Фамилии.
         /// </summary>
-        /// <returns>jj.</returns>
-        public static Person ConsoleReadPerson()
+        /// <param name="read">проверяемое слово.</param>
+        /// <returns>проверенное слово.</returns>
+        public static string СheckLanguage()
         {
-            string fullName;
-            string readLastName;
-            string readName;
-            string result = string.Empty;
+            string read;
+
             do
             {
-                do
+                read = Console.ReadLine();
+
+                if (read.Contains("-"))
                 {
-                    Console.Write($"\nВведите Фамилию человека: ");
-                    readLastName = Console.ReadLine();
-
-                    bool containsDash = readLastName.Contains("-");
-
-                    if (containsDash)
+                    string[] parts = read.Split('-');
+                    if (parts.Length == 2)
                     {
-                        string[] parts = readLastName.Split('-');
-                        if (parts.Length == 2)
-                        {
-                            result = string.Join("", parts);
+                        string result = string.Join("", parts);
 
-                            if (!IsValidName(result))
-                            {
-                                Console.WriteLine("Фамилия должна содержать буквы только одного языка " +
-                                                  "(либо русского, либо английского алфавита)!");
-                            }
-                        }
-                        else
+                        if (!IsValidName(result))
                         {
-                            Console.WriteLine("Фамилия должна 2 или 1 ");
+                            Console.WriteLine($"Некорректный ввод! Имя и Фамилия должны содержать буквы только одного языка " +
+                                              "(либо русского, либо английского алфавита)!\n Введите еще раз:");
+                            read = string.Empty;
                         }
                     }
-
-                    else if (!IsValidName(readLastName))
+                    else
                     {
-                        Console.WriteLine("Фамилия должна содержать буквы только одного языка " +
-                                          "(либо русского, либо английского алфавита)!");
-                        result = readLastName;
+                        Console.WriteLine("Некорректный ввод! Проверте введенные данные.");
+                        read = string.Empty;
                     }
                 }
-                while (!IsValidName(result));
-
-                do
+                else if (!IsValidName(read))
                 {
-                    Console.Write($"\nВведите Имя человека: ");
-                    readName = Console.ReadLine();
-
-                    bool containsDash = readLastName.Contains("-");
-
-                    if (containsDash)
-                    {
-                        string[] parts = readName.Split('-');
-                        if (parts.Length == 2)
-                        {
-                            result = string.Join("", parts);
-
-                            if (!IsValidName(result))
-                            {
-                                Console.WriteLine("Имя должно содержать буквы только одного языка" +
-                                                   "(либо русского, либо английского алфавита)!");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Имя должно 2 или 1 ");
-                        }
-                    }
-
-                    else if (!IsValidName(readName))
-                    {
-                        Console.WriteLine("Имя должно содержать буквы только одного языка" +
-                                          "(либо русского, либо английского алфавита)!");
-                        result = readName;
-                    }
-                }
-                while (!IsValidName(result));
-
-                fullName = readLastName + readName;
-
-                if (!IsValidName(fullName))
-                {
-                    Console.WriteLine("Имя и Фамилия должны быть " +
-                                      "на одном языке (русском, либо английском)!");
+                    Console.WriteLine("Некорректный ввод! Имя и Фамилия должны содержать буквы только одного языка " +
+                                      "(либо русского, либо английского алфавита)!\n Введите еще раз:");
+                    read = string.Empty;
                 }
             }
-            while (!IsValidName(fullName));
+            while (string.IsNullOrEmpty(read));
 
+            return read;
+        }
+
+        /// <summary>
+        /// Проверка соответвия Фамилии и Имени.
+        /// </summary>
+        /// <param name="readName">имя с клавиатуры.</param>
+        /// <param name="readLastName">фамилия с клавиатуры.</param>
+        /// <returns>результат проверки(true/false).</returns>
+        public static bool СheckFullName(string readName, string readLastName)
+        {
+            bool boolName = true;
+            string fullName = readLastName + readName;
+            fullName = string.Join("", fullName.Split('-'));
+
+            if (!IsValidName(fullName))
+            {
+                Console.WriteLine("Имя и Фамилия должны быть " +
+                                  "на одном языке (русском, либо английском)!");
+                boolName = false;
+            }
+
+            return boolName;
+        }
+
+        /// <summary>
+        /// Преобразование регистров Имен и Фамилий.
+        /// </summary>
+        /// <param name="read">слово, которое требует преобразования.</param>
+        /// <returns>преобразованное слово.</returns>
+        public static string Upper(string read)
+        {
+            string result;
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+
+            if (read.Contains("-"))
+            {
+                string[] parts = read.Split('-');
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    parts[i] = textInfo.ToTitleCase(parts[i]);
+                }
+
+                result = string.Join("-", parts);
+
+            }
+            else
+            {
+                result = textInfo.ToTitleCase(read);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Метод заполнения данных о Людях с клавиатуры.
+        /// </summary>
+        /// <returns>Объект класса Person.</returns>
+        public static Person ConsoleReadPerson()
+        {
+            string readLastName;
+            string readName;
+            string result;
+
+            // Ввод Фамилии и имени.
+            do
+            {
+                Console.Write($"Введите Фамилию человека: ");
+                readLastName = СheckLanguage();
+
+                Console.Write($"\nВведите Имя человека: ");
+                readName = СheckLanguage();
+            }
+            while (!СheckFullName(readName, readLastName));
+
+            // Преобразование регистров Фамилии и Имени.
+            readName = Upper(readName);
+            readLastName = Upper(readLastName);
+
+            // Ввод возраста человека.
             int age;
 
             do
@@ -138,7 +170,7 @@ namespace Lab1
 
                 if (!int.TryParse(readAge, out age))
                 {
-                    Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                    Console.WriteLine("Некорректный ввод! Возраст должен состоять из цифр.");
                     age = -1;
                     continue;
                 }
@@ -146,27 +178,35 @@ namespace Lab1
                 // Проверяем, если возраст отрицательный
                 if (age < 0)
                 {
-                    Console.WriteLine("Возраст не может быть отрицательным. Попробуйте еще раз.");
+                    Console.WriteLine("Некорректный ввод! Возраст не может быть отрицательным.");
                 }
             }
             while (age < 0);
 
-            Console.Write($"\nВведите Пол человека: ");
-            string readGender = Console.ReadLine();
-            Gender gender;
+            // Ввод пола человека.
+            string readGender;
+            Gender gender = Gender.женский;
 
-            if (readGender == "женский")
+            do
             {
-                gender = Gender.женский;
+                Console.Write($"\nВведите Пол человека: ");
+                readGender = Console.ReadLine();
+
+                if (readGender == "женский")
+                {
+                    gender = Gender.женский;
+                }
+                else if (readGender == "мужской")
+                {
+                    gender = Gender.мужской;
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод! Введите мужской или женский. ");
+                    readGender = string.Empty;
+                }
             }
-            else if (readGender == "мужской")
-            {
-                gender = Gender.мужской;
-            }
-            else
-            {
-                throw new Exception("Ошибка в gender");
-            }
+            while (string.IsNullOrEmpty(readGender));
 
             return new Person(readLastName, readName, age, gender);
         }
@@ -174,7 +214,7 @@ namespace Lab1
         /// <summary>
         /// Метод рандомного создания людей.
         /// </summary>
-        /// <returns>Созданного человека.</returns>
+        /// <returns> Объект класса Person.</returns>
         public static Person GetRandomPerson()
         {
             Random random = new Random();

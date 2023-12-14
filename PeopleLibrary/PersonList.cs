@@ -1,6 +1,3 @@
-using System;
-using System.Reflection;
-
 namespace Lab1
 {
     /// <summary>
@@ -39,10 +36,10 @@ namespace Lab1
             _listPerson = listPerson;
         }
 
-        public string NamelistPerson 
-        { 
+        public string NamelistPerson
+        {
             get { return _namelistPerson; }
-            set { _namelistPerson = value; } 
+            set { _namelistPerson = value; }
         }
 
         /// <summary>
@@ -96,7 +93,7 @@ namespace Lab1
             else
             {
                 _listPerson.RemoveRange(index1, count);
-            }  
+            }
         }
 
         /// <summary>
@@ -104,7 +101,7 @@ namespace Lab1
         /// </summary>
         public int CountList()
         {
-            return _listPerson.Count()-1;
+            return _listPerson.Count() - 1;
         }
 
         /// <summary>

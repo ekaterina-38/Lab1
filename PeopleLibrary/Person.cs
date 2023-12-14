@@ -45,8 +45,14 @@ namespace Lab1
         /// </summary>
         public string LastName
         {
-            get { return _lastName; }
-            set { _lastName = value; }
+            get
+            {
+                return _lastName;
+            }
+            set
+            {
+                _lastName = value;
+            }
         }
 
         /// <summary>
@@ -54,8 +60,14 @@ namespace Lab1
         /// </summary>
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
         }
 
         /// <summary>
@@ -63,19 +75,19 @@ namespace Lab1
         /// </summary>
         public int Age
         {
-            get 
+            get
             {
                 return _age;
             }
-            set 
+            set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(Age), "Возраст должен быть больше нуля.");
                 }
 
-                _age = value; 
-            } 
+                _age = value;
+            }
         }
 
         /// <summary>
@@ -83,8 +95,14 @@ namespace Lab1
         /// </summary>
         public Gender Gender
         {
-            get { return _gender; }
-            set { _gender = value; }
+            get
+            {
+                return _gender;
+            }
+            set
+            {
+                _gender = value;
+            }
         }
 
         /// <summary>
