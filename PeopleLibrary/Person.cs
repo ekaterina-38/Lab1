@@ -53,7 +53,14 @@ namespace Lab1
             }
             set
             {
-                _lastName = value;
+                if (!СheckLanguage(value))
+                {
+                    throw new Exception("Фамилия должна быть одного языка");
+                }
+                else
+                {
+                    _lastName = value;
+                }
             }
         }
 
@@ -68,7 +75,18 @@ namespace Lab1
             }
             set
             {
-                _name = value;
+                if (!СheckLanguage(value))
+                {
+                    throw new Exception("Имя должно быть одного языка");
+                }
+                else if (!СheckFullName(_lastName, value))
+                {
+                    throw new Exception("Фамилия и Имя должны быть одного языка");
+                }
+                else
+                {
+                    _name = value;
+                }
             }
         }
 
@@ -85,7 +103,7 @@ namespace Lab1
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(Age), "Возраст должен быть больше нуля.");
+                    throw new ArgumentOutOfRangeException("Возраст должен быть больше нуля.");
                 }
                 else
                 {
@@ -136,7 +154,7 @@ namespace Lab1
         /// <returns>Результат проверки.</returns>
         public static bool СheckLanguage(string read)
         {
-            bool accuracy = true;
+            bool control = true;
 
             if (read.Contains("-"))
             {
@@ -147,20 +165,20 @@ namespace Lab1
 
                     if (!IsValidName(result))
                     {
-                        accuracy = false;
+                        control = false;
                     }
                 }
                 else
                 {
-                    accuracy = false;
+                    control = false;
                 }
             }
             else if (!IsValidName(read))
             {
-                accuracy = false;
+                control = false;
             }
 
-            return accuracy;
+            return control;
         }
 
         /// <summary>

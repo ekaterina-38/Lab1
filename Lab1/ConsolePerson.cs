@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace Lab1
 {
@@ -28,17 +27,6 @@ namespace Lab1
         }
 
         /// <summary>
-        /// Регулярное выражение для проверки Фамилии и Имени по требованию языка.
-        /// </summary>
-        /// <param name="name">слово, которое требует проверки.</param>
-        /// <returns>результат проверки(true/false).</returns>
-        public static bool IsValidName(string name)
-        {
-            Regex regex = new Regex("(^[a-zA-Z]+$)|(^[а-яА-Я]+$)");
-            return regex.IsMatch(name);
-        }
-
-        /// <summary>
         /// Проверка отдельно Имени, Фамилии.
         /// </summary>
         /// <param name="read">проверяемое слово.</param>
@@ -54,7 +42,8 @@ namespace Lab1
                 if (!Person.СheckLanguage(read))
                 {
                     read = string.Empty;
-                    Console.WriteLine("Некорректный ввод! Проверте введенные данные.");
+                    Console.WriteLine("Некорректный ввод! Имя или фамилия должны быть" +
+                        " введены с использованием букв одного алфавита.\nПопробуйте еще раз: ");
                 }
             }
             while (string.IsNullOrEmpty(read));
@@ -67,7 +56,7 @@ namespace Lab1
         /// </summary>
         /// <param name="read">слово, которое требует преобразования.</param>
         /// <returns>преобразованное слово.</returns>
-        public static string Upper(string read)
+        public static string BigLetter(string read)
         {
             string result;
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
@@ -101,7 +90,7 @@ namespace Lab1
             string readLastName;
             string readName;
 
-            // Ввод Фамилии и имени.
+            // Ввод Фамилии и Имени.
             do
             {
                 Console.Write($"Введите Фамилию человека: ");
@@ -109,12 +98,17 @@ namespace Lab1
 
                 Console.Write($"\nВведите Имя человека: ");
                 readName = СheckWord();
+
+                if (!Person.СheckFullName(readName, readLastName))
+                {
+                    Console.WriteLine("Некорректный ввод! Фамилия и Имя должны быть одного языка.");
+                }
             }
             while (!Person.СheckFullName(readName, readLastName));
 
             // Преобразование регистров Фамилии и Имени.
-            readName = Upper(readName);
-            readLastName = Upper(readLastName);
+            readName = BigLetter(readName);
+            readLastName = BigLetter(readLastName);
 
             // Ввод возраста человека.
             int age;
