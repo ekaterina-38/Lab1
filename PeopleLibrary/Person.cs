@@ -53,8 +53,10 @@ namespace Lab1
             }
             set
             {
+                //TODO: проверить null и пустую строку?
                 if (!СheckLanguage(value))
                 {
+                    //TODO: exception
                     throw new Exception("Фамилия должна быть одного языка");
                 }
                 else
@@ -75,12 +77,15 @@ namespace Lab1
             }
             set
             {
+                //TODO: проверить null и пустую строку?
                 if (!СheckLanguage(value))
                 {
+                    //TODO: exception
                     throw new Exception("Имя должно быть одного языка");
                 }
                 else if (!СheckFullName(_lastName, value))
                 {
+                    //TODO: exception
                     throw new Exception("Фамилия и Имя должны быть одного языка");
                 }
                 else
@@ -101,8 +106,10 @@ namespace Lab1
             }
             set
             {
+                //TODO: проверить на бессмертие
                 if (value < 0)
                 {
+                    //TODO: RSDN
                     throw new ArgumentOutOfRangeException("Возраст должен быть больше нуля.");
                 }
                 else
@@ -154,6 +161,7 @@ namespace Lab1
         /// <returns>Результат проверки.</returns>
         public static bool СheckLanguage(string read)
         {
+            //TODO: название?
             bool control = true;
 
             if (read.Contains("-"))
@@ -189,6 +197,7 @@ namespace Lab1
         /// <returns>результат проверки(true/false).</returns>
         public static bool СheckFullName(string readName, string readLastName)
         {
+            //TODO: название?
             bool boolName = true;
             string fullName = readLastName + readName;
             fullName = string.Join("", fullName.Split('-'));

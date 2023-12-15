@@ -15,9 +15,13 @@ namespace Lab1
                               "В каждом из списков содержатся записи о трех людях.\n " +
                               "Для продолжения нажмите любую кнопку\n");
 
-            List<Person> listPerson1 = new List<Person>{new Person("Казакова", "Ольга", 27, Gender.женский),
-                                                       new Person("Тулин", "Михаил", 35, Gender.мужской),
-                                                       new Person("Панин", "Семен", 42, Gender.мужской)};
+            List<Person> listPerson1 =
+                new List<Person>
+                {
+                    new Person("Казакова", "Ольга", 27, Gender.женский),
+                    new Person("Тулин", "Михаил", 35, Gender.мужской),
+                    new Person("Панин", "Семен", 42, Gender.мужской)
+                };
 
             List<Person> listPerson2 = new List<Person>{new Person("Пичугина", "Екатерина", 23, Gender.женский),
                                                        new Person("Лопатин", "Владимир", 60, Gender.мужской),
