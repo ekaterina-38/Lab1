@@ -5,6 +5,7 @@ namespace Lab1
     /// </summary>
     public enum Gender
     {
+        //TODO: Язык
         /// <summary>
         /// Мужской.
         /// </summary>
