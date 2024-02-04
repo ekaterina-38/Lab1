@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Lab1
@@ -28,6 +29,12 @@ namespace Lab1
         private Gender _gender;
 
         /// <summary>
+        /// Конструктор по умолчанию класса Человек.
+        /// </summary>
+        public Person() : this("Иванов", "Иван", 18, Gender.Male)
+        { }
+
+        /// <summary>
         /// Конструктор класса Человек.
         /// </summary>
         /// <param name="lastName">Фамилия.</param>
@@ -53,15 +60,21 @@ namespace Lab1
             }
             set
             {
-                //TODO: проверить null и пустую строку?
-                if (!СheckLanguage(value))
+                //TODO: проверить null и пустую строку? +
+                if (string.IsNullOrEmpty(value))
                 {
-                    //TODO: exception
-                    throw new Exception("Фамилия должна быть одного языка");
+                    throw new NullReferenceException
+                              ("Введена пустая строка");
+                }
+                else if (!СheckLanguage(value))
+                {
+                    //TODO: exception +
+                    throw new ArgumentOutOfRangeException
+                              ("Фамилия должна быть одного языка");
                 }
                 else
                 {
-                    _lastName = value;
+                    _lastName = BigLetter(value);
                 }
             }
         }
@@ -77,20 +90,30 @@ namespace Lab1
             }
             set
             {
-                //TODO: проверить null и пустую строку?
-                if (!СheckLanguage(value))
+                //TODO: проверить null и пустую строку? +
+                if (string.IsNullOrEmpty(value))
                 {
-                    //TODO: exception
-                    throw new Exception("Имя должно быть одного языка");
-                }
-                else if (!СheckFullName(_lastName, value))
-                {
-                    //TODO: exception
-                    throw new Exception("Фамилия и Имя должны быть одного языка");
+                    throw new NullReferenceException
+                              ("Введена пустая строка");
                 }
                 else
                 {
-                    _name = value;
+                    if (!СheckLanguage(value))
+                    {
+                        //TODO: exception +  
+                        throw new ArgumentOutOfRangeException
+                                  ("Имя должно быть одного языка");
+                    }
+                    if (!СheckFullName(_lastName, value))
+                    {
+                        //TODO: exception +
+                        throw new ArgumentException
+                                  ("Фамилия и Имя должны быть одного языка");
+                    }
+                    else
+                    {
+                        _name = BigLetter(value);
+                    }
                 }
             }
         }
@@ -106,11 +129,12 @@ namespace Lab1
             }
             set
             {
-                //TODO: проверить на бессмертие
-                if (value < 0)
+                //TODO: проверить на бессмертие +
+                if (value < 0 || value > 150)
                 {
-                    //TODO: RSDN
-                    throw new ArgumentOutOfRangeException("Возраст должен быть больше нуля.");
+                    //TODO: RSDN +
+                    throw new ArgumentOutOfRangeException
+                              ("Введите корректный возраст");
                 }
                 else
                 {
@@ -144,7 +168,7 @@ namespace Lab1
         }
 
         /// <summary>
-        /// Регулярное выражение для проверки Фамилии и Имени по требованию языка.
+        /// Регулярное выражение для проверки Фамилии и Имени.
         /// </summary>
         /// <param name="name">слово, которое требует проверки.</param>
         /// <returns>результат проверки(true/false).</returns>
@@ -161,9 +185,6 @@ namespace Lab1
         /// <returns>Результат проверки.</returns>
         public static bool СheckLanguage(string read)
         {
-            //TODO: название?
-            bool control = true;
-
             if (read.Contains("-"))
             {
                 string[] parts = read.Split('-');
@@ -173,20 +194,20 @@ namespace Lab1
 
                     if (!IsValidName(result))
                     {
-                        control = false;
+                        return false;
                     }
                 }
                 else
                 {
-                    control = false;
+                    return false;
                 }
             }
             else if (!IsValidName(read))
             {
-                control = false;
+                return false;
             }
 
-            return control;
+            return true;
         }
 
         /// <summary>
@@ -197,17 +218,73 @@ namespace Lab1
         /// <returns>результат проверки(true/false).</returns>
         public static bool СheckFullName(string readName, string readLastName)
         {
-            //TODO: название?
-            bool boolName = true;
             string fullName = readLastName + readName;
             fullName = string.Join("", fullName.Split('-'));
 
-            if (!IsValidName(fullName))
+            return IsValidName(fullName);
+        }
+
+        /// <summary>
+        /// Преобразование регистров Имен и Фамилий.
+        /// </summary>
+        /// <param name="read">слово, которое требует преобразования.</param>
+        /// <returns>преобразованное слово.</returns>
+        public static string BigLetter(string read)
+        {
+            string result;
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+
+            if (read.Contains("-"))
             {
-                boolName = false;
+                string[] parts = read.Split('-');
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    parts[i] = textInfo.ToTitleCase(parts[i]);
+                }
+
+                result = string.Join("-", parts);
+
+            }
+            else
+            {
+                result = textInfo.ToTitleCase(read);
             }
 
-            return boolName;
+            return result;
+        }
+
+        /// <summary>
+        /// Метод рандомного создания людей.
+        /// </summary>
+        /// <returns> Объект класса Person.</returns>
+        public static Person GetRandomPerson()
+        {
+            Random random = new Random();
+
+            string[] namesWonem = { "Екатерина", "Ольга", "Надежда", "Любовь", "Ирина", "Анастасия", "Кира" };
+            string[] namesMen = { "Владимир", "Артем", "Степан", "Виктор", "Александр", "Дмитрий", "Валентин" };
+            string[] firstNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин", "Ефремов", "Ласточкин", "Морозов", "Туклинин" };
+
+            Gender gender = (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
+
+            string name = "";
+            string firstName = "";
+
+            if (gender == Gender.Female)
+            {
+                name = namesWonem[random.Next(namesWonem.Length)];
+                firstName = firstNames[random.Next(firstNames.Length)] + "а";
+            }
+            else if (gender == Gender.Male)
+            {
+                name = namesMen[random.Next(namesMen.Length)];
+                firstName = firstNames[random.Next(firstNames.Length)];
+            }
+
+            int age = random.Next(1, 101);
+
+            return new Person(firstName, name, age, gender);
         }
     }
 }

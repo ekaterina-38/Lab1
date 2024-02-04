@@ -36,19 +36,36 @@ namespace Lab1
             _listPerson = listPerson;
         }
 
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Определение свойства название списка.
+        /// </summary>
         public string NamelistPerson
         {
-            //TODO: проверки
-            get { return _namelistPerson; }
-            set { _namelistPerson = value; }
+            //TODO: проверки +
+            get
+            {
+                return _namelistPerson;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(_namelistPerson))
+                {
+                    throw new ArgumentNullException
+                        ("Имя списка не задано");
+                }
+                else
+                {
+                    _namelistPerson = value;
+                }
+            }
         }
 
         /// <summary>
         /// Метод добавления людей в список.
         /// </summary>
         /// <param name="person">"Экземпляр класса Человек.</param>
-        public void AddPersonList(Person person)
+        public void AddPerson(Person person)
         {
             _listPerson.Add(person);
         }
@@ -56,46 +73,67 @@ namespace Lab1
         /// <summary>
         /// Метод очищения списка.
         /// </summary>
-        public void ClearList()
+        public void Clear()
         {
             _listPerson.Clear();
         }
 
-        //TODO: rename (Delete By Index)
         /// <summary>
-        /// Метод удаления элемента списка по индексу.
+        /// Метод проверки наличия элемента в списке. 
         /// </summary>
-        /// <param name="index">индекс элемента,который нужно удалить.</param>
-        public void ClearListindex(int index)
+        /// <param name="index">интересующий пользователя индекс.</param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public void CheckByIndex(int index)
         {
-            //TODO: duplication
+            //TODO: duplication +
             if ((_listPerson.Count - 1) < index || index < 0)
             {
-                //TODO: RSDN
-                throw new IndexOutOfRangeException($"Элемента с индексом {index} нет в списке");
-            }
-            else
-            {
-                _listPerson.RemoveAt(index);
+                //TODO: RSDN +
+                throw new IndexOutOfRangeException
+                    ($"Элемента с индексом {index} нет в списке");
             }
         }
 
-        //TODO: rename
+        /// <summary>
+        /// Метод поиска элемента по индексу.
+        /// </summary>
+        /// <param name="index">интересующий пользователя индекс.</param>
+        /// <returns>person.</returns>
+        public Person LookForIndex(int index)
+        {
+            //TODO: duplication +
+            CheckByIndex(index);
+            return _listPerson[index];
+        }
+
+        //TODO: rename (Delete By Index) +
+        /// <summary>
+        /// Метод удаления элемента списка по индексу.
+        /// </summary>
+        /// <param name="index">индекс удаляемого элемента.</param>
+        public void DeleteByIndex(int index)
+        {
+            //TODO: duplication +
+            CheckByIndex(index);
+            _listPerson.RemoveAt(index);
+        }
+
+        //TODO: rename+
         /// <summary>
         /// Метод удаления диапазона элементов из списка.
         /// </summary>
-        /// <param name="index1">индекс элемента,соответвующий началу диапазона.</param>
+        /// <param name="index1">индекс элемента,
+        /// соответвующий началу диапазона.</param>
         /// <param name="count">число удаляемых элементов.</param>
-        public void ClearListRange(int index1, int count)
+        public void DeletByRange(int index1, int count)
         {
-            //TODO: duplication
-            if (((_listPerson.Count - 1) < index1 || index1 < 0))
+            //TODO: duplication +
+            CheckByIndex(index1);
+            if ((_listPerson.Count - 1) < index1 + count || count < 0)
             {
-                throw new IndexOutOfRangeException($"Элемента с индексом {index1} нет в списке");
-            }
-            else if ((_listPerson.Count - 1) < index1 + count || count < 0)
-            {
-                throw new IndexOutOfRangeException($"Число удаляемых элементов {count} за пределами данного списка");
+                throw new IndexOutOfRangeException
+                    ($"Число удаляемых элементов {count} " +
+                     $"за пределами данного списка");
             }
             else
             {
@@ -106,39 +144,23 @@ namespace Lab1
         /// <summary>
         /// Метод получения количества элементов в списке.
         /// </summary>
-        public int CountList()
+        public int Count()
         {
             return _listPerson.Count() - 1;
-        }
-
-        /// <summary>
-        /// Метод поиска элемента по индексу.
-        /// </summary>
-        /// <param name="index">интересующий пользователя индекс.</param>
-        /// <returns>person.</returns>
-        public Person LookForIndexList(int index)
-        {
-            //TODO: duplication
-            if ((_listPerson.Count - 1) < index || index < 0)
-            {
-                throw new IndexOutOfRangeException($"Элемента с индексом {index} нет в списке");
-            }
-            else
-            {
-                return _listPerson[index];
-            }
         }
 
         /// <summary>
         /// Метод возврата индекса элемента при наличии его в списке.
         /// </summary>
         /// <param name="person">Экземпляр класса Человек.</param>
-        /// <returns>Возврат индекса элемента,если он есть в списке, иначе -1.</returns>
-        public int LookForElementList(Person person)
+        /// <returns>Возврат индекса элемента,если он есть в списке,
+        /// иначе -1.</returns>
+        public int LookForElement(Person person)
         {
             if (person == null)
             {
-                throw new ArgumentNullException("Аргумент person не может быть null");
+                throw new ArgumentNullException
+                    ("Аргумент person не может быть null");
             }
             for (int index = 0; index <= (_listPerson.Count - 1); index++)
             {
@@ -148,7 +170,8 @@ namespace Lab1
                 }
             }
 
-            throw new InvalidOperationException($"Элемента {person} нет в списке");
+            throw new InvalidOperationException
+                ($"Элемента {person} нет в списке");
         }
     }
 }

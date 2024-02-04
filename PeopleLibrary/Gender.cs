@@ -5,15 +5,15 @@ namespace Lab1
     /// </summary>
     public enum Gender
     {
-        //TODO: Язык
+        //TODO: Язык +
         /// <summary>
         /// Мужской.
         /// </summary>
-        мужской,
+        Male,
 
         /// <summary>
         /// Женский.
         /// </summary>
-        женский
+        Female
     }
 }

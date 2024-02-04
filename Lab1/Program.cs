@@ -10,86 +10,88 @@ namespace Lab1
         /// </summary>
         internal static void Main()
         {
+            Console.WriteLine
+            ("a. Автоматически создано два списка людей.\n " +
+             "В каждом из списков содержатся записи о трех людях.\n " +
+             "Для продолжения нажмите любую кнопку\n");
 
-            Console.WriteLine("a. Автоматически создано два списка людей.\n " +
-                              "В каждом из списков содержатся записи о трех людях.\n " +
-                              "Для продолжения нажмите любую кнопку\n");
+            List<Person> listPerson1 = new List<Person>
+            {
+                new Person("Казакова", "Ольга", 27, Gender.Female),
+                new Person("Тулин", "Михаил", 35, Gender.Male),
+                new Person("Панин", "Семен", 42, Gender.Male)
+            };
 
-            List<Person> listPerson1 =
-                new List<Person>
-                {
-                    new Person("Казакова", "Ольга", 27, Gender.женский),
-                    new Person("Тулин", "Михаил", 35, Gender.мужской),
-                    new Person("Панин", "Семен", 42, Gender.мужской)
-                };
+            List<Person> listPerson2 = new List<Person>
+            {
+                new Person("Пичугина", "Екатерина", 23, Gender.Female),
+                new Person("Лопатин", "Владимир", 60, Gender.Male),
+                new Person("Липатов", "Евгений", 25, Gender.Male)
+            };
 
-            List<Person> listPerson2 = new List<Person>{new Person("Пичугина", "Екатерина", 23, Gender.женский),
-                                                       new Person("Лопатин", "Владимир", 60, Gender.мужской),
-                                                       new Person("Липатов", "Евгений", 25, Gender.мужской)};
+            PersonList firstList =
+                new PersonList(listPerson1, "Первый список");
 
-            // Создание первого списка, хранящего информацию о людях.
-            PersonList firstList = new PersonList(listPerson1, "Первый список");
-
-            // Создание второго списка, хранящего информацию о людях.
-            PersonList secondList = new PersonList(listPerson2, "Второй список");
+            PersonList secondList =
+                new PersonList(listPerson2, "Второй список");
 
             _ = Console.ReadKey();
             Console.WriteLine("b. Вывод содержимого списков: \n");
 
-            // Первый список
             ConsolePerson.Print(firstList);
 
-            // Второй список
             ConsolePerson.Print(secondList);
 
             _ = Console.ReadKey();
-            Console.WriteLine("c. Добавление нового человека в первый список: \n");
+            Console.WriteLine("c. Добавление нового " +
+                              "человека в 1-ый список: \n");
 
-            // Добавление человека в первый список.
-            firstList.AddPersonList(new Person("Евстатов", "Данил", 17, Gender.мужской));
+            firstList.AddPerson
+                (new Person("Евстатов", "Данил", 17, Gender.Male));
 
-            // Первый список
             ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
-            Console.WriteLine("d. Добавление второго человека первого списка в конец второго списка\n" +
-                              "В результате, один и тот же человек находится в обоих cписках\n");
+            Console.WriteLine
+            ("d. Добавление 2-го человека 1-го списка в конец 2-го списка\n" +
+            "В итоге, один и тот же человек находится в обоих cписках\n");
+
             int index = 1;
 
-            secondList.AddPersonList(firstList.LookForIndexList(index));
+            secondList.AddPerson(firstList.LookForIndex(index));
 
             ConsolePerson.Print(secondList);
             ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
-            Console.WriteLine("\ne. Удаление второго человека из первого списка.\n" +
-                                "В результате, удаление человека из первого списка не привело " +
-                                "к уничтожению этого же человека во втором списке\n");
+            Console.WriteLine
+            ("\ne. Удаление 2-го человека из 1-го списка.\n" +
+             "В итоге, удаление человека из 1-го списка не привело" +
+             " к уничтожению этого же человека во 2-ом списке\n");
 
-            firstList.ClearListindex(index);
+            firstList.DeleteByIndex(index);
             ConsolePerson.Print(secondList);
             ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
             Console.WriteLine("\nf. Очищение второго списка\n");
 
-            secondList.ClearList();
+            secondList.Clear();
 
-            // Второй список
             ConsolePerson.Print(secondList);
 
             _ = Console.ReadKey();
 
             Console.WriteLine("\n4 пункт. Ввод пользователя с клавиатуры\n");
 
-            firstList.AddPersonList(ConsolePerson.ConsoleReadPerson());
+            firstList.AddPerson(ConsolePerson.ConsoleReadPerson());
             ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
 
             Console.WriteLine("\n5 пункт. Рандомное создание людей\n");
 
-            firstList.AddPersonList(ConsolePerson.GetRandomPerson());
+            firstList.AddPerson(Person.GetRandomPerson());
             ConsolePerson.Print(firstList);
 
             _ = Console.ReadKey();
