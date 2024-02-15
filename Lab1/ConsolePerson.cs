@@ -81,7 +81,6 @@ namespace Lab1
             }
             while (flag);
 
-            // Ввод пола человека.
             string readGender;
             do
             {
@@ -110,7 +109,7 @@ namespace Lab1
         /// <summary>
         /// Метод вывода списка людей.
         /// </summary>
-        /// <param name="listperson">список людей.</param>
+        /// <param name="listperson">Список людей.</param>
         public static void Print(PersonList listperson)
         {
             Console.WriteLine(listperson.NamelistPerson);

@@ -29,10 +29,9 @@ namespace Lab1
         private Gender _gender;
 
         /// <summary>
-        /// Конструктор по умолчанию класса Человек.
+        /// Максимальный и минимальный возраст человека.
         /// </summary>
-        public Person() : this("Иванов", "Иван", 18, Gender.Male)
-        { }
+        private const int _maxAge = 150, _minAge = 0;
 
         /// <summary>
         /// Конструктор класса Человек.
@@ -48,6 +47,12 @@ namespace Lab1
             Age = age;
             Gender = gender;
         }
+
+        /// <summary>
+        /// Конструктор по умолчанию класса Человек.
+        /// </summary>
+        public Person() : this("Иванов", "Иван", 18, Gender.Male)
+        { }
 
         /// <summary>
         /// Определение свойства Фамилия.
@@ -130,7 +135,7 @@ namespace Lab1
             set
             {
                 //TODO: проверить на бессмертие +
-                if (value < 0 || value > 150)
+                if (value < _minAge || value > _maxAge)
                 {
                     //TODO: RSDN +
                     throw new ArgumentOutOfRangeException
@@ -170,8 +175,8 @@ namespace Lab1
         /// <summary>
         /// Регулярное выражение для проверки Фамилии и Имени.
         /// </summary>
-        /// <param name="name">слово, которое требует проверки.</param>
-        /// <returns>результат проверки(true/false).</returns>
+        /// <param name="name">Слово, которое требует проверки.</param>
+        /// <returns>Результат проверки(true/false).</returns>
         public static bool IsValidName(string name)
         {
             Regex regex = new Regex("(^[a-zA-Z]+$)|(^[а-яА-Я]+$)");
@@ -213,9 +218,9 @@ namespace Lab1
         /// <summary>
         /// Проверка соответвия Фамилии и Имени.
         /// </summary>
-        /// <param name="readName">имя с клавиатуры.</param>
-        /// <param name="readLastName">фамилия с клавиатуры.</param>
-        /// <returns>результат проверки(true/false).</returns>
+        /// <param name="readName">Имя с клавиатуры.</param>
+        /// <param name="readLastName">Фамилия с клавиатуры.</param>
+        /// <returns>Результат проверки(true/false).</returns>
         public static bool СheckFullName(string readName, string readLastName)
         {
             string fullName = readLastName + readName;
@@ -227,8 +232,8 @@ namespace Lab1
         /// <summary>
         /// Преобразование регистров Имен и Фамилий.
         /// </summary>
-        /// <param name="read">слово, которое требует преобразования.</param>
-        /// <returns>преобразованное слово.</returns>
+        /// <param name="read">Слово, которое требует преобразования.</param>
+        /// <returns>Преобразованное слово.</returns>
         public static string BigLetter(string read)
         {
             string result;
@@ -260,31 +265,30 @@ namespace Lab1
         /// <returns> Объект класса Person.</returns>
         public static Person GetRandomPerson()
         {
+            Person person = new Person();
+
             Random random = new Random();
 
             string[] namesWonem = { "Екатерина", "Ольга", "Надежда", "Любовь", "Ирина", "Анастасия", "Кира" };
             string[] namesMen = { "Владимир", "Артем", "Степан", "Виктор", "Александр", "Дмитрий", "Валентин" };
-            string[] firstNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин", "Ефремов", "Ласточкин", "Морозов", "Туклинин" };
+            string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин", "Ефремов", "Ласточкин", "Морозов", "Туклинин" };
 
-            Gender gender = (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
+            person.Gender = (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
 
-            string name = "";
-            string firstName = "";
-
-            if (gender == Gender.Female)
+            if (person.Gender == Gender.Female)
             {
-                name = namesWonem[random.Next(namesWonem.Length)];
-                firstName = firstNames[random.Next(firstNames.Length)] + "а";
+                person.Name = namesWonem[random.Next(namesWonem.Length)];
+                person.LastName = lastNames[random.Next(lastNames.Length)] + "а";
             }
-            else if (gender == Gender.Male)
+            else if (person.Gender == Gender.Male)
             {
-                name = namesMen[random.Next(namesMen.Length)];
-                firstName = firstNames[random.Next(firstNames.Length)];
+                person.Name = namesMen[random.Next(namesMen.Length)];
+                person.LastName = lastNames[random.Next(lastNames.Length)];
             }
 
-            int age = random.Next(1, 101);
+            person.Age = random.Next(_minAge, _maxAge);
 
-            return new Person(firstName, name, age, gender);
+            return person;
         }
     }
 }

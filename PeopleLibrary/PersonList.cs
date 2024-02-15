@@ -81,7 +81,7 @@ namespace Lab1
         /// <summary>
         /// Метод проверки наличия элемента в списке. 
         /// </summary>
-        /// <param name="index">интересующий пользователя индекс.</param>
+        /// <param name="index">Интересующий пользователя индекс.</param>
         /// <exception cref="IndexOutOfRangeException"></exception>
         public void CheckByIndex(int index)
         {
@@ -97,8 +97,8 @@ namespace Lab1
         /// <summary>
         /// Метод поиска элемента по индексу.
         /// </summary>
-        /// <param name="index">интересующий пользователя индекс.</param>
-        /// <returns>person.</returns>
+        /// <param name="index">Интересующий пользователя индекс.</param>
+        /// <returns>Человек.</returns>
         public Person LookForIndex(int index)
         {
             //TODO: duplication +
@@ -110,7 +110,7 @@ namespace Lab1
         /// <summary>
         /// Метод удаления элемента списка по индексу.
         /// </summary>
-        /// <param name="index">индекс удаляемого элемента.</param>
+        /// <param name="index">Индекс удаляемого элемента.</param>
         public void DeleteByIndex(int index)
         {
             //TODO: duplication +
@@ -122,9 +122,9 @@ namespace Lab1
         /// <summary>
         /// Метод удаления диапазона элементов из списка.
         /// </summary>
-        /// <param name="index1">индекс элемента,
+        /// <param name="index1">Индекс элемента,
         /// соответвующий началу диапазона.</param>
-        /// <param name="count">число удаляемых элементов.</param>
+        /// <param name="count">Число удаляемых элементов.</param>
         public void DeletByRange(int index1, int count)
         {
             //TODO: duplication +
