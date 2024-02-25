@@ -24,14 +24,14 @@ namespace Lab1
         private int _age;
 
         /// <summary>
-        /// Пол человека.
+        /// Максимальный возраст человека.
         /// </summary>
-        private Gender _gender;
+        private const int _maxAge = 150;
 
         /// <summary>
-        /// Максимальный и минимальный возраст человека.
+        /// Минимальный возраст человека.
         /// </summary>
-        private const int _maxAge = 150, _minAge = 0;
+        private const int _minAge = 0;
 
         /// <summary>
         /// Конструктор класса Человек.
@@ -69,17 +69,18 @@ namespace Lab1
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new NullReferenceException
-                              ("Введена пустая строка");
+                              ("Введена пустая или null строка");
                 }
                 else if (!СheckLanguage(value))
                 {
                     //TODO: exception +
                     throw new ArgumentOutOfRangeException
-                              ("Фамилия должна быть одного языка");
+                              ("Фамилия должна быть одного языка " +
+                              "и не должна содержать цифры");
                 }
                 else
                 {
-                    _lastName = BigLetter(value);
+                    _lastName = ChangeRegister(value);
                 }
             }
         }
@@ -99,7 +100,7 @@ namespace Lab1
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new NullReferenceException
-                              ("Введена пустая строка");
+                              ("Введена пустая или null строка");
                 }
                 else
                 {
@@ -107,7 +108,8 @@ namespace Lab1
                     {
                         //TODO: exception +  
                         throw new ArgumentOutOfRangeException
-                                  ("Имя должно быть одного языка");
+                                  ("Имя должно быть одного языка " +
+                                  "и не должно содержать цифры");
                     }
                     if (!СheckFullName(_lastName, value))
                     {
@@ -117,7 +119,7 @@ namespace Lab1
                     }
                     else
                     {
-                        _name = BigLetter(value);
+                        _name = ChangeRegister(value);
                     }
                 }
             }
@@ -151,48 +153,38 @@ namespace Lab1
         /// <summary>
         /// Определение свойства Пол человека.
         /// </summary>
-        public Gender Gender
-        {
-            get
-            {
-                return _gender;
-            }
-            set
-            {
-                _gender = value;
-            }
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Метод вывода данных о человеке.
         /// </summary>
         public string GetInfo()
         {
-            return $"Имя: {_name}, Фамилия: {_lastName}," +
-                   $" возраст: {_age}, пол: {_gender}";
+            return $"Имя: {Name}, Фамилия: {LastName}," +
+                   $" возраст: {Age}, пол: {Gender}";
         }
 
         /// <summary>
         /// Регулярное выражение для проверки Фамилии и Имени.
         /// </summary>
-        /// <param name="name">Слово, которое требует проверки.</param>
+        /// <param name="checkValue">Слово, которое требует проверки.</param>
         /// <returns>Результат проверки(true/false).</returns>
-        public static bool IsValidName(string name)
+        public static bool IsValidName(string checkValue)
         {
             Regex regex = new Regex("(^[a-zA-Z]+$)|(^[а-яА-Я]+$)");
-            return regex.IsMatch(name);
+            return regex.IsMatch(checkValue);
         }
 
         /// <summary>
         /// Проверка отдельно Имени, Фамилии.
         /// </summary>
-        /// <param name="read">Проверяемое слово.</param>
+        /// <param name="checkValue">Проверяемое слово.</param>
         /// <returns>Результат проверки.</returns>
-        public static bool СheckLanguage(string read)
+        public static bool СheckLanguage(string checkValue)
         {
-            if (read.Contains("-"))
+            if (checkValue.Contains("-"))
             {
-                string[] parts = read.Split('-');
+                string[] parts = checkValue.Split('-');
                 if (parts.Length == 2)
                 {
                     string result = string.Join("", parts);
@@ -207,7 +199,7 @@ namespace Lab1
                     return false;
                 }
             }
-            else if (!IsValidName(read))
+            else if (!IsValidName(checkValue))
             {
                 return false;
             }
@@ -232,16 +224,16 @@ namespace Lab1
         /// <summary>
         /// Преобразование регистров Имен и Фамилий.
         /// </summary>
-        /// <param name="read">Слово, которое требует преобразования.</param>
+        /// <param name="checkValue">Слово, которое требует преобразования.</param>
         /// <returns>Преобразованное слово.</returns>
-        public static string BigLetter(string read)
+        public static string ChangeRegister(string checkValue)
         {
             string result;
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
-            if (read.Contains("-"))
+            if (checkValue.Contains("-"))
             {
-                string[] parts = read.Split('-');
+                string[] parts = checkValue.Split('-');
 
                 for (int i = 0; i < parts.Length; i++)
                 {
@@ -253,7 +245,7 @@ namespace Lab1
             }
             else
             {
-                result = textInfo.ToTitleCase(read);
+                result = textInfo.ToTitleCase(checkValue);
             }
 
             return result;
@@ -269,16 +261,21 @@ namespace Lab1
 
             Random random = new Random();
 
-            string[] namesWonem = { "Екатерина", "Ольга", "Надежда", "Любовь", "Ирина", "Анастасия", "Кира" };
-            string[] namesMen = { "Владимир", "Артем", "Степан", "Виктор", "Александр", "Дмитрий", "Валентин" };
-            string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин", "Ефремов", "Ласточкин", "Морозов", "Туклинин" };
+            string[] namesWonem = { "Екатерина", "Ольга", "Надежда",
+                "Любовь", "Ирина", "Анастасия" };
+            string[] namesMen = { "Владимир", "Артем", "Степан","Виктор",
+                "Александр", "Дмитрий"};
+            string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин",
+                "Ефремов", "Ласточкин", "Морозов"};
 
-            person.Gender = (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
+            person.Gender =
+                (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
 
             if (person.Gender == Gender.Female)
             {
                 person.Name = namesWonem[random.Next(namesWonem.Length)];
-                person.LastName = lastNames[random.Next(lastNames.Length)] + "а";
+                person.LastName =
+                    lastNames[random.Next(lastNames.Length)] + "а";
             }
             else if (person.Gender == Gender.Male)
             {

@@ -13,15 +13,15 @@ namespace Lab1
         /// <summary>
         /// Название списка.
         /// </summary>
-        private string _namelistPerson;
+        private string _nameListPerson;
 
         /// <summary>
         /// Конструктор класса Список Людей.
         /// </summary>
-        /// <param name="namelistPerson">Название Списка.</param>
-        public PersonList(string namelistPerson)
+        /// <param name="nameListPerson">Название Списка.</param>
+        public PersonList(string nameListPerson)
         {
-            _namelistPerson = namelistPerson;
+            _nameListPerson = nameListPerson;
             _listPerson = new List<Person>();
         }
 
@@ -29,10 +29,10 @@ namespace Lab1
         /// Конструктор класса Список Людей 2.
         /// </summary>
         /// <param name="listPerson">Список Людей.</param>
-        /// <param name="namelistPerson">Название Списка.</param>
-        public PersonList(List<Person> listPerson, string namelistPerson)
+        /// <param name="nameListPerson">Название Списка.</param>
+        public PersonList(List<Person> listPerson, string nameListPerson)
         {
-            _namelistPerson = namelistPerson;
+            _nameListPerson = nameListPerson;
             _listPerson = listPerson;
         }
 
@@ -40,23 +40,23 @@ namespace Lab1
         /// <summary>
         /// Определение свойства название списка.
         /// </summary>
-        public string NamelistPerson
+        public string NameListPerson
         {
             //TODO: проверки +
             get
             {
-                return _namelistPerson;
+                return _nameListPerson;
             }
             set
             {
-                if (string.IsNullOrEmpty(_namelistPerson))
+                if (string.IsNullOrEmpty(_nameListPerson))
                 {
                     throw new ArgumentNullException
                         ("Имя списка не задано");
                 }
                 else
                 {
-                    _namelistPerson = value;
+                    _nameListPerson = value;
                 }
             }
         }
@@ -82,7 +82,8 @@ namespace Lab1
         /// Метод проверки наличия элемента в списке. 
         /// </summary>
         /// <param name="index">Интересующий пользователя индекс.</param>
-        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <exception cref="IndexOutOfRangeException">Индекс элемента списка
+        /// находится вне диапазона допустимых значений</exception>
         public void CheckByIndex(int index)
         {
             //TODO: duplication +
@@ -122,14 +123,16 @@ namespace Lab1
         /// <summary>
         /// Метод удаления диапазона элементов из списка.
         /// </summary>
-        /// <param name="index1">Индекс элемента,
+        /// <param name="index">Индекс элемента,
         /// соответвующий началу диапазона.</param>
         /// <param name="count">Число удаляемых элементов.</param>
-        public void DeletByRange(int index1, int count)
+        /// <exception cref="IndexOutOfRangeException">Индекс элемента списка
+        /// находится вне диапазона списка</exception>
+        public void DeletByRange(int index, int count)
         {
             //TODO: duplication +
-            CheckByIndex(index1);
-            if ((_listPerson.Count - 1) < index1 + count || count < 0)
+            CheckByIndex(index);
+            if ((_listPerson.Count - 1) < index + count || count < 0)
             {
                 throw new IndexOutOfRangeException
                     ($"Число удаляемых элементов {count} " +
@@ -137,16 +140,16 @@ namespace Lab1
             }
             else
             {
-                _listPerson.RemoveRange(index1, count);
+                _listPerson.RemoveRange(index, count);
             }
         }
 
         /// <summary>
         /// Метод получения количества элементов в списке.
         /// </summary>
-        public int Count()
+        public int CountPerson()
         {
-            return _listPerson.Count() - 1;
+            return _listPerson.Count();
         }
 
         /// <summary>
@@ -155,6 +158,10 @@ namespace Lab1
         /// <param name="person">Экземпляр класса Человек.</param>
         /// <returns>Возврат индекса элемента,если он есть в списке,
         /// иначе -1.</returns>
+        /// <exception cref="ArgumentNullException">Передано значение
+        /// null</exception>
+        /// <exception cref="InvalidOperationException">Переданого значения
+        /// нет в списке</exception>
         public int LookForElement(Person person)
         {
             if (person == null)

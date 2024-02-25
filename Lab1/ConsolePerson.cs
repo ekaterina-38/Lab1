@@ -11,99 +11,86 @@ namespace Lab1
         /// <returns>Объект класса Person.</returns>
         public static Person ConsoleReadPerson()
         {
-            Person person1 = new Person();
-            bool flag;
-            do
-            {
-                Console.Write($"\nВведите фамилию человека: ");
-                flag = false;
-                try
-                {
-                    person1.LastName = Console.ReadLine();
-                }
-                catch (NullReferenceException ex)
-                {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
-                }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
-                }
-            }
-            while (flag);
+            Person person = new Person();
 
-            do
+            string readGender;
+
+            List<Action> actions = new List<Action>()
             {
-                Console.Write($"\nВведите имя человека: ");
-                flag = false;
+                ()=>
+                    {
+                        Console.Write($"\nВведите фамилию человека: ");
+                        person.LastName = Console.ReadLine();
+                    },
+                ()=>
+                    {
+                        Console.Write($"\nВведите имя человека: ");
+                        person.Name = Console.ReadLine();
+                    },
+                ()=>
+                    {
+                        Console.Write($"\nВведите возраст человека: ");
+                        person.Age = Convert.ToInt32(Console.ReadLine());
+                    },
+                ()=>
+                    {
+                        Console.Write("\nВведите Пол человека М(M)/Ж(F): ");
+                        readGender = Console.ReadLine();
+
+                        if (readGender == "F" || readGender == "Ж")
+                        {
+                              person.Gender = Gender.Female;
+                        }
+                        else if (readGender == "M" || readGender == "М")
+                        {
+                              person.Gender = Gender.Male;
+                        }
+                        else
+                        {
+                              Console.WriteLine("\nВведите Пол человека М(M)/Ж(F): ");
+                              throw new ArgumentOutOfRangeException("Пол человека М(M)/Ж(F)");
+                        }
+                    }
+            };
+
+            foreach (Action action in actions)
+            {
+                ExceptionHandler(action);
+            }
+
+            return person;
+        }
+
+        /// <summary>
+        /// Обработчик исключений.
+        /// </summary>
+        /// <param name="action">Действие, которое требует проверки.</param>
+        public static void ExceptionHandler(Action action)
+        {
+            while (true)
+            {
                 try
                 {
-                    person1.Name = Console.ReadLine();
+                    action.Invoke();
+                    return;
                 }
                 catch (NullReferenceException ex)
                 {
                     Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
                     Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
                 }
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
-                }
-            }
-            while (flag);
-
-            do
-            {
-                Console.Write($"\nВведите возраст человека: ");
-                flag = false;
-                try
-                {
-                    person1.Age = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
                 }
                 catch (FormatException ex)
                 {
                     Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                    flag = true;
                 }
             }
-            while (flag);
-
-            string readGender;
-            do
-            {
-                Console.Write($"\nВведите Пол человека: ");
-                readGender = Console.ReadLine();
-
-                if (readGender == "Female")
-                {
-                    person1.Gender = Gender.Female;
-                }
-                else if (readGender == "Male")
-                {
-                    person1.Gender = Gender.Male;
-                }
-                else
-                {
-                    Console.WriteLine("Введите пол: Male или Female.");
-                    readGender = string.Empty;
-                }
-            }
-            while (string.IsNullOrEmpty(readGender));
-
-            return person1;
         }
 
         /// <summary>
@@ -112,11 +99,11 @@ namespace Lab1
         /// <param name="listperson">Список людей.</param>
         public static void Print(PersonList listperson)
         {
-            Console.WriteLine(listperson.NamelistPerson);
+            Console.WriteLine(listperson.NameListPerson);
 
-            int count = listperson.Count();
+            int count = listperson.CountPerson();
 
-            for (int index = 0; index <= count; index++)
+            for (int index = 0; index < count; index++)
             {
                 Person person = listperson.LookForIndex(index);
                 Console.WriteLine(person.GetInfo());

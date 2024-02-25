@@ -11,9 +11,9 @@ namespace Lab1
         internal static void Main()
         {
             Console.WriteLine
-            ("a. Автоматически создано два списка людей.\n " +
-             "В каждом из списков содержатся записи о трех людях.\n " +
-             "Для продолжения нажмите любую кнопку\n");
+                ("a. Автоматически создано два списка людей.\n" +
+                "В каждом из списков содержатся записи о трех людях.\n" +
+                "\nДля продолжения используйте любую кнопку\n");
 
             List<Person> listPerson1 = new List<Person>
             {
@@ -44,7 +44,7 @@ namespace Lab1
 
             _ = Console.ReadKey();
             Console.WriteLine("c. Добавление нового " +
-                              "человека в 1-ый список: \n");
+                "человека в 1-ый список: \n");
 
             firstList.AddPerson
                 (new Person("Евстатов", "Данил", 17, Gender.Male));
@@ -53,8 +53,9 @@ namespace Lab1
 
             _ = Console.ReadKey();
             Console.WriteLine
-            ("d. Добавление 2-го человека 1-го списка в конец 2-го списка\n" +
-            "В итоге, один и тот же человек находится в обоих cписках\n");
+                ("d. Добавление 2-го человека 1-го списка " +
+                "в конец 2-го списка\n" + "В итоге, один и тот же человек " +
+                "находится в обоих cписках\n");
 
             int index = 1;
 
@@ -65,9 +66,9 @@ namespace Lab1
 
             _ = Console.ReadKey();
             Console.WriteLine
-            ("\ne. Удаление 2-го человека из 1-го списка.\n" +
-             "В итоге, удаление человека из 1-го списка не привело" +
-             " к уничтожению этого же человека во 2-ом списке\n");
+                ("\ne. Удаление 2-го человека из 1-го списка.\n" +
+                "В итоге, удаление человека из 1-го списка не привело\n" +
+                "к уничтожению этого же человека во 2-ом списке\n");
 
             firstList.DeleteByIndex(index);
             ConsolePerson.Print(secondList);
@@ -79,6 +80,8 @@ namespace Lab1
             secondList.Clear();
 
             ConsolePerson.Print(secondList);
+            Console.WriteLine($"Количество записей: " +
+                $"{secondList.CountPerson()}");
 
             _ = Console.ReadKey();
 
