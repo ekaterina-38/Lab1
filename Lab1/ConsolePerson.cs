@@ -35,7 +35,7 @@ namespace Lab1
                 ()=>
                     {
                         Console.Write("\nВведите Пол человека М(M)/Ж(F): ");
-                        readGender = Console.ReadLine();
+                        readGender = Console.ReadLine().ToUpper();
 
                         if (readGender == "F" || readGender == "Ж")
                         {
