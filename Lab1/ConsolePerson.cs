@@ -36,19 +36,30 @@ namespace Lab1
                     {
                         Console.Write("\nВведите Пол человека М(M)/Ж(F): ");
                         readGender = Console.ReadLine().ToUpper();
+                        switch (readGender)
+                        {
+                            case "F":
+                            case "Ж":
+                                {
+                                    person.Gender = Gender.Female;
+                                    break;
+                                }
 
-                        if (readGender == "F" || readGender == "Ж")
-                        {
-                              person.Gender = Gender.Female;
-                        }
-                        else if (readGender == "M" || readGender == "М")
-                        {
-                              person.Gender = Gender.Male;
-                        }
-                        else
-                        {
-                              Console.WriteLine("\nВведите Пол человека М(M)/Ж(F): ");
-                              throw new ArgumentOutOfRangeException("Пол человека М(M)/Ж(F)");
+                            case "M":
+                            case "М":
+                                {
+                                    person.Gender = Gender.Male;
+                                    break;
+                                }
+
+                            default :
+                                {
+                                    Console.WriteLine(
+                                        "\nВведите Пол человека М(M)/Ж(F): ");
+                                    throw new ArgumentOutOfRangeException(
+                                        "Пол человека М(M)/Ж(F)");
+                                }
+
                         }
                     }
             };
