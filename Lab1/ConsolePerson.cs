@@ -52,7 +52,7 @@ namespace Lab1
                                     break;
                                 }
 
-                            default :
+                            default:
                                 {
                                     Console.WriteLine(
                                         "\nВведите Пол человека М(M)/Ж(F): ");
@@ -78,6 +78,37 @@ namespace Lab1
         /// <param name="action">Действие, которое требует проверки.</param>
         public static void ExceptionHandler(Action action)
         {
+            var catchDictionary = new Dictionary<Type, Action<string>>
+            {
+                { typeof(NullReferenceException),
+                (string message) =>
+                {
+                    Console.WriteLine($"Возникла ошибка: {message}");
+                }
+                },
+
+                { typeof(ArgumentOutOfRangeException),
+                (string message) =>
+                {
+                    Console.WriteLine($"Возникла ошибка: {message}");
+                }
+                },
+
+                { typeof(ArgumentException),
+                (string message) =>
+                {
+                    Console.WriteLine($"Возникла ошибка: {message}");
+                }
+                },
+
+                { typeof(FormatException),
+                (string message) =>
+                {
+                    Console.WriteLine($"Возникла ошибка: {message}");
+                }
+                },
+            };
+
             while (true)
             {
                 try
@@ -85,21 +116,9 @@ namespace Lab1
                     action.Invoke();
                     return;
                 }
-                catch (NullReferenceException ex)
+                catch (Exception ex)
                 {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
-                }
-                catch (FormatException ex)
-                {
-                    Console.WriteLine($"Возникла ошибка: {ex.Message}");
+                    catchDictionary[ex.GetType()].Invoke(ex.Message);
                 }
             }
         }
