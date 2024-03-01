@@ -36,13 +36,11 @@ namespace Lab1
             _listPerson = listPerson;
         }
 
-        //TODO: XML +
         /// <summary>
         /// Определение свойства название списка.
         /// </summary>
         public string NameListPerson
         {
-            //TODO: проверки +
             get
             {
                 return _nameListPerson;
@@ -86,10 +84,8 @@ namespace Lab1
         /// находится вне диапазона допустимых значений</exception>
         public void CheckByIndex(int index)
         {
-            //TODO: duplication +
             if ((_listPerson.Count - 1) < index || index < 0)
             {
-                //TODO: RSDN +
                 throw new IndexOutOfRangeException
                     ($"Элемента с индексом {index} нет в списке");
             }
@@ -102,24 +98,20 @@ namespace Lab1
         /// <returns>Человек.</returns>
         public Person LookForIndex(int index)
         {
-            //TODO: duplication +
             CheckByIndex(index);
             return _listPerson[index];
         }
 
-        //TODO: rename (Delete By Index) +
         /// <summary>
         /// Метод удаления элемента списка по индексу.
         /// </summary>
         /// <param name="index">Индекс удаляемого элемента.</param>
         public void DeleteByIndex(int index)
         {
-            //TODO: duplication +
             CheckByIndex(index);
             _listPerson.RemoveAt(index);
         }
 
-        //TODO: rename+
         /// <summary>
         /// Метод удаления диапазона элементов из списка.
         /// </summary>
@@ -130,7 +122,6 @@ namespace Lab1
         /// находится вне диапазона списка</exception>
         public void DeletByRange(int index, int count)
         {
-            //TODO: duplication +
             CheckByIndex(index);
             if ((_listPerson.Count - 1) < index + count || count < 0)
             {

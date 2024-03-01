@@ -65,7 +65,6 @@ namespace Lab1
             }
             set
             {
-                //TODO: проверить null и пустую строку? +
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new NullReferenceException
@@ -73,7 +72,6 @@ namespace Lab1
                 }
                 else if (!СheckLanguage(value))
                 {
-                    //TODO: exception +
                     throw new ArgumentOutOfRangeException
                               ("Фамилия должна быть одного языка " +
                               "и не должна содержать цифры");
@@ -96,7 +94,6 @@ namespace Lab1
             }
             set
             {
-                //TODO: проверить null и пустую строку? +
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new NullReferenceException
@@ -106,14 +103,12 @@ namespace Lab1
                 {
                     if (!СheckLanguage(value))
                     {
-                        //TODO: exception +  
                         throw new ArgumentOutOfRangeException
                                   ("Имя должно быть одного языка " +
                                   "и не должно содержать цифры");
                     }
                     if (!СheckFullName(_lastName, value))
                     {
-                        //TODO: exception +
                         throw new ArgumentException
                                   ("Фамилия и Имя должны быть одного языка");
                     }
@@ -136,10 +131,8 @@ namespace Lab1
             }
             set
             {
-                //TODO: проверить на бессмертие +
                 if (value < _minAge || value > _maxAge)
                 {
-                    //TODO: RSDN +
                     throw new ArgumentOutOfRangeException
                               ("Введите корректный возраст");
                 }
