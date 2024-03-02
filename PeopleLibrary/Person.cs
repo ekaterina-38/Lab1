@@ -68,13 +68,13 @@ namespace Lab1
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new NullReferenceException
-                              ("Введена пустая или null строка");
+                        ("Введена пустая или null строка");
                 }
                 else if (!СheckLanguage(value))
                 {
                     throw new ArgumentOutOfRangeException
-                              ("Фамилия должна быть одного языка " +
-                              "и не должна содержать цифры");
+                        ("Фамилия должна быть одного языка " +
+                        "и не должна содержать цифры");
                 }
                 else
                 {
@@ -97,20 +97,20 @@ namespace Lab1
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new NullReferenceException
-                              ("Введена пустая или null строка");
+                        ("Введена пустая или null строка");
                 }
                 else
                 {
                     if (!СheckLanguage(value))
                     {
                         throw new ArgumentOutOfRangeException
-                                  ("Имя должно быть одного языка " +
-                                  "и не должно содержать цифры");
+                            ("Имя должно быть одного языка " +
+                            "и не должно содержать цифры");
                     }
                     if (!СheckFullName(_lastName, value))
                     {
                         throw new ArgumentException
-                                  ("Фамилия и Имя должны быть одного языка");
+                            ("Фамилия и Имя должны быть одного языка");
                     }
                     else
                     {
@@ -134,7 +134,7 @@ namespace Lab1
                 if (value < _minAge || value > _maxAge)
                 {
                     throw new ArgumentOutOfRangeException
-                              ("Введите корректный возраст");
+                        ("Введите корректный возраст (от 0 до 150 лет) ");
                 }
                 else
                 {
