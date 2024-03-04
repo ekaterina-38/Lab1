@@ -1,4 +1,4 @@
-namespace Lab1
+namespace PeopleLibrary
 {
     /// <summary>
     /// Пол человека.

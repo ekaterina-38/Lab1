@@ -1,3 +1,5 @@
+using PeopleLibrary;
+
 namespace Lab1
 {
     /// <summary>

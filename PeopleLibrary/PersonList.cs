@@ -1,4 +1,6 @@
-namespace Lab1
+using System;
+
+namespace PeopleLibrary
 {
     /// <summary>
     /// Класс Список Людей.
@@ -170,6 +172,23 @@ namespace Lab1
 
             throw new InvalidOperationException
                 ($"Элемента {person} нет в списке");
+        }
+
+        /// <summary>
+        /// Поиск человека по введенному Полу.
+        /// </summary>
+        /// <param name="gender">Пол человека.</param>
+        /// <returns>Индекс человека.</returns>
+        public int LookForGender(Gender gender)
+        {
+            for (int index = 0; index <= (_listPerson.Count - 1); index++)
+            {
+                if (_listPerson[index].Gender == gender)
+                {
+                    return index;
+                }
+            }
+            return -1;
         }
     }
 }

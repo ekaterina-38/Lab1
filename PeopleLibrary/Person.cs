@@ -1,7 +1,8 @@
+using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Lab1
+namespace PeopleLibrary
 {
     /// <summary>
     /// Класс Человек.
@@ -22,16 +23,6 @@ namespace Lab1
         /// Возраст.
         /// </summary>
         private int _age;
-
-        /// <summary>
-        /// Максимальный возраст человека.
-        /// </summary>
-        private const int _maxAge = 150;
-
-        /// <summary>
-        /// Минимальный возраст человека.
-        /// </summary>
-        private const int _minAge = 0;
 
         /// <summary>
         /// Конструктор класса Человек.
@@ -123,7 +114,7 @@ namespace Lab1
         /// <summary>
         /// Определение свойства Возраст.
         /// </summary>
-        public int Age
+        public virtual int Age
         {
             get
             {
@@ -131,10 +122,10 @@ namespace Lab1
             }
             set
             {
-                if (value < _minAge || value > _maxAge)
+                if (value < MinAge || value > MaxAge)
                 {
-                    throw new ArgumentOutOfRangeException
-                        ("Введите корректный возраст (от 0 до 150 лет) ");
+                    throw new ArgumentOutOfRangeException($"Введите корректный" +
+                        $" возраст (от {MinAge} до {MaxAge} лет)");
                 }
                 else
                 {
@@ -149,12 +140,22 @@ namespace Lab1
         public Gender Gender { get; set; }
 
         /// <summary>
+        /// Максимальный возраст человека.
+        /// </summary>
+        protected virtual int MaxAge { get; } = 150;
+
+        /// <summary>
+        /// Минимальный возраст человека.
+        /// </summary>
+        protected virtual int MinAge { get; }
+
+        /// <summary>
         /// Метод вывода данных о человеке.
         /// </summary>
-        public string GetInfo()
+        public virtual string GetInfo()
         {
             return $"Имя: {Name}, Фамилия: {LastName}," +
-                   $" возраст: {Age}, пол: {Gender}";
+                   $" Возраст: {Age}, Пол: {Gender}";
         }
 
         /// <summary>
@@ -251,7 +252,15 @@ namespace Lab1
         public static Person GetRandomPerson()
         {
             Person person = new Person();
+            person.GetRandomData();
+            return person;
+        }
 
+        /// <summary>
+        /// Виртуальный метод генерации случайных данных людей.
+        /// </summary>
+        protected virtual void GetRandomData()
+        {
             Random random = new Random();
 
             string[] namesWonem = { "Екатерина", "Ольга", "Надежда",
@@ -261,24 +270,22 @@ namespace Lab1
             string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин",
                 "Ефремов", "Ласточкин", "Морозов"};
 
-            person.Gender =
+            Gender =
                 (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
 
-            if (person.Gender == Gender.Female)
+            if (Gender == Gender.Female)
             {
-                person.Name = namesWonem[random.Next(namesWonem.Length)];
-                person.LastName =
+                Name = namesWonem[random.Next(namesWonem.Length)];
+                LastName =
                     lastNames[random.Next(lastNames.Length)] + "а";
             }
-            else if (person.Gender == Gender.Male)
+            else if (Gender == Gender.Male)
             {
-                person.Name = namesMen[random.Next(namesMen.Length)];
-                person.LastName = lastNames[random.Next(lastNames.Length)];
+                Name = namesMen[random.Next(namesMen.Length)];
+                LastName = lastNames[random.Next(lastNames.Length)];
             }
 
-            person.Age = random.Next(_minAge, _maxAge);
-
-            return person;
+            Age = random.Next(MinAge, MaxAge);
         }
     }
 }
