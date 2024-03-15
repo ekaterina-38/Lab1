@@ -110,12 +110,12 @@ namespace PeopleLibrary
             {
                 if (value?.Gender == Gender)
                 {
-                    throw new ArgumentOutOfRangeException
+                    throw new ArgumentException
                         ("Невозможно создать однополый брак");
                 }
                 if (value?.Partner is not null || Partner is not null)
                 {
-                    throw new ArgumentOutOfRangeException
+                    throw new ArgumentException
                         ("Человек уже в браке");
                 }
 

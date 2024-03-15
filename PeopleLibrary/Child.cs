@@ -82,12 +82,12 @@ namespace PeopleLibrary
             {
                 if (value?.Gender != Gender.Female && value is not null)
                 {                    
-                    throw new ArgumentOutOfRangeException
+                    throw new ArgumentException
                         ("Мать должна быть женского пола");
                 }
                 if (Mother is not null)
                 {
-                    throw new ArgumentOutOfRangeException
+                    throw new ArgumentException
                         ("У ребенка уже есть мать");
                 }
                 else
@@ -107,12 +107,12 @@ namespace PeopleLibrary
             {
                 if (value?.Gender != Gender.Male && value is not null)
                 {
-                    throw new ArgumentOutOfRangeException
+                    throw new ArgumentException
                         ("Отец должен быть мужского пола");
                 }
                 if (Father is not null)
                 {
-                    throw new ArgumentOutOfRangeException
+                    throw new ArgumentException
                         ("У ребенка уже есть отец");
                 }
                 else
