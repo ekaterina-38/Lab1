@@ -142,7 +142,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Максимальный возраст человека.
         /// </summary>
-        protected virtual int MaxAge { get; } = 150;
+        protected virtual int MaxAge { get; } = 120;
 
         /// <summary>
         /// Минимальный возраст человека.
@@ -249,38 +249,37 @@ namespace PeopleLibrary
         /// Метод рандомного создания людей.
         /// </summary>
         /// <returns> Объект класса Person.</returns>
-        public static Person GetRandomPerson()
+        public static Person GetRandomPerson(Gender gender)
         {
             Person person = new Person();
-            person.GetRandomData();
+            person.GetRandomData(gender);
             return person;
         }
 
         /// <summary>
         /// Виртуальный метод генерации случайных данных людей.
         /// </summary>
-        protected virtual void GetRandomData()
+        protected virtual void GetRandomData(Gender gender)
         {
             Random random = new Random();
 
-            string[] namesWonem = { "Екатерина", "Ольга", "Надежда",
-                "Любовь", "Ирина", "Анастасия" };
-            string[] namesMen = { "Владимир", "Артем", "Степан","Виктор",
-                "Александр", "Дмитрий"};
+            Gender = gender;
             string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин",
                 "Ефремов", "Ласточкин", "Морозов"};
 
-            Gender =
-                (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
-
-            if (Gender == Gender.Female)
+            if (gender == Gender.Female)
             {
+                string[] namesWonem = { "Екатерина", "Ольга", "Надежда",
+                "Любовь", "Ирина", "Анастасия" };
                 Name = namesWonem[random.Next(namesWonem.Length)];
                 LastName =
                     lastNames[random.Next(lastNames.Length)] + "а";
             }
-            else if (Gender == Gender.Male)
+            else if (gender == Gender.Male)
             {
+                string[] namesMen = { "Владимир", "Артем", "Степан","Виктор",
+                "Александр", "Дмитрий"};
+
                 Name = namesMen[random.Next(namesMen.Length)];
                 LastName = lastNames[random.Next(lastNames.Length)];
             }

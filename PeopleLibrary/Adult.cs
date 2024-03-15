@@ -7,7 +7,6 @@ namespace PeopleLibrary
     /// </summary>
     public class Adult : Person
     {
-
         /// <summary>
         /// Серия паспорта.
         /// </summary>
@@ -152,11 +151,6 @@ namespace PeopleLibrary
         }
 
         /// <summary>
-        /// Свойство для поля максимальный возраст.
-        /// </summary>
-        protected override int MaxAge { get; } = 150;
-
-        /// <summary>
         /// Свойство для поля минимальный возраст.
         /// </summary>
         protected override int MinAge { get; } = 19;
@@ -164,9 +158,9 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод проверки данных паспорта.
         /// </summary>
-        /// <param name="data">Номер/Серия</param>
-        /// <param name="fieldSize">Допустимый размер поля</param>
-        /// <returns>Результат проверки(true/false)</returns>
+        /// <param name="data">Номер/Серия.</param>
+        /// <param name="fieldSize">Допустимый размер поля.</param>
+        /// <returns>Результат проверки(true/false).</returns>
         private static bool CheckPassport(int data, int fieldSize)
         {
             return data.ToString().Length == fieldSize;
@@ -196,12 +190,13 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод создания рандомного Взрослого человека.
         /// </summary>
-        /// <returns>Взрослый человек.</returns>
-        public static Adult GetRandom()
+        /// <param name="gender">Пол человека,которого нужно создать.</param>
+        /// <returns></returns>
+        public static Adult GetRandom(Gender gender)
         {
             Adult adult = new Adult();
 
-            adult.GetRandomData();
+            adult.GetRandomData(gender);
 
             return adult;
         }
@@ -209,15 +204,24 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод генерации случайных данных о Взрослом человеке.
         /// </summary>
-        protected override void GetRandomData()
+        /// <param name="gender">Пол человека,которого нужно создать.</param>
+        protected override void GetRandomData(Gender gender)
         {
-            base.GetRandomData();
+            base.GetRandomData(gender);
 
             Random random = new Random();
 
             string[] nameWork = { "Сбербанк", "Росатом", "МТС", "Яндекс",
                 "Аэрофолот", "Газпром нефть" };
-            NameWork = nameWork[random.Next(nameWork.Length)];
+
+            if (Age > 75)
+            {
+                NameWork = "На пенсиии";
+            }
+            else
+            {
+                NameWork = nameWork[random.Next(nameWork.Length)];
+            }
 
             int[] seriesPassport = { 1235, 5241, 7542, 2452,
                 2542, 5245 };
@@ -232,11 +236,10 @@ namespace PeopleLibrary
         /// Метод создания семьи. 
         /// </summary>
         /// <param name="list">Список людей.</param>
-        public static void Marriage (PersonList list)
+        /// <param name="manIndex">Индекс мужчины в списке.</param>
+        /// <param name="womenIndex">Индекс женщины в списке.</param>
+        public static void Marriage (PersonList list, int manIndex, int womenIndex)
         {
-            int manIndex = list.LookForGender(Gender.Male);
-            int womenIndex = list.LookForGender(Gender.Female);
-
             ((Adult)list.LookForIndex(manIndex)).Partner =
             ((Adult)list.LookForIndex(womenIndex));
         }

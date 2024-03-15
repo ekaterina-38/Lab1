@@ -23,22 +23,29 @@ namespace Lab1
 
             Console.WriteLine("Вывод содержимого списков: \n");
 
-            firstList.AddPerson(Child.GetRandom());
-            firstList.AddPerson(Child.GetRandom());
-            firstList.AddPerson(Child.GetRandom());
-            secondList.AddPerson(Adult.GetRandom());
-            secondList.AddPerson(Adult.GetRandom());
-            secondList.AddPerson(Adult.GetRandom());
+            firstList.AddPerson(Child.GetRandom(Gender.Female));
+            firstList.AddPerson(new Child("Александра", "Петрова", 15,
+                Gender.Female, "Школа", Adult.GetRandom(Gender.Female),
+                Adult.GetRandom(Gender.Male)));
+
+            secondList.AddPerson(new Adult("Виктор", "Кузнецов", 42,
+                Gender.Male, 3650, 567895, null, "Инженер"));
+            secondList.AddPerson(new Adult("Виктория", "Кузнецова", 40,
+                Gender.Female, 3421, 553421, null, "Стоматолог"));
+
+            Adult.Marriage(secondList, 0, 1);
+
+            secondList.AddPerson(Adult.GetRandom(Gender.Female));
+            secondList.AddPerson(Adult.GetRandom(Gender.Male));
 
             ConsolePerson.Print(firstList);
 
             ConsolePerson.Print(secondList);
 
+            Console.WriteLine($"Тип данных 4-го человека списке:" +
+                $" {secondList.LookForIndex(3).GetType()}");
+
             _ = Console.ReadKey();
-
-            Adult.Marriage(secondList);
-
-            ConsolePerson.Print(secondList);
         }
     }
 }

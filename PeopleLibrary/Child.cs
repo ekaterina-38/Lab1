@@ -45,7 +45,8 @@ namespace PeopleLibrary
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Child() : this("Иван", "Иванов", 7, Gender.Male, "Школа", null, null)
+        public Child() : this("Иван", "Иванов", 7, Gender.Male, "Школа", 
+            null, null)
         { }
 
         /// <summary>
@@ -79,7 +80,20 @@ namespace PeopleLibrary
             get { return _mother; }
             set
             {
-                _mother = value;
+                if (value?.Gender != Gender.Female && value is not null)
+                {                    
+                    throw new ArgumentOutOfRangeException
+                        ("Мать должна быть женского пола");
+                }
+                if (Mother is not null)
+                {
+                    throw new ArgumentOutOfRangeException
+                        ("У ребенка уже есть мать");
+                }
+                else
+                {
+                    _mother = value;
+                }
             }
         }
 
@@ -89,9 +103,28 @@ namespace PeopleLibrary
         public Adult? Father
         {
             get { return _father; }
-            set { _father = value; }
+            set
+            {
+                if (value?.Gender != Gender.Male && value is not null)
+                {
+                    throw new ArgumentOutOfRangeException
+                        ("Отец должен быть мужского пола");
+                }
+                if (Father is not null)
+                {
+                    throw new ArgumentOutOfRangeException
+                        ("У ребенка уже есть отец");
+                }
+                else
+                {
+                    _father = value;
+                }
+            }
         }
 
+        /// <summary>
+        /// Свойство для поля максимальный возраст.
+        /// </summary>
         protected override int MaxAge { get; } = 18;
 
         /// <summary>
@@ -104,7 +137,7 @@ namespace PeopleLibrary
 
             if (Mother is not null)
             {
-                info += $"Мать:{Mother.LastName}" + $"{Mother.Name}\n";
+                info += $"Мать: {Mother.LastName} " + $"{Mother.Name}\n";
             }
             else
             {
@@ -113,7 +146,7 @@ namespace PeopleLibrary
 
             if (Father is not null)
             {
-                info += $"Отец:{Father.LastName}" + $"{Father.Name}\n";
+                info += $"Отец: {Father.LastName} " + $"{Father.Name}\n";
             }
             else
             {
@@ -126,12 +159,12 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод рандомного создания Ребенка.
         /// </summary>
-        /// <returns></returns>
-        public static Child GetRandom()
+        /// <returns>Ребенок.</returns>
+        public static Child GetRandom(Gender gender)
         {
             Child child = new Child();
 
-            child.GetRandomData();
+            child.GetRandomData(gender);
 
             return child;
         }
@@ -139,9 +172,10 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод генерации данных о Ребенке.
         /// </summary>
-        protected override void GetRandomData()
+        /// <param name="gender">Пол ребенка, которого нужно создать.</param>
+        protected override void GetRandomData(Gender gender)
         { 
-            base.GetRandomData();
+            base.GetRandomData(gender);
             
             Random random = new Random();
 
