@@ -101,7 +101,7 @@ namespace PeopleLibrary
         }
 
         /// <summary>
-        /// Свойство для поля партнер.
+        /// Свойство для поля Партнер.
         /// </summary>
         public Adult? Partner
         {
@@ -243,6 +243,5 @@ namespace PeopleLibrary
             ((Adult)list.LookForIndex(manIndex)).Partner =
             ((Adult)list.LookForIndex(womenIndex));
         }
-
     }
 }
