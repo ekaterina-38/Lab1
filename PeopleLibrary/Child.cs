@@ -125,7 +125,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Свойство для поля максимальный возраст.
         /// </summary>
-        protected override int MaxAge { get; } = 18;
+        public override int MaxAge { get; } = 18;
 
         /// <summary>
         /// Переопределенный метод получения информации о Ребенке.
@@ -154,47 +154,6 @@ namespace PeopleLibrary
             }
 
             return info;
-        }
-
-        /// <summary>
-        /// Метод рандомного создания Ребенка.
-        /// </summary>
-        /// <returns>Ребенок.</returns>
-        public static Child GetRandom(Gender gender)
-        {
-            Child child = new Child();
-
-            child.GetRandomData(gender);
-
-            return child;
-        }
-
-        /// <summary>
-        /// Метод генерации данных о Ребенке.
-        /// </summary>
-        /// <param name="gender">Пол ребенка, которого нужно создать.</param>
-        protected override void GetRandomData(Gender gender)
-        { 
-            base.GetRandomData(gender);
-            
-            Random random = new Random();
-
-            var namesStudy = new List<string>();
-
-            if (Age <= 1)
-            {
-                 namesStudy.AddRange(new[] { "Домашнее обучение" });
-            }
-            else if (Age > 1 && Age <= 7)
-            {
-                namesStudy.AddRange(new[] { "Домашнее обучение", "Детский сад" });     
-            }
-            else
-            {
-                namesStudy.AddRange(new[] { "Домашнее обучение", "Школа", "Лицей" });
-            }
-
-            NameStudy = namesStudy[random.Next(namesStudy.Count)];
         }
     }
 }

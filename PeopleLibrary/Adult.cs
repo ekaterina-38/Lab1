@@ -153,7 +153,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Свойство для поля минимальный возраст.
         /// </summary>
-        protected override int MinAge { get; } = 19;
+        public override int MinAge { get; } = 19;
 
         /// <summary>
         /// Метод проверки данных паспорта.
@@ -185,51 +185,6 @@ namespace PeopleLibrary
             }
 
             return info ;       
-        }
-
-        /// <summary>
-        /// Метод создания рандомного Взрослого человека.
-        /// </summary>
-        /// <param name="gender">Пол человека,которого нужно создать.</param>
-        /// <returns></returns>
-        public static Adult GetRandom(Gender gender)
-        {
-            Adult adult = new Adult();
-
-            adult.GetRandomData(gender);
-
-            return adult;
-        }
-
-        /// <summary>
-        /// Метод генерации случайных данных о Взрослом человеке.
-        /// </summary>
-        /// <param name="gender">Пол человека,которого нужно создать.</param>
-        protected override void GetRandomData(Gender gender)
-        {
-            base.GetRandomData(gender);
-
-            Random random = new Random();
-
-            string[] nameWork = { "Сбербанк", "Росатом", "МТС", "Яндекс",
-                "Аэрофолот", "Газпром нефть" };
-
-            if (Age > 75)
-            {
-                NameWork = "На пенсиии";
-            }
-            else
-            {
-                NameWork = nameWork[random.Next(nameWork.Length)];
-            }
-
-            int[] seriesPassport = { 1235, 5241, 7542, 2452,
-                2542, 5245 };
-            SeriesPassport = seriesPassport[random.Next(seriesPassport.Length)];
-
-            int[] numberPassport = { 123544, 512441, 175142, 244512,
-                125142, 521451 };
-            NumberPassport = numberPassport[random.Next(numberPassport.Length)];
         }
 
         /// <summary>

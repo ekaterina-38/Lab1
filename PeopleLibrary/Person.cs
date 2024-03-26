@@ -142,12 +142,12 @@ namespace PeopleLibrary
         /// <summary>
         /// Максимальный возраст человека.
         /// </summary>
-        protected virtual int MaxAge { get; } = 120;
+        public virtual int MaxAge { get; } = 120;
 
         /// <summary>
         /// Минимальный возраст человека.
         /// </summary>
-        protected virtual int MinAge { get; }
+        public virtual int MinAge { get; }
 
         /// <summary>
         /// Метод вывода данных о человеке.
@@ -243,48 +243,6 @@ namespace PeopleLibrary
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Метод рандомного создания людей.
-        /// </summary>
-        /// <returns> Объект класса Person.</returns>
-        public static Person GetRandomPerson(Gender gender)
-        {
-            Person person = new Person();
-            person.GetRandomData(gender);
-            return person;
-        }
-
-        /// <summary>
-        /// Виртуальный метод генерации случайных данных людей.
-        /// </summary>
-        protected virtual void GetRandomData(Gender gender)
-        {
-            Random random = new Random();
-
-            Gender = gender;
-            string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин",
-                "Ефремов", "Ласточкин", "Морозов"};
-
-            if (gender == Gender.Female)
-            {
-                string[] namesWonem = { "Екатерина", "Ольга", "Надежда",
-                "Любовь", "Ирина", "Анастасия" };
-                Name = namesWonem[random.Next(namesWonem.Length)];
-                LastName =
-                    lastNames[random.Next(lastNames.Length)] + "а";
-            }
-            else if (gender == Gender.Male)
-            {
-                string[] namesMen = { "Владимир", "Артем", "Степан","Виктор",
-                "Александр", "Дмитрий"};
-
-                Name = namesMen[random.Next(namesMen.Length)];
-                LastName = lastNames[random.Next(lastNames.Length)];
-            }
-
-            Age = random.Next(MinAge, MaxAge);
         }
     }
 }
