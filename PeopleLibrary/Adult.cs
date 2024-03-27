@@ -51,7 +51,8 @@ namespace PeopleLibrary
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Adult() : this("Иван", "Иванов", 25, Gender.Male, 1234, 654321, null, null)
+        public Adult() : this("Иван", "Иванов", 25, Gender.Male, 1111,
+            111111, null, null)
         { }
 
         /// <summary>

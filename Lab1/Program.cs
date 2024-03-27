@@ -45,9 +45,35 @@ namespace Lab1
             //Console.WriteLine($"Тип данных 4-го человека списке:" +
             //    $" {secondList.LookForIndex(3).GetType()}");
 
-            //_ = Console.ReadKey();
+            List<Person> listPerson = new List<Person> { };
 
-            Child child = RandomPerson.GetRandomChild();
+            PersonList firstList =
+                new PersonList(listPerson, "Список Взрослых и Детей:\n");
+
+            Random random = new Random();
+
+            for (int i = 0; i < 7; i++)
+            {
+                if (random.Next(2) == 0)
+                {
+                    firstList.AddPerson(RandomPeople.GetChild());
+                }
+                else
+                {
+                    firstList.AddPerson(RandomPeople.GetAdult());
+                }
+            }
+
+            firstList.AddPerson(new Adult("Виктор", "Кузнецов", 42,
+                Gender.Male, 3650, 567895, null, "Инженер"));
+            firstList.AddPerson(new Adult("Виктория", "Кузнецова", 40,
+                Gender.Female, 3421, 553421, null, "Стоматолог"));
+
+            Adult.Marriage(firstList, 7, 8);
+
+            ConsolePerson.Print(firstList);
+
+            _ = Console.ReadKey();
         }
     }
 }

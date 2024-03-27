@@ -1,29 +1,63 @@
 ﻿using System;
+using System.Reflection;
 
 namespace PeopleLibrary
 {
-    public class RandomPerson
+    /// <summary>
+    /// Класс рандомного создания Людей.
+    /// </summary>
+    public static class RandomPeople
     {
         /// <summary>
-        /// Метод рандомного создания людей.
+        /// Метод рандомного создания Человека.
         /// </summary>
         /// <returns> Объект класса Person.</returns>
-        public static Person GetRandomPerson()
+        public static Person GetPerson()
         {
             Person person = new Person();
-            GetRandomData(person);
+
+            RandomGender(person);
+
+            GetDataPerson(person);
+
             return person;
         }
 
         /// <summary>
-        /// Виртуальный метод генерации случайных данных людей.
+        /// Перегруженный метод рандомного создания Человека.
         /// </summary>
-        public static void GetRandomData(Person person)
+        /// <param name="gender">Пол человека</param>
+        /// <returns>Объект класса Person.</returns>
+        public static Person GetPerson(Gender gender)
+        {
+            Person person = new Person();
+
+            person.Gender = gender;
+
+            GetDataPerson(person);
+
+            return person;
+        }
+
+        /// <summary>
+        /// Метод генерации рандомного пола у Человека.
+        /// </summary>
+        /// <param name="person">Объект класса Person.</param>
+        public static void RandomGender(Person person)
         {
             Random random = new Random();
 
             person.Gender =
                 (Gender)random.Next(Enum.GetValues(typeof(Gender)).Length);
+        }
+
+        /// <summary>
+        /// Метод генерации рандомных данных о Человеке.
+        /// </summary>
+        /// <param name="person">Объект класса Person.</param>
+        public static void GetDataPerson(Person person)
+        {
+            Random random = new Random();
 
             string[] lastNames = { "Иванов", "Васнецов", "Ольгин", "Кулагин",
                 "Ефремов", "Ласточкин", "Морозов"};
@@ -51,25 +85,43 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод создания рандомного Взрослого человека.
         /// </summary>
-        /// <param name="gender">Пол человека,которого нужно создать.</param>
-        /// <returns></returns>
-        public static Adult GetRandomAdult()
+        /// <returns>Объект класса Adult.</returns>
+        public static Adult GetAdult()
         {
             Adult adult = new Adult();
 
-            GetRandomDataAdult(adult);
+            RandomGender(adult);
+
+            GetDataPerson(adult);
+
+            GetDataAdult(adult);
 
             return adult;
         }
 
         /// <summary>
-        /// Метод генерации случайных данных о Взрослом человеке.
+        /// Перегруженный метод создания рандомного Взрослого человека.
         /// </summary>
-        /// <param name="gender">Пол человека,которого нужно создать.</param>
-        public static void GetRandomDataAdult(Adult adult)
+        /// <param name="gender">Пол человека.</param>
+        /// <returns>Объект класса Adult.</returns>
+        public static Adult GetAdult(Gender gender)
         {
-            GetRandomData(adult);
+            Adult adult = new Adult();
 
+            adult.Gender = gender;
+
+            GetDataPerson(adult);
+
+            GetDataAdult(adult);
+
+            return adult;
+        }
+
+        /// <summary>
+        /// Метод генерации рандомных данных о Взрослом человеке.
+        /// </summary>
+        public static void GetDataAdult(Adult adult)
+        {
             Random random = new Random();
 
             string[] nameWork = { "Сбербанк", "Росатом", "МТС", "Яндекс",
@@ -94,26 +146,28 @@ namespace PeopleLibrary
         }
 
         /// <summary>
-        /// Метод рандомного создания Ребенка.
+        /// Метод создания рандомного Ребенка.
         /// </summary>
-        /// <returns>Ребенок.</returns>
-        public static Child GetRandomChild()
+        /// <returns>Объект класса Child.</returns>
+        public static Child GetChild()
         {
             Child child = new Child();
 
-            GetRandomData(child);
+            RandomGender(child);
+
+            GetDataPerson(child);
+
+            GetDataChild(child);
 
             return child;
         }
 
         /// <summary>
-        /// Метод генерации данных о Ребенке.
+        /// Метод генерации рандомных данных о Ребенке.
         /// </summary>
-        /// <param name="gender">Пол ребенка, которого нужно создать.</param>
-        public static void GetRandomDataChild(Child child)
+        /// <param name="child">Объект класса Child.</param>
+        public static void GetDataChild(Child child)
         {
-            GetRandomData(child);
-
             Random random = new Random();
 
             var namesStudy = new List<string>();
@@ -132,6 +186,20 @@ namespace PeopleLibrary
             }
 
             child.NameStudy = namesStudy[random.Next(namesStudy.Count)];
+
+            child.Father = GetAdult(Gender.Male);
+            child.Mother = GetAdult(Gender.Female);
+
+            if (child.Gender == Gender.Female)
+            {
+                child.LastName = child.Father.LastName + "а";
+                child.Mother.LastName = child.Father.LastName + "а";
+            }
+            else
+            {
+                child.LastName = child.Father.LastName;
+                child.Mother.LastName = child.Father.LastName + "а";
+            }
         }
     }
 }
