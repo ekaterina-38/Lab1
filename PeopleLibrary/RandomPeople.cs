@@ -169,6 +169,7 @@ namespace PeopleLibrary
                     GetDataPerson(partner);
                     GetDataAdult(partner);
                     adult.Partner = partner;
+                    adult.LastName = partner.LastName + "а";
                 }
                 else
                 {
@@ -176,6 +177,7 @@ namespace PeopleLibrary
                     GetDataPerson(partner);
                     GetDataAdult(partner);
                     adult.Partner = partner;
+                    partner.LastName = adult.LastName + "а";
                 }
             }           
         }
@@ -299,6 +301,28 @@ namespace PeopleLibrary
         private static string RemoveLastLetter(string lastName)
         {
             return lastName.Substring(0, lastName.Length - 1);
+        }
+
+        /// <summary>
+        /// Метод создания списка Взрослых и Детей.
+        /// </summary>
+        /// <param name="list">Список.</param>
+        /// <param name="countElements">Количество элементов в списке.</param>
+        public static void GetList(PersonList list, int countElements)
+        {
+            Random random = new Random();
+
+            for (int i = 0; i < countElements; i++)
+            {
+                if (random.Next(2) == 0)
+                {
+                    list.AddPerson(RandomPeople.GetChild());
+                }
+                else
+                {
+                    list.AddPerson(RandomPeople.GetAdult());
+                }
+            }
         }
     }
 }
