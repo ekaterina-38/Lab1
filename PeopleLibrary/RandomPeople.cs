@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Reflection;
 
 namespace PeopleLibrary
@@ -187,6 +188,20 @@ namespace PeopleLibrary
 
             child.NameStudy = namesStudy[random.Next(namesStudy.Count)];
 
+            int countParents = random.Next(3);
+
+            if (countParents == 0)
+            {
+                GetParents(child);
+            }  
+            else if (countParents == 1)
+            {
+                GetOneParent(child);
+            }
+        }
+
+        public static void GetParents(Child child)
+        {
             child.Father = GetAdult(Gender.Male);
             child.Mother = GetAdult(Gender.Female);
 
@@ -200,6 +215,42 @@ namespace PeopleLibrary
                 child.LastName = child.Father.LastName;
                 child.Mother.LastName = child.Father.LastName + "а";
             }
+        }
+        public static void GetOneParent(Child child)
+        {
+            Adult adult = GetAdult();
+
+            if (adult.Gender == Gender.Female) 
+            {
+                child.Mother = adult;
+                
+                if (child.Gender == Gender.Female)
+                {
+                    child.LastName = child.Mother.LastName;
+                }
+                else
+                {
+                    child.LastName = RemoveLastLetter(child.Mother.LastName);
+                }
+            }
+            else
+            {
+                child.Father = adult;
+                
+                if (child.Gender == Gender.Female)
+                {
+                    child.LastName = child.Father.LastName + "а";
+                }
+                else
+                {
+                    child.LastName = child.Father.LastName;
+                }
+            }
+        }
+
+        private static string RemoveLastLetter(string lastName)
+        {
+            return lastName.Substring(0, lastName.Length - 1);
         }
     }
 }
