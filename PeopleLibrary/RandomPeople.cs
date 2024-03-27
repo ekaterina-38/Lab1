@@ -97,6 +97,8 @@ namespace PeopleLibrary
 
             GetDataAdult(adult);
 
+            GetPartner(adult);
+
             return adult;
         }
 
@@ -115,12 +117,15 @@ namespace PeopleLibrary
 
             GetDataAdult(adult);
 
+            GetPartner(adult);
+
             return adult;
         }
 
         /// <summary>
         /// Метод генерации рандомных данных о Взрослом человеке.
         /// </summary>
+        /// <param name="adult">Объект класса Adult.</param>
         public static void GetDataAdult(Adult adult)
         {
             Random random = new Random();
@@ -144,6 +149,35 @@ namespace PeopleLibrary
             int[] numberPassport = { 123544, 512441, 175142, 244512,
                 125142, 521451 };
             adult.NumberPassport = numberPassport[random.Next(numberPassport.Length)];
+
+        }
+
+        /// <summary>
+        /// Метод создания партнера для Взрослого.
+        /// </summary>
+        /// <param name="adult">Объект класса Adult.</param>
+        public static void GetPartner(Adult adult)
+        {
+            Random random = new Random();
+
+            if (random.Next(2) == 0)
+            {
+                Adult partner = new Adult();
+
+                if (adult.Gender != partner.Gender)
+                {
+                    GetDataPerson(partner);
+                    GetDataAdult(partner);
+                    adult.Partner = partner;
+                }
+                else
+                {
+                    partner.Gender = Gender.Female;
+                    GetDataPerson(partner);
+                    GetDataAdult(partner);
+                    adult.Partner = partner;
+                }
+            }           
         }
 
         /// <summary>
@@ -200,6 +234,10 @@ namespace PeopleLibrary
             }
         }
 
+        /// <summary>
+        /// Метод создания родителей для ребенка.
+        /// </summary>
+        /// <param name="child">Объект класса Child.</param>
         public static void GetParents(Child child)
         {
             child.Father = GetAdult(Gender.Male);
@@ -216,6 +254,11 @@ namespace PeopleLibrary
                 child.Mother.LastName = child.Father.LastName + "а";
             }
         }
+
+        /// <summary>
+        /// Метод создания одного родителя для ребенка.
+        /// </summary>
+        /// <param name="child">Объект класса Child.</param>
         public static void GetOneParent(Child child)
         {
             Adult adult = GetAdult();
@@ -248,6 +291,11 @@ namespace PeopleLibrary
             }
         }
 
+        /// <summary>
+        /// Метод удаления последней буквы в фамилии.
+        /// </summary>
+        /// <param name="lastName">Фамилия.</param>
+        /// <returns>Скорректированная фамилия</returns>
         private static string RemoveLastLetter(string lastName)
         {
             return lastName.Substring(0, lastName.Length - 1);
