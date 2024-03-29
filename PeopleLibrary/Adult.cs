@@ -191,7 +191,7 @@ namespace PeopleLibrary
 
             return info;
         }
-
+        //TODO: remove
         /// <summary>
         /// Метод создания семьи.
         /// </summary>
@@ -201,9 +201,10 @@ namespace PeopleLibrary
         public static void Marriage(PersonList list, int manIndex, int womenIndex)
         {
             ((Adult)list.LookForIndex(manIndex)).Partner =
-            ((Adult)list.LookForIndex(womenIndex));
+                ((Adult)list.LookForIndex(womenIndex));
         }
 
+        //TODO: not static
         /// <summary>
         /// Метод водить машину.
         /// </summary>

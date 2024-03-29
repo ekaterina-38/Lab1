@@ -1,4 +1,3 @@
-
 namespace PeopleLibrary
 {
     /// <summary>
@@ -32,8 +31,8 @@ namespace PeopleLibrary
         /// <param name="mother">Мать.</param>
         /// <param name="father">Отец.</param>
         public Child(string lastName, string name, int age, Gender gender,
-        string nameStudy, Adult? mother, Adult? father) :
-        base(lastName, name, age, gender)
+            string nameStudy, Adult? mother, Adult? father) :
+            base(lastName, name, age, gender)
         {
             NameStudy = nameStudy;
             Mother = mother;
@@ -76,7 +75,10 @@ namespace PeopleLibrary
         /// </summary>
         public Adult? Mother
         {
-            get { return _mother; }
+            get
+            {
+                return _mother;
+            }
 
             set
             {
@@ -160,6 +162,7 @@ namespace PeopleLibrary
             return info;
         }
 
+        //TODO: not static
         /// <summary>
         /// Метод кататься на велосипеде.
         /// </summary>

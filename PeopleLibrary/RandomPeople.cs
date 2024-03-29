@@ -130,7 +130,7 @@ namespace PeopleLibrary
             string[] nameWork = { "Сбербанк", "Росатом", "МТС", "Яндекс",
                 "Аэрофолот", "Газпром нефть" };
 
-            if (adult.Age > 75)
+            if (adult.Age > 65)
             {
                 adult.NameWork = "На пенсиии";
             }
@@ -170,6 +170,7 @@ namespace PeopleLibrary
                 }
                 else
                 {
+                    //TODO: подумать
                     partner.Gender = Gender.Female;
                     GetDataPerson(partner);
                     GetDataAdult(partner);
