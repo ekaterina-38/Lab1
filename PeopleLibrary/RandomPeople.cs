@@ -1,6 +1,3 @@
-﻿using System;
-using System.Dynamic;
-using System.Reflection;
 
 namespace PeopleLibrary
 {
@@ -27,7 +24,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Перегруженный метод рандомного создания Человека.
         /// </summary>
-        /// <param name="gender">Пол человека</param>
+        /// <param name="gender">Пол человека.</param>
         /// <returns>Объект класса Person.</returns>
         public static Person GetPerson(Gender gender)
         {
@@ -179,7 +176,7 @@ namespace PeopleLibrary
                     adult.Partner = partner;
                     partner.LastName = adult.LastName + "а";
                 }
-            }           
+            }
         }
 
         /// <summary>
@@ -229,7 +226,7 @@ namespace PeopleLibrary
             if (countParents == 0)
             {
                 GetParents(child);
-            }  
+            }
             else if (countParents == 1)
             {
                 GetOneParent(child);
@@ -265,10 +262,10 @@ namespace PeopleLibrary
         {
             Adult adult = GetAdult();
 
-            if (adult.Gender == Gender.Female) 
+            if (adult.Gender == Gender.Female)
             {
                 child.Mother = adult;
-                
+
                 if (child.Gender == Gender.Female)
                 {
                     child.LastName = child.Mother.LastName;
@@ -281,7 +278,7 @@ namespace PeopleLibrary
             else
             {
                 child.Father = adult;
-                
+
                 if (child.Gender == Gender.Female)
                 {
                     child.LastName = child.Father.LastName + "а";
@@ -297,7 +294,7 @@ namespace PeopleLibrary
         /// Метод удаления последней буквы в фамилии.
         /// </summary>
         /// <param name="lastName">Фамилия.</param>
-        /// <returns>Скорректированная фамилия</returns>
+        /// <returns>Скорректированная фамилия.</returns>
         private static string RemoveLastLetter(string lastName)
         {
             return lastName.Substring(0, lastName.Length - 1);
@@ -316,11 +313,11 @@ namespace PeopleLibrary
             {
                 if (random.Next(2) == 0)
                 {
-                    list.AddPerson(RandomPeople.GetChild());
+                    list.AddPerson(GetChild());
                 }
                 else
                 {
-                    list.AddPerson(RandomPeople.GetAdult());
+                    list.AddPerson(GetAdult());
                 }
             }
         }

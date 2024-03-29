@@ -1,5 +1,4 @@
 using PeopleLibrary;
-using System.Collections.Generic;
 
 namespace Lab1
 {

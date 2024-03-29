@@ -1,4 +1,3 @@
-using System.ComponentModel.Design;
 
 namespace PeopleLibrary
 {
@@ -64,6 +63,7 @@ namespace PeopleLibrary
             {
                 return _seriesPassport;
             }
+
             set
             {
                 if (!CheckPassport(value, 4))
@@ -87,6 +87,7 @@ namespace PeopleLibrary
             {
                 return _numberPassport;
             }
+
             set
             {
                 if (!CheckPassport(value, 6))
@@ -107,6 +108,7 @@ namespace PeopleLibrary
         public Adult? Partner
         {
             get { return _partner; }
+
             set
             {
                 if (value?.Gender == Gender)
@@ -114,6 +116,7 @@ namespace PeopleLibrary
                     throw new ArgumentException
                         ("Невозможно создать однополый брак");
                 }
+
                 if (value?.Partner is not null || Partner is not null)
                 {
                     throw new ArgumentException
@@ -125,7 +128,7 @@ namespace PeopleLibrary
                 if (value is not null)
                 {
                     value._partner = this;
-                };
+                }
             }
         }
 
@@ -138,6 +141,7 @@ namespace PeopleLibrary
             {
                 return _nameWork;
             }
+
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -175,8 +179,8 @@ namespace PeopleLibrary
         {
             string info = $"{base.GetInfo()}\nМесто работы: {NameWork},\n" +
                 $"Данные паспорта: {SeriesPassport} {NumberPassport}\n";
-                
-            if(Partner == null)
+
+            if (Partner == null)
             {
                 info += $"Партнер: не в браке\n";
             }
@@ -185,16 +189,16 @@ namespace PeopleLibrary
                 info += $"Партнер: {Partner.LastName} {Partner.Name}\n";
             }
 
-            return info ;       
+            return info;
         }
 
         /// <summary>
-        /// Метод создания семьи. 
+        /// Метод создания семьи.
         /// </summary>
         /// <param name="list">Список людей.</param>
         /// <param name="manIndex">Индекс мужчины в списке.</param>
         /// <param name="womenIndex">Индекс женщины в списке.</param>
-        public static void Marriage (PersonList list, int manIndex, int womenIndex)
+        public static void Marriage(PersonList list, int manIndex, int womenIndex)
         {
             ((Adult)list.LookForIndex(manIndex)).Partner =
             ((Adult)list.LookForIndex(womenIndex));

@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics.Metrics;
 
 namespace PeopleLibrary
 {
@@ -45,7 +43,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Child() : this("Иван", "Иванов", 7, Gender.Male, "Школа", 
+        public Child() : this("Иван", "Иванов", 7, Gender.Male, "Школа",
             null, null)
         { }
 
@@ -58,6 +56,7 @@ namespace PeopleLibrary
             {
                 return _nameStudy;
             }
+
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -78,13 +77,16 @@ namespace PeopleLibrary
         public Adult? Mother
         {
             get { return _mother; }
+
             set
             {
                 if (value?.Gender != Gender.Female && value is not null)
-                {                    
+                {
+
                     throw new ArgumentException
                         ("Мать должна быть женского пола");
                 }
+
                 if (Mother is not null)
                 {
                     throw new ArgumentException
@@ -103,6 +105,7 @@ namespace PeopleLibrary
         public Adult? Father
         {
             get { return _father; }
+
             set
             {
                 if (value?.Gender != Gender.Male && value is not null)
@@ -110,6 +113,7 @@ namespace PeopleLibrary
                     throw new ArgumentException
                         ("Отец должен быть мужского пола");
                 }
+
                 if (Father is not null)
                 {
                     throw new ArgumentException

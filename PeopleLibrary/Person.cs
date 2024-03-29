@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -54,6 +53,7 @@ namespace PeopleLibrary
             {
                 return _lastName;
             }
+
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -83,6 +83,7 @@ namespace PeopleLibrary
             {
                 return _name;
             }
+
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -98,6 +99,7 @@ namespace PeopleLibrary
                             ("Имя должно быть одного языка " +
                             "и не должно содержать цифры");
                     }
+
                     if (!СheckFullName(_lastName, value))
                     {
                         throw new ArgumentException
@@ -120,6 +122,7 @@ namespace PeopleLibrary
             {
                 return _age;
             }
+
             set
             {
                 if (value < MinAge || value > MaxAge)
@@ -152,6 +155,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод вывода данных о человеке.
         /// </summary>
+        /// <returns>Данные о Человек.</returns>
         public virtual string GetInfo()
         {
             return $"Имя: {Name}, Фамилия: {LastName}," +
