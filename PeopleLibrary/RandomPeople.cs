@@ -237,7 +237,7 @@ namespace PeopleLibrary
         }
 
         /// <summary>
-        /// Метод создания родителей для ребенка.
+        /// Метод создания обоих родителей для ребенка.
         /// </summary>
         /// <param name="child">Объект класса Child.</param>
         public static void GetParents(Child child)
