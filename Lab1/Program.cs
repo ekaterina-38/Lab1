@@ -21,8 +21,20 @@ namespace Lab1
 
             ConsolePerson.Print(firstList);
 
+            Type typePeople = firstList.LookForIndex(3).GetType();
+
             Console.WriteLine($"Тип данных 4-го человека списке:" +
-                $" {firstList.LookForIndex(3).GetType()}");
+                $" {typePeople}");
+
+            if (typePeople == typeof(Adult))
+            {
+                Adult.DriveCar();
+            }
+
+            if (typePeople == typeof(Child))
+            {
+                Child.DriveBike();
+            }
 
             _ = Console.ReadKey();
         }

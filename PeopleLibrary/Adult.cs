@@ -203,5 +203,13 @@ namespace PeopleLibrary
             ((Adult)list.LookForIndex(manIndex)).Partner =
             ((Adult)list.LookForIndex(womenIndex));
         }
+
+        /// <summary>
+        /// Метод водить машину.
+        /// </summary>
+        public static void DriveCar()
+        {
+            Console.WriteLine($"Водит машину");
+        }
     }
 }

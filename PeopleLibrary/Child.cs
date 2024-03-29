@@ -159,5 +159,13 @@ namespace PeopleLibrary
 
             return info;
         }
+
+        /// <summary>
+        /// Метод кататься на велосипеде.
+        /// </summary>
+        public static void DriveBike()
+        {
+            Console.WriteLine($"Катается на велосипеде");
+        }
     }
 }
