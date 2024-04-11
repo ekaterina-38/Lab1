@@ -1,6 +1,6 @@
 using PeopleLibrary;
 
-namespace Lab1
+namespace ConsoleLibrary
 {
     /// <summary>
     /// Класс вывода.

@@ -183,7 +183,7 @@ namespace PeopleLibrary
             {
                 namesStudy.AddRange(new[] { "Домашнее обучение" });
             }
-            else if (child.Age > 1 && child.Age <= 7)
+            else if (child.Age >= 2 && child.Age <= 7)
             {
                 namesStudy.AddRange(new[] { "Домашнее обучение", "Детский сад" });
             }
