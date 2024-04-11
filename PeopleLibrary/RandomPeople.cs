@@ -6,36 +6,6 @@ namespace PeopleLibrary
     /// </summary>
     public static class RandomPeople
     {
-        /// <summary>
-        /// Метод рандомного создания Человека.
-        /// </summary>
-        /// <returns> Объект класса Person.</returns>
-        public static Person GetPerson()
-        {
-            Person person = new Person();
-
-            RandomGender(person);
-
-            GetDataPerson(person);
-
-            return person;
-        }
-
-        /// <summary>
-        /// Перегруженный метод рандомного создания Человека.
-        /// </summary>
-        /// <param name="gender">Пол человека.</param>
-        /// <returns>Объект класса Person.</returns>
-        public static Person GetPerson(Gender gender)
-        {
-            Person person = new Person();
-
-            person.Gender = gender;
-
-            GetDataPerson(person);
-
-            return person;
-        }
 
         /// <summary>
         /// Метод генерации рандомного пола у Человека.
@@ -161,8 +131,9 @@ namespace PeopleLibrary
             {
                 Adult partner = new Adult();
 
-                if (adult.Gender != partner.Gender)
+                if (adult.Gender == Gender.Female)
                 {
+                    partner.Gender = Gender.Male;
                     GetDataPerson(partner);
                     GetDataAdult(partner);
                     adult.Partner = partner;
@@ -170,7 +141,8 @@ namespace PeopleLibrary
                 }
                 else
                 {
-                    //TODO: подумать
+                    //TODO: подумать +
+
                     partner.Gender = Gender.Female;
                     GetDataPerson(partner);
                     GetDataAdult(partner);

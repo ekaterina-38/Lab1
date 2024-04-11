@@ -21,19 +21,22 @@ namespace Lab1
 
             ConsolePerson.Print(firstList);
 
-            Type typePeople = firstList.LookForIndex(3).GetType();
+            var people = firstList.LookForIndex(3);
+
+            Type typePeople = people.GetType();
 
             Console.WriteLine($"Тип данных 4-го человека списке:" +
                 $" {typePeople}");
 
             if (typePeople == typeof(Adult))
             {
-                Adult.DriveCar();
+
+                ((Adult)people).DriveCar();
             }
 
             if (typePeople == typeof(Child))
             {
-                Child.DriveBike();
+                ((Child)people).DriveBike();
             }
 
             _ = Console.ReadKey();

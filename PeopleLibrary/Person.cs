@@ -1,13 +1,14 @@
- using System.Globalization;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace PeopleLibrary
 {
-    //TODO: abstract
+    //TODO: abstract +
+
     /// <summary>
     /// Класс Человек.
     /// </summary>
-    public class Person
+    public abstract class Person
     {
         /// <summary>
         /// Фамилия.
@@ -38,12 +39,6 @@ namespace PeopleLibrary
             Age = age;
             Gender = gender;
         }
-
-        /// <summary>
-        /// Конструктор по умолчанию класса Человек.
-        /// </summary>
-        public Person() : this("Иванов", "Иван", 18, Gender.Male)
-        { }
 
         /// <summary>
         /// Определение свойства Фамилия.

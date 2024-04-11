@@ -1,5 +1,3 @@
-using System;
-
 namespace PeopleLibrary
 {
     /// <summary>
@@ -47,6 +45,7 @@ namespace PeopleLibrary
             {
                 return _nameListPerson;
             }
+
             set
             {
                 if (string.IsNullOrEmpty(_nameListPerson))
@@ -79,11 +78,11 @@ namespace PeopleLibrary
         }
 
         /// <summary>
-        /// Метод проверки наличия элемента в списке. 
+        /// Метод проверки наличия элемента в списке.
         /// </summary>
         /// <param name="index">Интересующий пользователя индекс.</param>
         /// <exception cref="IndexOutOfRangeException">Индекс элемента списка
-        /// находится вне диапазона допустимых значений</exception>
+        /// находится вне диапазона допустимых значений.</exception>
         public void CheckByIndex(int index)
         {
             if ((_listPerson.Count - 1) < index || index < 0)
@@ -121,7 +120,7 @@ namespace PeopleLibrary
         /// соответвующий началу диапазона.</param>
         /// <param name="count">Число удаляемых элементов.</param>
         /// <exception cref="IndexOutOfRangeException">Индекс элемента списка
-        /// находится вне диапазона списка</exception>
+        /// находится вне диапазона списка.</exception>
         public void DeletByRange(int index, int count)
         {
             CheckByIndex(index);
@@ -140,6 +139,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод получения количества элементов в списке.
         /// </summary>
+        /// <returns>Количество элементов в списке.</returns>
         public int CountPerson()
         {
             return _listPerson.Count();
@@ -152,9 +152,9 @@ namespace PeopleLibrary
         /// <returns>Возврат индекса элемента,если он есть в списке,
         /// иначе -1.</returns>
         /// <exception cref="ArgumentNullException">Передано значение
-        /// null</exception>
+        /// null.</exception>
         /// <exception cref="InvalidOperationException">Переданого значения
-        /// нет в списке</exception>
+        /// нет в списке.</exception>
         public int LookForElement(Person person)
         {
             if (person == null)
@@ -162,6 +162,7 @@ namespace PeopleLibrary
                 throw new ArgumentNullException
                     ("Аргумент person не может быть null");
             }
+
             for (int index = 0; index <= (_listPerson.Count - 1); index++)
             {
                 if (_listPerson[index] == person)
@@ -188,6 +189,7 @@ namespace PeopleLibrary
                     return index;
                 }
             }
+
             return -1;
         }
     }

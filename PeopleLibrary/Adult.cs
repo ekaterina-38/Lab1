@@ -191,24 +191,15 @@ namespace PeopleLibrary
 
             return info;
         }
-        //TODO: remove
-        /// <summary>
-        /// Метод создания семьи.
-        /// </summary>
-        /// <param name="list">Список людей.</param>
-        /// <param name="manIndex">Индекс мужчины в списке.</param>
-        /// <param name="womenIndex">Индекс женщины в списке.</param>
-        public static void Marriage(PersonList list, int manIndex, int womenIndex)
-        {
-            ((Adult)list.LookForIndex(manIndex)).Partner =
-                ((Adult)list.LookForIndex(womenIndex));
-        }
 
-        //TODO: not static
+        //TODO: remove +
+
+        //TODO: not static +
+
         /// <summary>
         /// Метод водить машину.
         /// </summary>
-        public static void DriveCar()
+        public void DriveCar()
         {
             Console.WriteLine($"Водит машину");
         }

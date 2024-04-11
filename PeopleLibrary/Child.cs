@@ -162,11 +162,12 @@ namespace PeopleLibrary
             return info;
         }
 
-        //TODO: not static
+        //TODO: not static +
+
         /// <summary>
         /// Метод кататься на велосипеде.
         /// </summary>
-        public static void DriveBike()
+        public void DriveBike()
         {
             Console.WriteLine($"Катается на велосипеде");
         }
