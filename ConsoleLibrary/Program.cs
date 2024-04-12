@@ -30,12 +30,12 @@ namespace ConsoleLibrary
 
             if (typePeople == typeof(Adult))
             {
-                ((Adult)people).DriveCar();
+                Console.WriteLine(((Adult)people).DriveCar());
             }
 
             if (typePeople == typeof(Child))
             {
-                ((Child)people).DriveBike();
+                Console.WriteLine(((Child)people).DriveBike());
             }
 
             _ = Console.ReadKey();

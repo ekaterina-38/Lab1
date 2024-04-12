@@ -128,11 +128,11 @@ namespace PeopleLibrary
             }
         }
 
-        //TODO: 17
+        //TODO: 17 +
         /// <summary>
         /// Свойство для поля максимальный возраст.
         /// </summary>
-        public override int MaxAge { get; } = 18;
+        public override int MaxAge { get; } = 17;
 
         /// <summary>
         /// Переопределенный метод получения информации о Ребенке.
@@ -166,10 +166,11 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод кататься на велосипеде.
         /// </summary>
-        public void DriveBike()
+        /// <returns>Действие, которое выполняет Ребенок.</returns>
+        public string DriveBike()
         {
-            //TODO: remove console
-            Console.WriteLine($"Катается на велосипеде");
+            //TODO: remove console +
+            return "Катается на велосипеде";
         }
     }
 }

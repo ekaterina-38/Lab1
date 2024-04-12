@@ -155,11 +155,11 @@ namespace PeopleLibrary
             }
         }
 
-        //TODO: 18
+        //TODO: 18 +
         /// <summary>
         /// Свойство для поля минимальный возраст.
         /// </summary>
-        public override int MinAge { get; } = 19;
+        public override int MinAge { get; } = 18;
 
         /// <summary>
         /// Метод проверки данных паспорта.
@@ -196,10 +196,11 @@ namespace PeopleLibrary
         /// <summary>
         /// Метод водить машину.
         /// </summary>
-        public void DriveCar()
+        /// <returns>Действие, которое выполняет Взрослый.</returns>
+        public string DriveCar()
         {
-            //TODO: remove console
-            Console.WriteLine($"Водит машину");
+            //TODO: remove console +
+            return "Водит машину";
         }
     }
 }
