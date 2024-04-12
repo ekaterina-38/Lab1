@@ -19,7 +19,7 @@ namespace ConsoleLibrary
 
             for (int index = 0; index < count; index++)
             {
-                Person person = listperson.LookForIndex(index);
+                PersonBase person = listperson.LookForIndex(index);
                 Console.WriteLine(person.GetInfo());
             }
 

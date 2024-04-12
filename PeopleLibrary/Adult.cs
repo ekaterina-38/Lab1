@@ -4,7 +4,7 @@ namespace PeopleLibrary
     /// <summary>
     /// Класс Взрослый Человек.
     /// </summary>
-    public class Adult : Person
+    public class Adult : PersonBase
     {
         /// <summary>
         /// Серия паспорта.

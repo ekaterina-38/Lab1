@@ -12,7 +12,7 @@ namespace ConsoleLibrary
         /// </summary>
         internal static void Main()
         {
-            List<Person> listPerson = new List<Person> { };
+            List<PersonBase> listPerson = new List<PersonBase> { };
 
             PersonList firstList =
                 new PersonList(listPerson, "Список Взрослых и Детей:\n");

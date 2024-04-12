@@ -8,7 +8,7 @@ namespace PeopleLibrary
         /// <summary>
         /// Лист, хранящий перечень людей.
         /// </summary>
-        private List<Person> _listPerson;
+        private List<PersonBase> _listPerson;
 
         /// <summary>
         /// Название списка.
@@ -22,7 +22,7 @@ namespace PeopleLibrary
         public PersonList(string nameListPerson)
         {
             _nameListPerson = nameListPerson;
-            _listPerson = new List<Person>();
+            _listPerson = new List<PersonBase>();
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace PeopleLibrary
         /// </summary>
         /// <param name="listPerson">Список Людей.</param>
         /// <param name="nameListPerson">Название Списка.</param>
-        public PersonList(List<Person> listPerson, string nameListPerson)
+        public PersonList(List<PersonBase> listPerson, string nameListPerson)
         {
             _nameListPerson = nameListPerson;
             _listPerson = listPerson;
@@ -64,7 +64,7 @@ namespace PeopleLibrary
         /// Метод добавления людей в список.
         /// </summary>
         /// <param name="person">"Экземпляр класса Человек.</param>
-        public void AddPerson(Person person)
+        public void AddPerson(PersonBase person)
         {
             _listPerson.Add(person);
         }
@@ -97,7 +97,7 @@ namespace PeopleLibrary
         /// </summary>
         /// <param name="index">Интересующий пользователя индекс.</param>
         /// <returns>Человек.</returns>
-        public Person LookForIndex(int index)
+        public PersonBase LookForIndex(int index)
         {
             CheckByIndex(index);
             return _listPerson[index];
@@ -155,7 +155,7 @@ namespace PeopleLibrary
         /// null.</exception>
         /// <exception cref="InvalidOperationException">Переданого значения
         /// нет в списке.</exception>
-        public int LookForElement(Person person)
+        public int LookForElement(PersonBase person)
         {
             if (person == null)
             {

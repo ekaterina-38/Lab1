@@ -3,7 +3,7 @@ namespace PeopleLibrary
     /// <summary>
     /// Класс Ребенок.
     /// </summary>
-    public class Child : Person
+    public class Child : PersonBase
     {
         /// <summary>
         /// Название Места учебы.

@@ -9,7 +9,7 @@ namespace PeopleLibrary
         /// Метод генерации рандомного пола у Человека.
         /// </summary>
         /// <param name="person">Объект класса Person.</param>
-        public static void RandomGender(Person person)
+        public static void RandomGender(PersonBase person)
         {
             Random random = new Random();
 
@@ -21,7 +21,7 @@ namespace PeopleLibrary
         /// Метод генерации рандомных данных о Человеке.
         /// </summary>
         /// <param name="person">Объект класса Person.</param>
-        public static void GetDataPerson(Person person)
+        public static void GetDataPerson(PersonBase person)
         {
             Random random = new Random();
 

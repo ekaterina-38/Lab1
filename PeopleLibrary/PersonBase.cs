@@ -8,7 +8,7 @@ namespace PeopleLibrary
     /// <summary>
     /// Класс Человек.
     /// </summary>
-    public abstract class Person
+    public abstract class PersonBase
     {
         /// <summary>
         /// Фамилия.
@@ -32,7 +32,7 @@ namespace PeopleLibrary
         /// <param name="name">Имя.</param>
         /// <param name="age">Возраст.</param>
         /// <param name="gender">Пол.</param>
-        public Person(string lastName, string name, int age, Gender gender)
+        public PersonBase(string lastName, string name, int age, Gender gender)
         {
             LastName = lastName;
             Name = name;
