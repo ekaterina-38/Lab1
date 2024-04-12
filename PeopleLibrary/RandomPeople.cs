@@ -1,4 +1,3 @@
-
 namespace PeopleLibrary
 {
     /// <summary>
@@ -6,7 +5,6 @@ namespace PeopleLibrary
     /// </summary>
     public static class RandomPeople
     {
-
         /// <summary>
         /// Метод генерации рандомного пола у Человека.
         /// </summary>
