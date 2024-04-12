@@ -3,8 +3,6 @@ using System.Text.RegularExpressions;
 
 namespace PeopleLibrary
 {
-    //TODO: abstract +
-
     /// <summary>
     /// Класс Человек.
     /// </summary>

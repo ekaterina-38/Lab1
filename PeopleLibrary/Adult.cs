@@ -155,6 +155,7 @@ namespace PeopleLibrary
             }
         }
 
+        //TODO: 18
         /// <summary>
         /// Свойство для поля минимальный возраст.
         /// </summary>
@@ -192,15 +193,12 @@ namespace PeopleLibrary
             return info;
         }
 
-        //TODO: remove +
-
-        //TODO: not static +
-
         /// <summary>
         /// Метод водить машину.
         /// </summary>
         public void DriveCar()
         {
+            //TODO: remove console
             Console.WriteLine($"Водит машину");
         }
     }

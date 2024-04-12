@@ -139,8 +139,6 @@ namespace PeopleLibrary
                 }
                 else
                 {
-                    //TODO: подумать +
-
                     partner.Gender = Gender.Female;
                     GetDataPerson(partner);
                     GetDataAdult(partner);

@@ -128,6 +128,7 @@ namespace PeopleLibrary
             }
         }
 
+        //TODO: 17
         /// <summary>
         /// Свойство для поля максимальный возраст.
         /// </summary>
@@ -162,13 +163,12 @@ namespace PeopleLibrary
             return info;
         }
 
-        //TODO: not static +
-
         /// <summary>
         /// Метод кататься на велосипеде.
         /// </summary>
         public void DriveBike()
         {
+            //TODO: remove console
             Console.WriteLine($"Катается на велосипеде");
         }
     }

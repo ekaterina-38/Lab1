@@ -30,7 +30,6 @@ namespace ConsoleLibrary
 
             if (typePeople == typeof(Adult))
             {
-
                 ((Adult)people).DriveCar();
             }
 
