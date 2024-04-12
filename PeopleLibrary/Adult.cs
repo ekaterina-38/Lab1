@@ -155,7 +155,6 @@ namespace PeopleLibrary
             }
         }
 
-        //TODO: 18 +
         /// <summary>
         /// Свойство для поля минимальный возраст.
         /// </summary>
@@ -199,7 +198,6 @@ namespace PeopleLibrary
         /// <returns>Действие, которое выполняет Взрослый.</returns>
         public string DriveCar()
         {
-            //TODO: remove console +
             return "Водит машину";
         }
     }

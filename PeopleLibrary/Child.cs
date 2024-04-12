@@ -128,7 +128,6 @@ namespace PeopleLibrary
             }
         }
 
-        //TODO: 17 +
         /// <summary>
         /// Свойство для поля максимальный возраст.
         /// </summary>
@@ -169,7 +168,6 @@ namespace PeopleLibrary
         /// <returns>Действие, которое выполняет Ребенок.</returns>
         public string DriveBike()
         {
-            //TODO: remove console +
             return "Катается на велосипеде";
         }
     }
