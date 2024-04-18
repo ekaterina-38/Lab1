@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "WorkPeople": {
+    "WorkTransport": {
       "commandName": "Project"
     },
     "WSL": {

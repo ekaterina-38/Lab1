@@ -1,4 +1,4 @@
-namespace ConsoleLibrary
+namespace ConsoleLoader
 {
     /// <summary>
     /// Класс Программа.
@@ -10,7 +10,7 @@ namespace ConsoleLibrary
         /// </summary>
         internal static void Main()
         {
-            
+            Console.WriteLine("ПРивет Катя");
         }
     }
 }
