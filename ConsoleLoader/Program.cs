@@ -1,3 +1,5 @@
+using TransportLibrary;
+
 namespace ConsoleLoader
 {
     /// <summary>
@@ -10,7 +12,8 @@ namespace ConsoleLoader
         /// </summary>
         internal static void Main()
         {
-            Console.WriteLine("ПРивет Катя");
+            TransportBase transport = ConsoleAddTransport.ConsoleReadTransport();
+            Console.WriteLine(transport.CalculateFuel(100));
         }
     }
 }
