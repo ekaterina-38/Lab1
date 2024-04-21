@@ -1,24 +1,48 @@
 namespace TransportLibrary
 {
     /// <summary>
-    /// .
+    /// Вертолет.
     /// </summary>
     public class Helicopter : TransportBase
     {
         /// <summary>
-        /// Масса.
+        /// Ширина лопасти вертолета.
         /// </summary>
         private double _bladeWidth;
 
         /// <summary>
-        /// Свойство Ширина лопасти.
+        /// Двигатель.
+        /// </summary>
+        private Motor _motor;
+
+        /// <summary>
+        /// Конструктор класса Вертолет.
+        /// </summary>
+        /// <param name="motor">Двигатель.</param>
+        /// <param name="mass">Масса.</param>
+        /// <param name="bladeWidth">Масса.</param>
+        public Helicopter(Motor motor, double mass, double bladeWidth)
+        {
+            Motor = motor;
+            Mass = mass;
+            BladeWidth = bladeWidth;
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами по умолчанию.
+        /// </summary>
+        public Helicopter() : this(new Motor(250, TypeFuel.AviationKerosene), 10, 18)
+        { }
+
+        /// <summary>
+        /// Свойство Ширина лопасти вертолета.
         /// </summary>
         public double BladeWidth
         {
             get => _bladeWidth;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException
                         ("Ширина должна быть положительной");
@@ -31,38 +55,31 @@ namespace TransportLibrary
         /// <summary>
         /// Свойство Двигатель.
         /// </summary>
-        public Motor Motor { get; set; }
-
-        /// <summary>
-        /// Конструктор класса Вертолет.
-        /// </summary>
-        /// <param name="motor">Двигатель.</param>
-        /// <param name="mass">Масса.</param>
-        /// <param name="bladeWidth">Масса.</param>
-        /// <param name="fielPer100km">Расход на 100 км.</param>
-        public Helicopter(Motor motor, double mass, double bladeWidth)
+        public Motor Motor
         {
-            Motor = motor;
-            Mass = mass;
-            BladeWidth = bladeWidth;
-        }
+            get => _motor;
+            set
+            {
+                if (value is null)
+                {
+                    throw new NullReferenceException
+                              ("Передано null");
+                }
 
-        /// <summary>
-        /// Конструктор с параметрами по умолчанию.
-        /// </summary>
-        public Helicopter() : this(new Motor(250, TypeFuel.AviationKerosene), 10, 8)
-        { }
+                _motor = value;
+            }
+        }
 
         /// <summary>
         /// Переопределенный метод расчета расхода топлива.
         /// </summary>
-        /// <param name="distance">Растояние пути.</param>
+        /// <param name="distance">Расстояние пути(часы).</param>
         /// <returns>Расход топлива.</returns>
         public override double CalculateFuel(double distance)
         {
-            double koeff = Motor.СalculationFuelСonsumption();
+            double coeffСonsumption = Motor.СalculateConsumption();
 
-            return distance * koeff * Mass * BladeWidth;
+            return distance * coeffСonsumption * Mass * BladeWidth;
         }
     }
 }

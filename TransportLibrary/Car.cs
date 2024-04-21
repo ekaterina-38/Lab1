@@ -1,4 +1,3 @@
-
 namespace TransportLibrary
 {
     /// <summary>
@@ -7,16 +6,33 @@ namespace TransportLibrary
     public class Car : TransportBase
     {
         /// <summary>
+        /// Двигатель.
+        /// </summary>
+        private Motor _motor;
+
+        /// <summary>
         /// Свойство Двигатель.
         /// </summary>
-        public Motor Motor { get; set; }
+        public Motor Motor
+        {
+            get => _motor;
+            set
+            {
+                if (value is null)
+                {
+                    throw new NullReferenceException
+                              ("Передано null");
+                }
+
+                _motor = value;
+            }
+        }
 
         /// <summary>
         /// Конструктор класса Машина.
         /// </summary>
         /// <param name="motor">Двигатель.</param>
         /// <param name="mass">Масса.</param>
-        /// <param name="fielPer100km">Расход на 100 км.</param>
         public Car(Motor motor, double mass)
         {
             Motor = motor;
@@ -32,13 +48,13 @@ namespace TransportLibrary
         /// <summary>
         /// Переопределенный метод расчета расхода топлива.
         /// </summary>
-        /// <param name="distance">Растояние пути.</param>
+        /// <param name="distance">Расcтояние пути(км).</param>
         /// <returns>Расход топлива.</returns>
         public override double CalculateFuel(double distance)
         {
-            double koeff = Motor.СalculationFuelСonsumption();
+            double coeffСonsumption = Motor.СalculateConsumption();
 
-            return distance * koeff * Mass;
+            return distance * coeffСonsumption * Mass;
         }
     }
 }

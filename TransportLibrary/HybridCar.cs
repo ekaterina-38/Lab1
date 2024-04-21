@@ -6,7 +6,7 @@ namespace TransportLibrary
     public class HybridCar : Car
     {
         /// <summary>
-        /// Гибридный мотор.
+        /// Гибридный двигатель.
         /// </summary>
         private Motor _hybridMotor;
 
@@ -20,8 +20,17 @@ namespace TransportLibrary
             {
                 if (value == Motor)
                 {
-                    throw new ArgumentException("Вид топлива основного мотора и гибридного должны отличаться");
+                    throw new ArgumentException("Вид топлива основного мотора" +
+                        " и гибридного должны отличаться");
                 }
+
+                if (value is null)
+                {
+                    throw new NullReferenceException
+                              ("Передано null");
+                }
+
+                _hybridMotor = value;
             }
         }
 
@@ -48,16 +57,19 @@ namespace TransportLibrary
         /// <summary>
         /// Переопределенный метод расчета расхода топлива.
         /// </summary>
-        /// <param name="firstDistance">Растояние на основном двигателе.</param>
-        /// <param name="secondDistance">Растояние на гибриде.</param>
+        /// <param name="distanceBasicMotor">Расстояние, пройденное на основном
+        /// двигателе.</param>
+        /// <param name="distanceHybridMotor">Расстояние, пройденное на гибридном
+        /// двигателе.</param>
         /// <returns>Расход топлива.</returns>
-        public double CalculateFuel(double firstDistance, double secondDistance)
+        public double CalculateFuel(double distanceBasicMotor, double distanceHybridMotor)
         {
-            double koeff = Motor.СalculationFuelСonsumption();
+            double coeffСonsumption = Motor.СalculateConsumption();
 
-            double koeffHybrid = Motor.СalculationFuelСonsumption();
+            double coeffСonsumptionHybrid = Motor.СalculateConsumption();
 
-            return Mass * (firstDistance * koeff + secondDistance * koeffHybrid);
+            return Mass * (distanceBasicMotor * coeffСonsumption + distanceHybridMotor
+                * coeffСonsumptionHybrid);
         }
     }
 }

@@ -1,4 +1,3 @@
-
 namespace TransportLibrary
 {
     /// <summary>
@@ -19,7 +18,7 @@ namespace TransportLibrary
             get => _mass;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException
                         ("Масса должна быть положительной");
@@ -32,8 +31,8 @@ namespace TransportLibrary
         /// <summary>
         /// Метод расчета расхода топлива.
         /// </summary>
-        /// <param name="distance">Растояние.</param>
-        /// <returns>.</returns>
+        /// <param name="distance">Расстояние.</param>
+        /// <returns>Расход топлива.</returns>
         public abstract double CalculateFuel(double distance);
     }
 }

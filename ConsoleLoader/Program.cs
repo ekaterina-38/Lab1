@@ -12,8 +12,9 @@ namespace ConsoleLoader
         /// </summary>
         internal static void Main()
         {
-            TransportBase transport = ConsoleAddTransport.ConsoleReadTransport();
-            Console.WriteLine(transport.CalculateFuel(100));
+            TransportBase transport = ConsoleTransport.SelectTransport();
+            ConsoleTransport.СalculateСonsumptionFuel(transport);
+            _ = Console.ReadKey();
         }
     }
 }

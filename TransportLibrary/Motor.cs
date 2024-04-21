@@ -18,7 +18,7 @@ namespace TransportLibrary
             get => _capacity;
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException
                         ("Мощность должна быть положительной");
@@ -39,7 +39,6 @@ namespace TransportLibrary
         /// <summary>
         /// Конструктор класса Двигатель.
         /// </summary>
-        /// <param name="volume">Объем двигателя.</param>
         /// <param name="capacity">Мощность двигателя.</param>
         /// <param name="typeFuel">Вид топлива.</param>
         public Motor(double capacity, TypeFuel typeFuel)
@@ -55,10 +54,10 @@ namespace TransportLibrary
         { }
 
         /// <summary>
-        /// Расчет коэффициента эффективности.
+        /// Расчет коэффициента расхода.
         /// </summary>
-        /// <returns>Коэффициент эффективности.</returns>
-        public double СalculationFuelСonsumption()
+        /// <returns>Коэффициент расхода.</returns>
+        public double СalculateConsumption()
         {
             double сonsumptionСapacity;
 
@@ -78,16 +77,16 @@ namespace TransportLibrary
             Dictionary<TypeFuel, double> сonsumptionFuel = new()
             {
                 {TypeFuel.Electricity, 0.75},
-                {TypeFuel.AviationKerosene, 80},
-                {TypeFuel.AviationGasoline, 85},
                 {TypeFuel.Diesel, 0.90},
                 {TypeFuel.Petrol, 0.95},
-                {TypeFuel.Gas, 1}
+                {TypeFuel.Gas, 1},
+                {TypeFuel.AviationKerosene, 30},
+                {TypeFuel.AviationGasoline, 35}
             };
 
-            double efficiency = сonsumptionСapacity * сonsumptionFuel[TypeFuel];
+            double сonsumption = сonsumptionСapacity * сonsumptionFuel[TypeFuel];
 
-            return efficiency;
+            return сonsumption;
         }
     }
 }
