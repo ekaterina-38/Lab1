@@ -66,7 +66,7 @@ namespace ConsoleLoader
                 },
             };
 
-            ActionHandler(actions, catchDictionary);
+            ActionsHandler(actions, catchDictionary);
 
             return transport;
         }
@@ -120,7 +120,7 @@ namespace ConsoleLoader
                 },
             };
 
-            ActionHandler(actions, catchDictionary);
+            ActionsHandler(actions, catchDictionary);
 
             return car;
         }
@@ -179,7 +179,7 @@ namespace ConsoleLoader
                 },
             };
 
-            ActionHandler(actions, catchDictionary);
+            ActionsHandler(actions, catchDictionary);
 
             return helicopter;
         }
@@ -242,7 +242,7 @@ namespace ConsoleLoader
                 },
             };
 
-            ActionHandler(actions, catchDictionary);
+            ActionsHandler(actions, catchDictionary);
 
             return hybridCar;
         }
@@ -339,34 +339,9 @@ namespace ConsoleLoader
                 },
             };
 
-            ActionHandler(actions, catchDictionary);
+            ActionsHandler(actions, catchDictionary);
 
             return motor;
-        }
-
-        /// <summary>
-        /// Метод Обработки действий.
-        /// </summary>
-        /// <param name="assignActions">Действие требующее проверки.</param>
-        /// <param name="catchDictionary">Словарь исключений.</param>
-        private static void ActionHandler(List<Action> assignActions,
-            Dictionary<Type, Action<string>> catchDictionary)
-        {
-            foreach (var assignAction in assignActions)
-            {
-                while (true)
-                {
-                    try
-                    {
-                        assignAction.Invoke();
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        catchDictionary[ex.GetType()].Invoke(ex.Message);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -375,49 +350,124 @@ namespace ConsoleLoader
         /// <param name="transport">Объект транспорт.</param>
         public static void СalculateСonsumptionFuel(TransportBase transport)
         {
-            if (transport is HybridCar newHybridCar)
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
             {
-                Console.Write($"\nВведите расстояние в км для двигателя," +
-                    $" работающего на {newHybridCar.Motor.TypeFuel} " +
-                    $"(нажмите Enter): ");
+                {
+                    typeof(ArgumentOutOfRangeException),
+                    (string message) =>
+                    {
+                        Console.WriteLine($"\nВозникло исключение: {message}");
+                    }
+                },
+            };
 
-                double firstDistance = Convert.ToDouble(Console.ReadLine());
+            Action action =
+                () =>
+                {
+                    if (transport is HybridCar newHybridCar)
+                    {
+                        Console.Write($"\nВведите расстояние в км для двигателя," +
+                            $" работающего на {newHybridCar.Motor.TypeFuel} " +
+                            $"(нажмите Enter): ");
 
-                Console.Write($"\nВведите расстояние в км для двигателя," +
-                    $" работающего на {newHybridCar.HybridMotor.TypeFuel}" +
-                    $" (нажмите Enter): ");
+                        double firstDistance = Convert.ToDouble(Console.ReadLine());
 
-                double secondDistance = Convert.ToDouble(Console.ReadLine());
+                        ReadPositiveDouble(firstDistance);
 
-                var consumption = newHybridCar.CalculateFuel(firstDistance, secondDistance);
+                        Console.Write($"\nВведите расстояние в км для двигателя," +
+                            $" работающего на {newHybridCar.HybridMotor.TypeFuel}" +
+                            $" (нажмите Enter): ");
 
-                var consumptionBasic = Math.Round(consumption.Item1, 1);
-                var consumptionAdd = Math.Round(consumption.Item2, 1);
+                        double secondDistance = Convert.ToDouble(Console.ReadLine());
 
-                Console.WriteLine($"\nРасход топлива для прохождения расстояния" +
-                    $" {firstDistance} км составит {consumptionBasic} л." +
-                    $", для {secondDistance} км - {consumptionAdd} л.");
+                        ReadPositiveDouble(secondDistance);
+
+                        var consumption = newHybridCar.CalculateFuel(firstDistance, secondDistance);
+
+                        var consumptionBasic = Math.Round(consumption.Item1, 1);
+                        var consumptionAdd = Math.Round(consumption.Item2, 1);
+
+                        Console.Write($"\nРасход топлива для прохождения расстояния" +
+                            $" {firstDistance} км составит {consumptionBasic} л." +
+                            $", для {secondDistance} км - {consumptionAdd} л.");
+                    }
+                    else if (transport is Car newCar)
+                    {
+                        Console.Write("\nВведите расстояние в км (нажмите Enter): ");
+
+                        double distance = Convert.ToDouble(Console.ReadLine());
+
+                        ReadPositiveDouble(distance);
+
+                        Console.Write($"\nРасход топлива для прохождения расстояния" +
+                           $" {distance} км составит" +
+                           $" {Math.Round(newCar.CalculateFuel(distance), 1)} л.");
+                    }
+
+                    else if (transport is Helicopter newHelicopter)
+                    {
+                        Console.Write("\nВведите длительность полета в часах" +
+                            " (нажмите Enter): ");
+
+                        double distance = Convert.ToDouble(Console.ReadLine());
+
+                        ReadPositiveDouble(distance);
+
+                        Console.Write($"\nРасход топлива для полета {distance} ч" +
+                            $" составит {Math.Round(newHelicopter.CalculateFuel(distance), 1)} л.");
+                    }
+                };
+
+            ActionHandler(action, catchDictionary);
+        }
+
+        /// <summary>
+        /// Метод проверки на ввод положительного числа.
+        /// </summary>
+        /// <param name="value">.</param>
+        private static void ReadPositiveDouble(double value)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Число должно быть" +
+                    " положительным");
             }
-            else if (transport is Car newCar)
+        }
+
+        /// <summary>
+        /// Метод Обработки действий.
+        /// </summary>
+        /// <param name="assignActions">Действие требующее проверки.</param>
+        /// <param name="catchDictionary">Словарь исключений.</param>
+        private static void ActionsHandler(List<Action> assignActions,
+            Dictionary<Type, Action<string>> catchDictionary)
+        {
+            foreach (var assignAction in assignActions)
             {
-                Console.Write("\nВведите расстояние в км (нажмите Enter): ");
-
-                double distance = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine($"\nРасход топлива для прохождения расстояния" +
-                   $" {distance} км составит" +
-                   $" {Math.Round(newCar.CalculateFuel(distance), 1)} л.");
+                ActionHandler(assignAction, catchDictionary);
             }
+        }
 
-            else if (transport is Helicopter newHelicopter)
+        /// <summary>
+        /// Метод Обработки действия.
+        /// </summary>
+        /// <param name="assignAction">Действие требующее проверки.</param>
+        /// <param name="catchDictionary">Словарь исключений.</param>
+        private static void ActionHandler(Action assignAction,
+            Dictionary<Type, Action<string>> catchDictionary)
+        {
+            while (true)
             {
-                Console.Write("\nВведите длительность полета в часах" +
-                    " (нажмите Enter): ");
-
-                double distance = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine($"\nРасход топлива для полета {distance} ч" +
-                    $" составит {Math.Round(newHelicopter.CalculateFuel(distance), 1)} л.");
+                try
+                {
+                    assignAction.Invoke();
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    catchDictionary[ex.GetType()].Invoke(ex.Message);
+                }
             }
         }
     }

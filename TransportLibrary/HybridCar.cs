@@ -18,7 +18,7 @@ namespace TransportLibrary
             get => _hybridMotor;
             set
             {
-                if (value == Motor)
+                if (value.TypeFuel == Motor.TypeFuel)
                 {
                     throw new ArgumentException("Вид топлива основного мотора" +
                         " и гибридного должны отличаться");
