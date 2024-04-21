@@ -57,19 +57,22 @@ namespace TransportLibrary
         /// <summary>
         /// Переопределенный метод расчета расхода топлива.
         /// </summary>
-        /// <param name="distanceBasicMotor">Расстояние, пройденное на основном
+        /// <param name="distanceBasic">Расстояние, пройденное на основном
         /// двигателе.</param>
-        /// <param name="distanceHybridMotor">Расстояние, пройденное на гибридном
+        /// <param name="distanceAdd">Расстояние, пройденное на дополнительном
         /// двигателе.</param>
         /// <returns>Расход топлива.</returns>
-        public double CalculateFuel(double distanceBasicMotor, double distanceHybridMotor)
+        public (double, double) CalculateFuel(double distanceBasic, double distanceAdd)
         {
             double coeffСonsumption = Motor.СalculateConsumption();
 
-            double coeffСonsumptionHybrid = Motor.СalculateConsumption();
+            double coeffСonsumptionAdd = Motor.СalculateConsumption();
 
-            return Mass * (distanceBasicMotor * coeffСonsumption + distanceHybridMotor
-                * coeffСonsumptionHybrid);
+            double consumptionBasic = Mass * distanceBasic * coeffСonsumption;
+
+            double consumptionAdd = distanceAdd * coeffСonsumptionAdd;
+
+            return (consumptionBasic, consumptionAdd);
         }
     }
 }

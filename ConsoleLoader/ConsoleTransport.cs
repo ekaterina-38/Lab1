@@ -1,5 +1,3 @@
-using System;
-using System.Data;
 using TransportLibrary;
 
 namespace ConsoleLoader
@@ -23,7 +21,7 @@ namespace ConsoleLoader
                     typeof(ArgumentOutOfRangeException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
             };
@@ -61,10 +59,6 @@ namespace ConsoleLoader
 
                         default:
                             {
-                                Console.WriteLine("\nВыберите тип транспорта: " +
-                                    "\n\t1 - машина" +
-                                    "\n\t2 - машина-гибрид" +
-                                    "\n\t3 - вертолет");
                                 throw new ArgumentOutOfRangeException(
                                     "Неверно введен тип транспорта");
                             }
@@ -89,21 +83,21 @@ namespace ConsoleLoader
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
 
@@ -115,8 +109,8 @@ namespace ConsoleLoader
             {
                 ()=>
                 {
-                     Console.WriteLine($"\n\nВведите данные о двигателе");
-                     car.Motor = ReadMotor();
+                     Console.WriteLine($"\nВведите данные о двигателе");
+                     car.Motor = ReadMotor(car);
                 },
 
                 ()=>
@@ -143,21 +137,21 @@ namespace ConsoleLoader
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
 
@@ -170,7 +164,7 @@ namespace ConsoleLoader
                 ()=>
                 {
                      Console.WriteLine($"\nВведите данные о двигателе");
-                     helicopter.Motor = ReadMotor();
+                     helicopter.Motor = ReadMotor(helicopter);
                 },
 
                 ()=>
@@ -202,21 +196,21 @@ namespace ConsoleLoader
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение {message}");
+                        Console.WriteLine($"\nВозникло исключение {message}");
                     }
                 },
 
@@ -228,19 +222,22 @@ namespace ConsoleLoader
             {
                 ()=>
                 {
-                     Console.WriteLine($"\nВведите данные об основном двигателе");
-                     hybridCar.Motor = ReadMotor();
+                     Console.WriteLine($"\nВведите данные об основном" +
+                         $" двигателе");
+                     hybridCar.Motor = ReadMotor(hybridCar);
                 },
 
                 ()=>
                 {
-                    Console.WriteLine($"\nВведите данные о дополнительном двигателе");
-                    hybridCar.HybridMotor = ReadMotor();
+                    Console.WriteLine($"\nВведите данные о дополнительном" +
+                        $" двигателе");
+                    hybridCar.HybridMotor = ReadMotor(hybridCar);
                 },
 
                 ()=>
                 {
-                    Console.Write($"\nВведите массу машины в тоннах (нажмите Enter): ");
+                    Console.Write($"\nВведите массу машины в тоннах" +
+                        $" (нажмите Enter): ");
                     hybridCar.Mass = Convert.ToDouble(Console.ReadLine());
                 },
             };
@@ -251,40 +248,43 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Метод Ввода данных о двигателе.
+        /// Метод Ввода данных о Двигателе.
         /// </summary>
+        /// <param name="transport">Объект транспорт.</param>
         /// <returns>Двигатель.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">.</exception>
-        public static Motor ReadMotor()
+        /// <exception cref="ArgumentOutOfRangeException">Выход
+        /// за пределы.</exception>
+        public static Motor ReadMotor(TransportBase transport)
         {
-            Dictionary<Type, Action<string>> catchDictionary = new Dictionary<Type, Action<string>>()
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
             {
                 {
                     typeof(ArgumentOutOfRangeException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение: {message}");
+                        Console.WriteLine($"\nВозникло исключение: {message}");
                     }
                 },
                 {
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение: {message}");
+                        Console.WriteLine($"\nВозникло исключение: {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение: {message}");
+                        Console.WriteLine($"\nВозникло исключение: {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"Возникло исключение: {message}");
+                        Console.WriteLine($"\nВозникло исключение: {message}");
                     }
                 },
             };
@@ -295,13 +295,20 @@ namespace ConsoleLoader
             {
                 ()=>
                 {
-                    Console.WriteLine($"\n\tВыберите вид топлива: " +
-                        $"\n\t1 - бензин" +
-                         "\n\t2 - дизель" +
-                         "\n\t3 - электричество" +
-                         "\n\t4 - газ" +
-                         "\n\t5 - авиационный керосин" +
-                         "\n\t6 - авиационный бензин");
+                    Console.WriteLine($"\n\tВыберите вид топлива: ");
+
+                    if (transport is Car || transport is HybridCar)
+                    {
+                        Console.WriteLine($"\t1 - бензин" +
+                                         "\n\t2 - дизель" +
+                                         "\n\t3 - электричество" +
+                                         "\n\t4 - газ");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\n\t5 - авиационный керосин" +
+                                           "\n\t6 - авиационный бензин");
+                    }
 
                     char keyInfo = Console.ReadKey().KeyChar;
 
@@ -325,7 +332,8 @@ namespace ConsoleLoader
 
                 ()=>
                 {
-                    Console.Write($"\n\tВведите мощность двигателя в л.с (нажмите Enter): ");
+                    Console.Write($"\n\tВведите мощность двигателя в л.с " +
+                        $"(нажмите Enter): ");
 
                     motor.Capacity = Convert.ToDouble(Console.ReadLine());
                 },
@@ -339,7 +347,7 @@ namespace ConsoleLoader
         /// <summary>
         /// Метод Обработки действий.
         /// </summary>
-        /// <param name="assignActions">Действие, которое требует проверки.</param>
+        /// <param name="assignActions">Действие требующее проверки.</param>
         /// <param name="catchDictionary">Словарь исключений.</param>
         private static void ActionHandler(List<Action> assignActions,
             Dictionary<Type, Action<string>> catchDictionary)
@@ -362,26 +370,33 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Расчет расхода топлива.
+        /// Метод Расчета расхода топлива.
         /// </summary>
-        /// <param name="transport">.</param>
+        /// <param name="transport">Объект транспорт.</param>
         public static void СalculateСonsumptionFuel(TransportBase transport)
         {
             if (transport is HybridCar newHybridCar)
             {
                 Console.Write($"\nВведите расстояние в км для двигателя," +
-                    $" работающего на {newHybridCar.Motor.TypeFuel} (нажмите Enter): ");
+                    $" работающего на {newHybridCar.Motor.TypeFuel} " +
+                    $"(нажмите Enter): ");
 
                 double firstDistance = Convert.ToDouble(Console.ReadLine());
 
                 Console.Write($"\nВведите расстояние в км для двигателя," +
-                    $" работающего на {newHybridCar.HybridMotor.TypeFuel} (нажмите Enter): ");
+                    $" работающего на {newHybridCar.HybridMotor.TypeFuel}" +
+                    $" (нажмите Enter): ");
 
                 double secondDistance = Convert.ToDouble(Console.ReadLine());
 
+                var consumption = newHybridCar.CalculateFuel(firstDistance, secondDistance);
+
+                var consumptionBasic = Math.Round(consumption.Item1, 1);
+                var consumptionAdd = Math.Round(consumption.Item2, 1);
+
                 Console.WriteLine($"\nРасход топлива для прохождения расстояния" +
-                    $" {firstDistance + secondDistance} км составит " +
-                    $"{Math.Round(newHybridCar.CalculateFuel(firstDistance, secondDistance), 1)} л.");
+                    $" {firstDistance} км составит {consumptionBasic} л." +
+                    $", для {secondDistance} км - {consumptionAdd} л.");
             }
             else if (transport is Car newCar)
             {
@@ -390,17 +405,19 @@ namespace ConsoleLoader
                 double distance = Convert.ToDouble(Console.ReadLine());
 
                 Console.WriteLine($"\nРасход топлива для прохождения расстояния" +
-                   $" {distance} км составит {Math.Round(newCar.CalculateFuel(distance), 1)} л.");
+                   $" {distance} км составит" +
+                   $" {Math.Round(newCar.CalculateFuel(distance), 1)} л.");
             }
 
             else if (transport is Helicopter newHelicopter)
             {
-                Console.Write("\nВведите длительность полета в часах (нажмите Enter): ");
+                Console.Write("\nВведите длительность полета в часах" +
+                    " (нажмите Enter): ");
 
                 double distance = Convert.ToDouble(Console.ReadLine());
 
-                Console.WriteLine($"\nРасход топлива для полета" +
-                    $" {distance} ч составит {Math.Round(newHelicopter.CalculateFuel(distance), 1)} л.");
+                Console.WriteLine($"\nРасход топлива для полета {distance} ч" +
+                    $" составит {Math.Round(newHelicopter.CalculateFuel(distance), 1)} л.");
             }
         }
     }
