@@ -6,9 +6,9 @@ namespace TransportLibrary
     public class Helicopter : TransportBase
     {
         /// <summary>
-        /// Ширина лопасти вертолета.
+        /// Длина лопастей вертолета.
         /// </summary>
-        private double _bladeWidth;
+        private double _bladeLength;
 
         /// <summary>
         /// Двигатель.
@@ -19,13 +19,13 @@ namespace TransportLibrary
         /// Конструктор класса Вертолет.
         /// </summary>
         /// <param name="motor">Двигатель.</param>
-        /// <param name="mass">Масса.</param>
-        /// <param name="bladeWidth">Масса.</param>
-        public Helicopter(Motor motor, double mass, double bladeWidth)
+        /// <param name="mass">Масса (т).</param>
+        /// <param name="bladeLength">Длина лопастей (м).</param>
+        public Helicopter(Motor motor, double mass, double bladeLength)
         {
             Motor = motor;
             Mass = mass;
-            BladeWidth = bladeWidth;
+            BladeLength = bladeLength;
         }
 
         /// <summary>
@@ -35,20 +35,20 @@ namespace TransportLibrary
         { }
 
         /// <summary>
-        /// Свойство Ширина лопасти вертолета.
+        /// Свойство Длина лопастей вертолета.
         /// </summary>
-        public double BladeWidth
+        public double BladeLength
         {
-            get => _bladeWidth;
+            get => _bladeLength;
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentException
-                        ("Ширина должна быть положительной");
+                        ("Длина лопастей должна быть положительной");
                 }
 
-                _bladeWidth = value;
+                _bladeLength = value;
             }
         }
 
@@ -71,15 +71,15 @@ namespace TransportLibrary
         }
 
         /// <summary>
-        /// Переопределенный метод расчета расхода топлива.
+        /// Переопределенный метод Расчета расхода топлива.
         /// </summary>
-        /// <param name="distance">Расстояние пути(часы).</param>
-        /// <returns>Расход топлива.</returns>
+        /// <param name="distance">Расстояние (часы).</param>
+        /// <returns>Расход топлива (л).</returns>
         public override double CalculateFuel(double distance)
         {
             double coeffСonsumption = Motor.СalculateConsumption();
 
-            return distance * coeffСonsumption * Mass * BladeWidth;
+            return distance * coeffСonsumption * Mass * BladeLength;
         }
     }
 }

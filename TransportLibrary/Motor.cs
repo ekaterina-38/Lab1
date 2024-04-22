@@ -11,6 +11,23 @@ namespace TransportLibrary
         private double _capacity;
 
         /// <summary>
+        /// Конструктор класса Двигатель.
+        /// </summary>
+        /// <param name="capacity">Мощность двигателя.</param>
+        /// <param name="typeFuel">Вид топлива.</param>
+        public Motor(double capacity, TypeFuel typeFuel)
+        {
+            Capacity = capacity;
+            TypeFuel = typeFuel;
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами по умолчанию.
+        /// </summary>
+        public Motor() : this(180, TypeFuel.Petrol)
+        { }
+
+        /// <summary>
         /// Свойство Мощность двигателя.
         /// </summary>
         public double Capacity
@@ -35,23 +52,6 @@ namespace TransportLibrary
         {
             get; set;
         }
-
-        /// <summary>
-        /// Конструктор класса Двигатель.
-        /// </summary>
-        /// <param name="capacity">Мощность двигателя.</param>
-        /// <param name="typeFuel">Вид топлива.</param>
-        public Motor(double capacity, TypeFuel typeFuel)
-        {
-            Capacity = capacity;
-            TypeFuel = typeFuel;
-        }
-
-        /// <summary>
-        /// Конструктор с параметрами по умолчанию.
-        /// </summary>
-        public Motor() : this(180, TypeFuel.Petrol)
-        { }
 
         /// <summary>
         /// Расчет коэффициента расхода.

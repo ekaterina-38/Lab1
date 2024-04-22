@@ -6,22 +6,22 @@ namespace TransportLibrary
     public class HybridCar : Car
     {
         /// <summary>
-        /// Гибридный двигатель.
+        /// Дополнительный двигатель.
         /// </summary>
-        private Motor _hybridMotor;
+        private Motor _additionalMotor;
 
         /// <summary>
-        /// Гибридный двигатель.
+        /// Свойство Дополнительный двигатель.
         /// </summary>
-        public Motor HybridMotor
+        public Motor AdditionalMotor
         {
-            get => _hybridMotor;
+            get => _additionalMotor;
             set
             {
                 if (value.TypeFuel == Motor.TypeFuel)
                 {
-                    throw new ArgumentException("Вид топлива основного мотора" +
-                        " и гибридного должны отличаться");
+                    throw new ArgumentException("Вид топлива основного " +
+                        "двигателя и дополнительного должны отличаться");
                 }
 
                 if (value is null)
@@ -30,21 +30,21 @@ namespace TransportLibrary
                               ("Передано null");
                 }
 
-                _hybridMotor = value;
+                _additionalMotor = value;
             }
         }
 
         /// <summary>
-        /// Конструктор класса Машина.
+        /// Конструктор класса Гибридная Машина.
         /// </summary>
-        /// <param name="motor">Двигатель.</param>
+        /// <param name="motor">Основной Двигатель.</param>
         /// <param name="mass">Масса.</param>
-        /// <param name="hybridMotor">Гибридный двигатель.</param>
+        /// <param name="additionalMotor">Дополнительный двигатель.</param>
         /// <param name="fielPer100km">Расход на 100 км.</param>
-        public HybridCar(Motor motor, double mass, Motor hybridMotor) :
+        public HybridCar(Motor motor, double mass, Motor additionalMotor) :
             base(motor, mass)
         {
-            HybridMotor = hybridMotor;
+            AdditionalMotor = additionalMotor;
         }
 
         /// <summary>
@@ -55,20 +55,22 @@ namespace TransportLibrary
         { }
 
         /// <summary>
-        /// Переопределенный метод расчета расхода топлива.
+        /// Переопределенный метод Расчета расхода топлива.
         /// </summary>
         /// <param name="distanceBasic">Расстояние, пройденное на основном
         /// двигателе.</param>
         /// <param name="distanceAdd">Расстояние, пройденное на дополнительном
         /// двигателе.</param>
-        /// <returns>Расход топлива.</returns>
-        public (double, double) CalculateFuel(double distanceBasic, double distanceAdd)
+        /// <returns>Расход топлива (л).</returns>
+        public (double, double) CalculateFuel(double distanceBasic,
+            double distanceAdd)
         {
-            double coeffСonsumption = Motor.СalculateConsumption();
+            double coeffСonsumptionBasic = Motor.СalculateConsumption();
 
             double coeffСonsumptionAdd = Motor.СalculateConsumption();
 
-            double consumptionBasic = Mass * distanceBasic * coeffСonsumption;
+            double consumptionBasic = Mass * distanceBasic *
+                coeffСonsumptionBasic;
 
             double consumptionAdd = distanceAdd * coeffСonsumptionAdd;
 

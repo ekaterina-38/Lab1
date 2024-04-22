@@ -15,13 +15,14 @@ namespace ConsoleLoader
         {
             TransportBase transport = new Car();
 
-            Dictionary<Type, Action<string>> catchDictionary = new Dictionary<Type, Action<string>>()
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
             {
                 {
                     typeof(ArgumentOutOfRangeException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
             };
@@ -77,27 +78,28 @@ namespace ConsoleLoader
         /// <returns>Машина.</returns>
         public static Car ReadCar()
         {
-            Dictionary<Type, Action<string>> catchDictionary = new Dictionary<Type, Action<string>>()
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
             {
                 {
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
 
@@ -115,7 +117,8 @@ namespace ConsoleLoader
 
                 ()=>
                 {
-                    Console.Write($"\nВведите массу машины в тоннах (нажмите Enter): ");
+                    Console.Write($"\nВведите массу машины в тоннах" +
+                        $" (нажмите Enter): ");
                     car.Mass = Convert.ToDouble(Console.ReadLine());
                 },
             };
@@ -131,27 +134,28 @@ namespace ConsoleLoader
         /// <returns>Вертолет.</returns>
         public static Helicopter ReadHelicopter()
         {
-            Dictionary<Type, Action<string>> catchDictionary = new Dictionary<Type, Action<string>>()
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
             {
                 {
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
 
@@ -169,13 +173,15 @@ namespace ConsoleLoader
 
                 ()=>
                 {
-                    Console.Write($"\nВведите массу вертолета в тоннах (нажмите Enter): ");
+                    Console.Write($"\nВведите массу вертолета в тоннах" +
+                        $" (нажмите Enter): ");
                     helicopter.Mass = Convert.ToDouble(Console.ReadLine());
                 },
                 ()=>
                 {
-                    Console.Write($"\nВведите длину лопастей вертолета в метрах (нажмите Enter): ");
-                    helicopter.BladeWidth = Convert.ToDouble(Console.ReadLine());
+                    Console.Write($"\nВведите длину лопастей вертолета в" +
+                        $" метрах (нажмите Enter): ");
+                    helicopter.BladeLength = Convert.ToDouble(Console.ReadLine());
                 },
             };
 
@@ -190,27 +196,28 @@ namespace ConsoleLoader
         /// <returns>Гибридная машина.</returns>
         public static HybridCar ReadHybridCar()
         {
-            Dictionary<Type, Action<string>> catchDictionary = new Dictionary<Type, Action<string>>()
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
             {
                 {
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
 
@@ -231,7 +238,7 @@ namespace ConsoleLoader
                 {
                     Console.WriteLine($"\nВведите данные о дополнительном" +
                         $" двигателе");
-                    hybridCar.HybridMotor = ReadMotor(hybridCar);
+                    hybridCar.AdditionalMotor = ReadMotor(hybridCar);
                 },
 
                 ()=>
@@ -263,28 +270,28 @@ namespace ConsoleLoader
                     typeof(ArgumentOutOfRangeException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение: {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(ArgumentException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение: {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(FormatException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение: {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
                 {
                     typeof(OverflowException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение: {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
             };
@@ -357,7 +364,7 @@ namespace ConsoleLoader
                     typeof(ArgumentOutOfRangeException),
                     (string message) =>
                     {
-                        Console.WriteLine($"\nВозникло исключение: {message}");
+                        Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
             };
@@ -376,7 +383,7 @@ namespace ConsoleLoader
                         ReadPositiveDouble(firstDistance);
 
                         Console.Write($"\nВведите расстояние в км для двигателя," +
-                            $" работающего на {newHybridCar.HybridMotor.TypeFuel}" +
+                            $" работающего на {newHybridCar.AdditionalMotor.TypeFuel}" +
                             $" (нажмите Enter): ");
 
                         double secondDistance = Convert.ToDouble(Console.ReadLine());

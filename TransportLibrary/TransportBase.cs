@@ -32,7 +32,7 @@ namespace TransportLibrary
         /// Метод расчета расхода топлива.
         /// </summary>
         /// <param name="distance">Расстояние.</param>
-        /// <returns>Расход топлива.</returns>
+        /// <returns>Расход топлива (л).</returns>
         public abstract double CalculateFuel(double distance);
     }
 }

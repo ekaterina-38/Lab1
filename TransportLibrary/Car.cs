@@ -11,6 +11,23 @@ namespace TransportLibrary
         private Motor _motor;
 
         /// <summary>
+        /// Конструктор класса Машина.
+        /// </summary>
+        /// <param name="motor">Двигатель.</param>
+        /// <param name="mass">Масса (т).</param>
+        public Car(Motor motor, double mass)
+        {
+            Motor = motor;
+            Mass = mass;
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами по умолчанию.
+        /// </summary>
+        public Car() : this(new Motor(100, TypeFuel.Petrol), 1)
+        { }
+
+        /// <summary>
         /// Свойство Двигатель.
         /// </summary>
         public Motor Motor
@@ -29,27 +46,10 @@ namespace TransportLibrary
         }
 
         /// <summary>
-        /// Конструктор класса Машина.
-        /// </summary>
-        /// <param name="motor">Двигатель.</param>
-        /// <param name="mass">Масса.</param>
-        public Car(Motor motor, double mass)
-        {
-            Motor = motor;
-            Mass = mass;
-        }
-
-        /// <summary>
-        /// Конструктор с параметрами по умолчанию.
-        /// </summary>
-        public Car() : this(new Motor(100, TypeFuel.Petrol), 1)
-        { }
-
-        /// <summary>
         /// Переопределенный метод расчета расхода топлива.
         /// </summary>
-        /// <param name="distance">Расcтояние пути(км).</param>
-        /// <returns>Расход топлива.</returns>
+        /// <param name="distance">Расстояние (км).</param>
+        /// <returns>Расход топлива (л).</returns>
         public override double CalculateFuel(double distance)
         {
             double coeffСonsumption = Motor.СalculateConsumption();
