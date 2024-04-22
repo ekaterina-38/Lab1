@@ -11,6 +11,26 @@ namespace TransportLibrary
         private Motor _additionalMotor;
 
         /// <summary>
+        /// Конструктор класса Гибридная Машина.
+        /// </summary>
+        /// <param name="motor">Основной Двигатель.</param>
+        /// <param name="mass">Масса.</param>
+        /// <param name="additionalMotor">Дополнительный двигатель.</param>
+        /// <param name="fielPer100km">Расход на 100 км.</param>
+        public HybridCar(Motor motor, double mass, Motor additionalMotor) :
+            base(motor, mass)
+        {
+            AdditionalMotor = additionalMotor;
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами по умолчанию.
+        /// </summary>
+        public HybridCar() : this(new Motor(100, TypeFuel.Petrol), 1,
+            new Motor(50, TypeFuel.Electricity))
+        { }
+
+        /// <summary>
         /// Свойство Дополнительный двигатель.
         /// </summary>
         public Motor AdditionalMotor
@@ -33,26 +53,6 @@ namespace TransportLibrary
                 _additionalMotor = value;
             }
         }
-
-        /// <summary>
-        /// Конструктор класса Гибридная Машина.
-        /// </summary>
-        /// <param name="motor">Основной Двигатель.</param>
-        /// <param name="mass">Масса.</param>
-        /// <param name="additionalMotor">Дополнительный двигатель.</param>
-        /// <param name="fielPer100km">Расход на 100 км.</param>
-        public HybridCar(Motor motor, double mass, Motor additionalMotor) :
-            base(motor, mass)
-        {
-            AdditionalMotor = additionalMotor;
-        }
-
-        /// <summary>
-        /// Конструктор с параметрами по умолчанию.
-        /// </summary>
-        public HybridCar() : this(new Motor(100, TypeFuel.Petrol), 1,
-            new Motor(50, TypeFuel.Electricity))
-        { }
 
         /// <summary>
         /// Переопределенный метод Расчета расхода топлива.
