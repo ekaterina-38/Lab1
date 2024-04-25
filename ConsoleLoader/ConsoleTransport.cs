@@ -309,6 +309,9 @@ namespace ConsoleLoader
                 },
                 ()=>
                 {
+                    Dictionary<char, TypeFuel> сonsumptionFuel;
+                    char keyInfo;
+
                     Console.WriteLine($"\n\tВыберите вид топлива: ");
 
                     if (transport is Car || transport is HybridCar)
@@ -317,24 +320,30 @@ namespace ConsoleLoader
                                          "\n\t2 - дизель" +
                                          "\n\t3 - электричество" +
                                          "\n\t4 - газ");
+
+                        keyInfo = Console.ReadKey().KeyChar;
+
+                        сonsumptionFuel = new()
+                        {
+                            {'1', TypeFuel.Petrol},
+                            {'2', TypeFuel.Diesel},
+                            {'3', TypeFuel.Electricity},
+                            {'4', TypeFuel.Gas},
+                        };
                     }
                     else
                     {
-                        Console.WriteLine($"\n\t5 - авиационный керосин" +
-                                           "\n\t6 - авиационный бензин");
+                        Console.WriteLine($"\n\t1 - авиационный керосин" +
+                                           "\n\t2 - авиационный бензин");
+
+                        keyInfo = Console.ReadKey().KeyChar;
+
+                        сonsumptionFuel = new()
+                        {
+                            {'1', TypeFuel.AviationKerosene},
+                            {'2', TypeFuel.AviationGasoline},
+                        };
                     }
-
-                    char keyInfo = Console.ReadKey().KeyChar;
-
-                    Dictionary<char, TypeFuel> сonsumptionFuel = new()
-                    {
-                        {'1', TypeFuel.Petrol},
-                        {'2', TypeFuel.Diesel},
-                        {'3', TypeFuel.Electricity},
-                        {'4', TypeFuel.Gas},
-                        {'5', TypeFuel.AviationKerosene},
-                        {'6', TypeFuel.AviationGasoline},
-                    };
 
                     if(!сonsumptionFuel.ContainsKey(keyInfo))
                     {
