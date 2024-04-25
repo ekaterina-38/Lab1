@@ -397,7 +397,7 @@ namespace ConsoleLoader
 
                         Console.Write($"\nРасход топлива для прохождения расстояния" +
                             $" {firstDistance} км составит {consumptionBasic} л." +
-                            $", для {secondDistance} км - {consumptionAdd} л.");
+                            $", для {secondDistance} км - {consumptionAdd} л.\n");
                     }
                     else if (transport is Car newCar)
                     {
@@ -409,7 +409,7 @@ namespace ConsoleLoader
 
                         Console.Write($"\nРасход топлива для прохождения расстояния" +
                            $" {distance} км составит" +
-                           $" {Math.Round(newCar.CalculateFuel(distance), 1)} л.");
+                           $" {Math.Round(newCar.CalculateFuel(distance), 1)} л.\n");
                     }
 
                     else if (transport is Helicopter newHelicopter)
@@ -422,7 +422,7 @@ namespace ConsoleLoader
                         ReadPositiveDouble(distance);
 
                         Console.Write($"\nРасход топлива для полета {distance} ч" +
-                            $" составит {Math.Round(newHelicopter.CalculateFuel(distance), 1)} л.");
+                            $" составит {Math.Round(newHelicopter.CalculateFuel(distance), 1)} л.\n");
                     }
                 };
 
