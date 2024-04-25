@@ -302,6 +302,13 @@ namespace ConsoleLoader
             {
                 ()=>
                 {
+                    Console.Write($"\n\tВведите мощность двигателя в л.с " +
+                        $"(нажмите Enter): ");
+
+                    motor.Capacity = Convert.ToDouble(Console.ReadLine());
+                },
+                ()=>
+                {
                     Console.WriteLine($"\n\tВыберите вид топлива: ");
 
                     if (transport is Car || transport is HybridCar)
@@ -335,14 +342,6 @@ namespace ConsoleLoader
                     }
 
                      motor.TypeFuel = сonsumptionFuel[keyInfo];
-                },
-
-                ()=>
-                {
-                    Console.Write($"\n\tВведите мощность двигателя в л.с " +
-                        $"(нажмите Enter): ");
-
-                    motor.Capacity = Convert.ToDouble(Console.ReadLine());
                 },
             };
 
