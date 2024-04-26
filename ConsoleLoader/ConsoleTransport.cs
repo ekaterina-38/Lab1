@@ -41,28 +41,28 @@ namespace ConsoleLoader
                     switch (readTransport)
                     {
                         case '1':
-                            {
-                                transport = ReadCar();
-                                break;
-                            }
+                        {
+                            transport = ReadCar();
+                            break;
+                        }
 
                         case '2':
-                            {
-                                transport = ReadHybridCar();
-                                break;
-                            }
+                        {
+                            transport = ReadHybridCar();
+                            break;
+                        }
 
                         case '3':
-                            {
-                                transport = ReadHelicopter();
-                                break;
-                            }
+                        {
+                            transport = ReadHelicopter();
+                            break;
+                        }
 
                         default:
-                            {
-                                throw new ArgumentOutOfRangeException(
-                                    "Неверно введен тип транспорта");
-                            }
+                        {
+                            throw new ArgumentOutOfRangeException(
+                                "Неверно введен тип транспорта");
+                        }
                     }
                 },
             };
@@ -102,7 +102,6 @@ namespace ConsoleLoader
                         Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
-
             };
 
             Car car = new Car();
@@ -158,7 +157,6 @@ namespace ConsoleLoader
                         Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
-
             };
 
             Helicopter helicopter = new Helicopter();
@@ -220,7 +218,6 @@ namespace ConsoleLoader
                         Console.WriteLine($"\nИсключение: {message}");
                     }
                 },
-
             };
 
             HybridCar hybridCar = new HybridCar();

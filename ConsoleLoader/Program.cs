@@ -24,24 +24,24 @@ namespace ConsoleLoader
                 switch (readProgram)
                 {
                     case '1':
-                        {
-                            TransportBase transport = ConsoleTransport.SelectTransport();
-                            ConsoleTransport.СalculateСonsumptionFuel(transport);
-                            break;
-                        }
+                    {
+                        TransportBase transport = ConsoleTransport.SelectTransport();
+                        ConsoleTransport.СalculateСonsumptionFuel(transport);
+                        break;
+                    }
 
                     case '2':
-                        {
-                            Console.WriteLine("\nПрограмма завершена");
-                            workProgram = false;
-                            break;
-                        }
+                    {
+                        Console.WriteLine("\nПрограмма завершена");
+                        workProgram = false;
+                        break;
+                    }
 
                     default:
-                        {
-                            Console.WriteLine("\nНекорректный ввод. Попробуйте еще раз");
-                            break;
-                        }
+                    {
+                        Console.WriteLine("\nНекорректный ввод. Попробуйте еще раз");
+                        break;
+                    }
                 }
             }
         }
