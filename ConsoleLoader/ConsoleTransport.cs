@@ -399,7 +399,7 @@ namespace ConsoleLoader
                 },
             };
 
-            Motor motorAdd = new Motor();
+            Motor additionalMotor = new Motor();
 
             List<Action> actions = new()
             {
@@ -428,7 +428,7 @@ namespace ConsoleLoader
 
                    if (сonsumptionFuel[keyInfo] != motor.TypeFuel)
                    {
-                       motorAdd.TypeFuel = сonsumptionFuel[keyInfo];
+                       additionalMotor.TypeFuel = сonsumptionFuel[keyInfo];
                    }
                    else
                    {
@@ -448,7 +448,7 @@ namespace ConsoleLoader
 
             ActionsHandler(actions, catchDictionary);
 
-            return motorAdd;
+            return additionalMotor;
         }
 
         /// <summary>
