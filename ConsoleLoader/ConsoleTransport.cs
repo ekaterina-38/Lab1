@@ -361,7 +361,7 @@ namespace ConsoleLoader
         /// Метод Ввода данных о Гибридном Двигателе.
         /// </summary>
         /// <param name="motor">Основной двигатель.</param>
-        /// <returns>Двигатель.</returns>
+        /// <returns>Гибридный двигатель.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Выход
         /// за пределы.</exception>
         public static Motor ReadMotor(Motor motor)
