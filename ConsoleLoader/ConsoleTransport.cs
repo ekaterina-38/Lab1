@@ -235,7 +235,7 @@ namespace ConsoleLoader
                 {
                     Console.WriteLine($"\nВведите данные о дополнительном" +
                         $" двигателе");
-                    hybridCar.AdditionalMotor = ReadMotor(hybridCar);
+                    hybridCar.AdditionalMotor = ReadMotor(hybridCar.Motor);
                 },
 
                 ()=>
@@ -299,13 +299,6 @@ namespace ConsoleLoader
             {
                 ()=>
                 {
-                    Console.Write($"\n\tВведите мощность двигателя в л.с " +
-                        $"(нажмите Enter): ");
-
-                    motor.Capacity = Convert.ToDouble(Console.ReadLine());
-                },
-                ()=>
-                {
                     Dictionary<char, TypeFuel> сonsumptionFuel;
                     char keyInfo;
 
@@ -349,11 +342,113 @@ namespace ConsoleLoader
 
                      motor.TypeFuel = сonsumptionFuel[keyInfo];
                 },
+
+                ()=>
+                {
+                    Console.Write($"\n\tВведите мощность двигателя в л.с " +
+                        $"(нажмите Enter): ");
+
+                    motor.Capacity = Convert.ToDouble(Console.ReadLine());
+                },
             };
 
             ActionsHandler(actions, catchDictionary);
 
             return motor;
+        }
+
+        /// <summary>
+        /// Метод Ввода данных о Гибридном Двигателе.
+        /// </summary>
+        /// <param name="motor">Основной двигатель.</param>
+        /// <returns>Двигатель.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Выход
+        /// за пределы.</exception>
+        public static Motor ReadMotor(Motor motor)
+        {
+            Dictionary<Type, Action<string>> catchDictionary =
+                new Dictionary<Type, Action<string>>()
+            {
+                {
+                    typeof(ArgumentOutOfRangeException),
+                    (string message) =>
+                    {
+                        Console.WriteLine($"\nИсключение: {message}");
+                    }
+                },
+                {
+                    typeof(ArgumentException),
+                    (string message) =>
+                    {
+                        Console.WriteLine($"\nИсключение: {message}");
+                    }
+                },
+                {
+                    typeof(FormatException),
+                    (string message) =>
+                    {
+                        Console.WriteLine($"\nИсключение: {message}");
+                    }
+                },
+                {
+                    typeof(OverflowException),
+                    (string message) =>
+                    {
+                        Console.WriteLine($"\nИсключение: {message}");
+                    }
+                },
+            };
+
+            Motor motorAdd = new Motor();
+
+            List<Action> actions = new()
+            {
+                ()=>
+                {
+                   Console.WriteLine($"\n\tВыберите вид топлива: " +
+                        "\n\t1 - бензин" +
+                        "\n\t2 - дизель" +
+                        "\n\t3 - электричество" +
+                        "\n\t4 - газ");
+
+                   char keyInfo = Console.ReadKey().KeyChar;
+
+                   Dictionary<char, TypeFuel> сonsumptionFuel = new()
+                   {
+                        {'1', TypeFuel.Petrol},
+                        {'2', TypeFuel.Diesel},
+                        {'3', TypeFuel.Electricity},
+                        {'4', TypeFuel.Gas},
+                   };
+
+                   if(!сonsumptionFuel.ContainsKey(keyInfo))
+                   {
+                       throw new ArgumentOutOfRangeException();
+                   }
+
+                   if (сonsumptionFuel[keyInfo] != motor.TypeFuel)
+                   {
+                       motorAdd.TypeFuel = сonsumptionFuel[keyInfo];
+                   }
+                   else
+                   {
+                       throw new ArgumentException ("Гибридная машина " +
+                           "не может иметь одинаковые двигатели");
+                   }
+                },
+
+                ()=>
+                {
+                    Console.Write($"\n\tВведите мощность двигателя в л.с " +
+                        $"(нажмите Enter): ");
+
+                    motor.Capacity = Convert.ToDouble(Console.ReadLine());
+                },
+            };
+
+            ActionsHandler(actions, catchDictionary);
+
+            return motorAdd;
         }
 
         /// <summary>
