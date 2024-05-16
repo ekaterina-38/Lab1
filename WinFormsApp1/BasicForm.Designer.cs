@@ -51,11 +51,11 @@ namespace View
             // 
             addTransportButton.BackColor = SystemColors.ButtonHighlight;
             addTransportButton.ForeColor = SystemColors.ActiveCaptionText;
-            addTransportButton.Location = new Point(444, 379);
+            addTransportButton.Location = new Point(525, 390);
             addTransportButton.Name = "addTransportButton";
-            addTransportButton.Size = new Size(150, 30);
+            addTransportButton.Size = new Size(100, 30);
             addTransportButton.TabIndex = 1;
-            addTransportButton.Text = "Добавить Транспорт";
+            addTransportButton.Text = "Добавить";
             addTransportButton.UseVisualStyleBackColor = false;
             addTransportButton.Click += addTransportButtonClick;
             // 
@@ -63,11 +63,11 @@ namespace View
             // 
             removeTransportButton.BackColor = SystemColors.ButtonHighlight;
             removeTransportButton.ForeColor = SystemColors.ActiveCaptionText;
-            removeTransportButton.Location = new Point(600, 379);
+            removeTransportButton.Location = new Point(650, 390);
             removeTransportButton.Name = "removeTransportButton";
-            removeTransportButton.Size = new Size(150, 30);
+            removeTransportButton.Size = new Size(100, 30);
             removeTransportButton.TabIndex = 2;
-            removeTransportButton.Text = "Удалить Транспорт";
+            removeTransportButton.Text = "Удалить";
             removeTransportButton.UseVisualStyleBackColor = false;
             removeTransportButton.Click += removeTransportButtonClick;
             // 
@@ -75,16 +75,16 @@ namespace View
             // 
             groupBox.Location = new Point(50, 10);
             groupBox.Name = "groupBox";
-            groupBox.Size = new Size(700, 352);
+            groupBox.Size = new Size(700, 350);
             groupBox.TabIndex = 0;
             groupBox.TabStop = false;
-            groupBox.Text = "Список Транспорта";
+            groupBox.Text = "Список транспорта";
             groupBox.Controls.Add(gridControl);
             // 
             // BasicForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
             Controls.Add(groupBox);
@@ -97,13 +97,22 @@ namespace View
 
         private void addTransportButtonClick(object sender, EventArgs e)
         {
-            NewForm newForm = new NewForm();
-            newForm.Show();
+            DataForm DataForm = new DataForm();
+            DataForm.Show();
         }
 
         private void removeTransportButtonClick(object sender, EventArgs e)
         {
-            
+            if (gridControl.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = gridControl.SelectedRows[0];
+
+                gridControl.Rows.Remove(selectedRow);
+            }
+            else
+            {
+                MessageBox.Show("Выберите строку для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         #endregion
     }

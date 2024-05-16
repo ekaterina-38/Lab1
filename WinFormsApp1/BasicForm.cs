@@ -1,10 +1,10 @@
 namespace View
 {
-    public partial class BasicForm : Form
+    public partial class BasicForm : System.Windows.Forms.Form
     {
         private GroupBox groupBox;
 
-        private DataGridView gridControl;
+        public DataGridView gridControl;
 
         private Button addTransportButton;
 
