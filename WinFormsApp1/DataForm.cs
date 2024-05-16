@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TransportLibrary;
 
 namespace View
 {
@@ -16,9 +17,15 @@ namespace View
 
         private Button cancelButton;
 
+        private Panel panelInputs;
+
+        private GroupBox groupBox;
+
         public DataForm()
         {
             InitializeComponent();
         }
+
+
     }
 }

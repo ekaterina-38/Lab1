@@ -43,6 +43,7 @@ namespace View
             gridControl.Name = "gridControl";
             gridControl.Dock = DockStyle.Fill;
             gridControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridControl.DefaultCellStyle.ForeColor = Color.Black;
             gridControl.Columns.Add("TypeTransport", "Вид транспорта");
             gridControl.Columns.Add("Distance", "Расстояние");
             gridControl.Columns.Add("FuelConsumption", "Расход топлива");

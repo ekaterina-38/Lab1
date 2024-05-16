@@ -1,3 +1,5 @@
+using TransportLibrary;
+
 namespace View
 {
     public partial class BasicForm : System.Windows.Forms.Form
@@ -10,9 +12,20 @@ namespace View
 
         private Button removeTransportButton;
 
+        public List<TransportBase> transportList = new List<TransportBase>();
+
         public BasicForm()
         {
             InitializeComponent();
+        }
+
+        public void PopulateDataGridView( double distance)
+        {
+            gridControl.Rows.Clear();
+            foreach (var transport in transportList)
+            {
+                gridControl.Rows.Add(transport.GetType().Name, distance, transport.CalculateFuel(distance));
+            }
         }
     }
 }
