@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using TransportLibrary;
 
 namespace View
@@ -9,13 +10,13 @@ namespace View
     {
         private GroupBox groupBoxTransport;
 
-        public DataGridView gridControlTransport;
+        private DataGridView gridControlTransport;
 
         private Button buttonAddTransport;
 
         private Button buttonRemoveTransport;
 
-        public List<TransportBase> transportList = new List<TransportBase>();
+        private List<TransportBase> transportList = new List<TransportBase>();
 
         /// <summary>
         /// Конструктор BasicForm.
@@ -26,6 +27,18 @@ namespace View
         }
 
         /// <summary>
+        /// Обработчик.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="transportBase"></param>
+        private void TransportAdded(object sender, EventArgs transportBase)
+        {
+            TransportAddedEventArgs addedEventArgs = transportBase as TransportAddedEventArgs;
+
+            transportList.Add(addedEventArgs?.TransportBase);
+        }
+
+        /// <summary>
         /// Метод нажатия на кнопку "Добавить"
         /// </summary>
         /// <param name="sender">Событие.</param>
@@ -33,6 +46,7 @@ namespace View
         private void AddTransportButtonClick(object sender, EventArgs e)
         {
             DataForm DataForm = new DataForm();
+            DataForm.TransportAdded += new EventHandler(TransportAdded);
             DataForm.Show();
         }
 

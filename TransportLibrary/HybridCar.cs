@@ -54,6 +54,30 @@ namespace TransportLibrary
             }
         }
 
+        /// <inheritdoc/>
+        public override string Info
+        {
+            get => $"{base.Info}; Гибридный двигатель:{AdditionalMotor}";
+        }
+
+        /// <inheritdoc/>
+        public override string TypeTransport
+        {
+            get => "Гибридная машина";
+        }
+
+        /// <inheritdoc/>
+        public override string FuelConsumption
+        {
+            get
+            {
+                (double basicConsumption, double additionalConsumption) =
+                    CalculateFuel(1, 1);
+                return $"На основном: {basicConsumption} " +
+                    $"На гибридном:{additionalConsumption}";
+            }
+        }
+
         /// <summary>
         /// Переопределенный метод Расчета расхода топлива.
         /// </summary>

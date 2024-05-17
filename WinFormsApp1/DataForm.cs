@@ -25,6 +25,8 @@ namespace View
 
         private TextBox textBoxDistance;
 
+        public EventHandler TransportAdded;
+
         /// <summary>
         /// Конструктор DataForm.
         /// </summary>
@@ -83,8 +85,9 @@ namespace View
             BasicForm basicForm = Application.OpenForms.OfType<BasicForm>().FirstOrDefault();
             if (basicForm != null)
             {
-                basicForm.transportList.Add(car);
-                basicForm.gridControlTransport.Rows.Add(car.GetType().Name, distance, car.CalculateFuel(distance));
+                //basicForm.transportList.Add(car);
+                //basicForm.gridControlTransport.Rows.Add(car.GetType().Name, distance, car.CalculateFuel(distance));
+                TransportAdded?.Invoke(this, new TransportAddedEventArgs(car));
             }
 
             Close();
@@ -99,6 +102,7 @@ namespace View
         {
             Close();
         }
+
 
     }
 }

@@ -29,6 +29,21 @@ namespace TransportLibrary
         }
 
         /// <summary>
+        /// Информация о транспорте.
+        /// </summary>
+        public abstract string Info { get; }
+
+        /// <summary>
+        /// Тип транспорта.
+        /// </summary>
+        public abstract string TypeTransport { get; }
+
+        /// <summary>
+        /// Расход топлива.
+        /// </summary>
+        public abstract string FuelConsumption { get; }
+
+        /// <summary>
         /// Метод расчета расхода топлива.
         /// </summary>
         /// <param name="distance">Расстояние.</param>

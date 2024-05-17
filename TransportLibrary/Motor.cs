@@ -54,6 +54,14 @@ namespace TransportLibrary
         }
 
         /// <summary>
+        /// Информация о двигателе.
+        /// </summary>
+        public string Info
+        {
+            get => $"Мощность: {Capacity}; Тип топлива:{TypeFuel}";
+        }
+
+        /// <summary>
         /// Расчет коэффициента расхода.
         /// </summary>
         /// <returns>Коэффициент расхода.</returns>

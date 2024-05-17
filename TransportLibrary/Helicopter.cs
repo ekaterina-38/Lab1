@@ -70,6 +70,24 @@ namespace TransportLibrary
             }
         }
 
+        /// <inheritdoc/>
+        public override string Info
+        {
+            get => $"Двигатель: {Motor.Info}; Масса:{Mass}; Длина лопастей:{BladeLength}";
+        }
+
+        /// <inheritdoc/>
+        public override string TypeTransport
+        {
+            get => "Вертолет";
+        }
+
+        /// <inheritdoc/>
+        public override string FuelConsumption
+        {
+            get => $"{CalculateFuel(1)}";
+        }
+
         /// <summary>
         /// Переопределенный метод Расчета расхода топлива.
         /// </summary>
