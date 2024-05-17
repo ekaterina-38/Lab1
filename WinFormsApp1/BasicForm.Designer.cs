@@ -63,7 +63,7 @@ namespace View
             buttonAddTransport.TabIndex = 1;
             buttonAddTransport.Text = "Добавить";
             buttonAddTransport.UseVisualStyleBackColor = false;
-            buttonAddTransport.Click += addTransportButtonClick;
+            buttonAddTransport.Click += AddTransportButtonClick;
             // 
             // buttonRemoveTransport
             // 
@@ -75,7 +75,7 @@ namespace View
             buttonRemoveTransport.TabIndex = 2;
             buttonRemoveTransport.Text = "Удалить";
             buttonRemoveTransport.UseVisualStyleBackColor = false;
-            buttonRemoveTransport.Click += removeTransportButtonClick;
+            buttonRemoveTransport.Click += RemoveTransportButtonClick;
             // 
             // groupBoxTransport
             // 

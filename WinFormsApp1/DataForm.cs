@@ -38,7 +38,7 @@ namespace View
         /// </summary>
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
-        private void agreeButtonClick(object sender, EventArgs e)
+        private void AgreeButtonClick(object sender, EventArgs e)
         {
             string typeTransport = comboBoxTransport.Text;
 
@@ -95,7 +95,7 @@ namespace View
         /// </summary>
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
-        private void cancelButtonClick(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
             Close();
         }

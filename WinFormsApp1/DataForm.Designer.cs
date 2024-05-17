@@ -69,7 +69,7 @@ namespace View
             buttonAgree.Size = new Size(100, 30);
             buttonAgree.Text = "Ок";
             buttonAgree.UseVisualStyleBackColor = false;
-            buttonAgree.Click += agreeButtonClick;
+            buttonAgree.Click += AgreeButtonClick;
             // 
             // buttonCancel
             // 
@@ -78,7 +78,7 @@ namespace View
             buttonCancel.Size = new Size(100, 30);
             buttonCancel.Text = "Отмена";
             buttonCancel.UseVisualStyleBackColor = false;
-            buttonCancel.Click += cancelButtonClick;
+            buttonCancel.Click += CancelButtonClick;
             // 
             // comboBoxTransport
             // 

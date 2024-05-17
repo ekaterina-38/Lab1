@@ -30,7 +30,7 @@ namespace View
         /// </summary>
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
-        private void addTransportButtonClick(object sender, EventArgs e)
+        private void AddTransportButtonClick(object sender, EventArgs e)
         {
             DataForm DataForm = new DataForm();
             DataForm.Show();
@@ -41,7 +41,7 @@ namespace View
         /// </summary>
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
-        private void removeTransportButtonClick(object sender, EventArgs e)
+        private void RemoveTransportButtonClick(object sender, EventArgs e)
         {
             if (gridControlTransport.SelectedRows.Count > 0)
             {
