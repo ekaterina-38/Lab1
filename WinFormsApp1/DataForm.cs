@@ -1,31 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TransportLibrary;
+﻿using TransportLibrary;
 
 namespace View
 {
+    /// <summary>
+    /// Класс DataForm.
+    /// </summary>
     public partial class DataForm : Form
     {
-        private Button agreeButton;
+        private Button buttonAgree;
 
-        private Button cancelButton;
+        private Button buttonCancel;
 
         private Panel panelInputs;
 
-        private GroupBox groupBox;
+        private GroupBox groupBoxData;
 
+        private ComboBox comboBoxTransport;
+
+        private ComboBox comboBoxFuel;
+
+        private TextBox textBoxСapacity;
+
+        private TextBox textBoxMass;
+
+        private TextBox textBoxDistance;
+
+        /// <summary>
+        /// Конструктор DataForm.
+        /// </summary>
         public DataForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Метод нажатия на кнопку "Ок"
+        /// </summary>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
+        private void agreeButtonClick(object sender, EventArgs e)
+        {
+            string typeTransport = comboBoxTransport.Text;
+
+            Car car = new Car();
+            Motor motor = new Motor();
+
+            string typeFuel = comboBoxFuel.Text;
+
+            switch (typeFuel)
+            {
+                case "Бензин":
+                    {
+                        motor.TypeFuel = TypeFuel.Petrol;
+                    }
+                    break;
+                case "Дизель":
+                    {
+                        motor.TypeFuel = TypeFuel.Diesel;
+                    }
+                    break;
+                case "Электричество":
+                    {
+                        motor.TypeFuel = TypeFuel.Electricity;
+                    }
+                    break;
+                case "Газ":
+                    {
+                        motor.TypeFuel = TypeFuel.Gas;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+
+            car.Mass = Convert.ToDouble(textBoxMass.Text);
+
+            double distance = Convert.ToDouble(textBoxDistance.Text);
+
+
+            BasicForm basicForm = Application.OpenForms.OfType<BasicForm>().FirstOrDefault();
+            if (basicForm != null)
+            {
+                basicForm.transportList.Add(car);
+                basicForm.gridControlTransport.Rows.Add(car.GetType().Name, distance, car.CalculateFuel(distance));
+            }
+
+            Close();
+        }
+
+        /// <summary>
+        /// Метод нажатия на кнопку "Отмена"
+        /// </summary>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
+        private void cancelButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
 
     }
 }

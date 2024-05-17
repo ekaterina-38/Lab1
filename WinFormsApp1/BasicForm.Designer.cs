@@ -3,17 +3,20 @@ using System.Windows.Forms;
 
 namespace View
 {
+    /// <summary>
+    /// Класс BasicForm.
+    /// </summary>
     partial class BasicForm
     {
         /// <summary>
-        ///  Required designer variable.
+        ///  Необходимая переменная дизайнера.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        ///  Метод для явного освобождения ресурсов.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true если ресурсы необходимо удалить,иначе false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -26,61 +29,63 @@ namespace View
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Метод инициализации компонентов (кнопки,текстовые поля и т.д.)
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox = new GroupBox();
-            gridControl = new DataGridView();
-            addTransportButton = new Button();
-            removeTransportButton = new Button();
+            // 
+            // groupBoxTransport
+            // 
+            groupBoxTransport = new GroupBox();
+            gridControlTransport = new DataGridView();
+            buttonAddTransport = new Button();
+            buttonRemoveTransport = new Button();
             SuspendLayout();
             // 
-            // gridControl
+            // gridControlTransport
             // 
-            gridControl.BackgroundColor = SystemColors.ButtonHighlight;
-            gridControl.Name = "gridControl";
-            gridControl.Dock = DockStyle.Fill;
-            gridControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridControl.DefaultCellStyle.ForeColor = Color.Black;
-            gridControl.Columns.Add("TypeTransport", "Вид транспорта");
-            gridControl.Columns.Add("Distance", "Расстояние");
-            gridControl.Columns.Add("FuelConsumption", "Расход топлива");
+            gridControlTransport.BackgroundColor = SystemColors.ButtonHighlight;
+            gridControlTransport.Name = "gridControl";
+            gridControlTransport.Dock = DockStyle.Fill;
+            gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
+            gridControlTransport.Columns.Add("TypeTransport", "Вид транспорта");
+            gridControlTransport.Columns.Add("Distance", "Расстояние");
+            gridControlTransport.Columns.Add("FuelConsumption", "Расход топлива");
             // 
-            // addTransportButton
+            // buttonAddTransport
             // 
-            addTransportButton.BackColor = SystemColors.ButtonHighlight;
-            addTransportButton.ForeColor = SystemColors.ActiveCaptionText;
-            addTransportButton.Location = new Point(525, 390);
-            addTransportButton.Name = "addTransportButton";
-            addTransportButton.Size = new Size(100, 30);
-            addTransportButton.TabIndex = 1;
-            addTransportButton.Text = "Добавить";
-            addTransportButton.UseVisualStyleBackColor = false;
-            addTransportButton.Click += addTransportButtonClick;
+            buttonAddTransport.BackColor = SystemColors.ButtonHighlight;
+            buttonAddTransport.ForeColor = SystemColors.ActiveCaptionText;
+            buttonAddTransport.Location = new Point(525, 390);
+            buttonAddTransport.Name = "addTransportButton";
+            buttonAddTransport.Size = new Size(100, 30);
+            buttonAddTransport.TabIndex = 1;
+            buttonAddTransport.Text = "Добавить";
+            buttonAddTransport.UseVisualStyleBackColor = false;
+            buttonAddTransport.Click += addTransportButtonClick;
             // 
-            // removeTransportButton
+            // buttonRemoveTransport
             // 
-            removeTransportButton.BackColor = SystemColors.ButtonHighlight;
-            removeTransportButton.ForeColor = SystemColors.ActiveCaptionText;
-            removeTransportButton.Location = new Point(650, 390);
-            removeTransportButton.Name = "removeTransportButton";
-            removeTransportButton.Size = new Size(100, 30);
-            removeTransportButton.TabIndex = 2;
-            removeTransportButton.Text = "Удалить";
-            removeTransportButton.UseVisualStyleBackColor = false;
-            removeTransportButton.Click += removeTransportButtonClick;
+            buttonRemoveTransport.BackColor = SystemColors.ButtonHighlight;
+            buttonRemoveTransport.ForeColor = SystemColors.ActiveCaptionText;
+            buttonRemoveTransport.Location = new Point(650, 390);
+            buttonRemoveTransport.Name = "removeTransportButton";
+            buttonRemoveTransport.Size = new Size(100, 30);
+            buttonRemoveTransport.TabIndex = 2;
+            buttonRemoveTransport.Text = "Удалить";
+            buttonRemoveTransport.UseVisualStyleBackColor = false;
+            buttonRemoveTransport.Click += removeTransportButtonClick;
             // 
-            // groupBox
+            // groupBoxTransport
             // 
-            groupBox.Location = new Point(50, 10);
-            groupBox.Name = "groupBox";
-            groupBox.Size = new Size(700, 350);
-            groupBox.TabIndex = 0;
-            groupBox.TabStop = false;
-            groupBox.Text = "Список транспорта";
-            groupBox.Controls.Add(gridControl);
+            groupBoxTransport.Location = new Point(50, 10);
+            groupBoxTransport.Name = "groupBox";
+            groupBoxTransport.Size = new Size(700, 350);
+            groupBoxTransport.TabIndex = 0;
+            groupBoxTransport.TabStop = false;
+            groupBoxTransport.Text = "Список транспорта";
+            groupBoxTransport.Controls.Add(gridControlTransport);
             // 
             // BasicForm
             // 
@@ -88,33 +93,14 @@ namespace View
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
-            Controls.Add(groupBox);
-            Controls.Add(addTransportButton);
-            Controls.Add(removeTransportButton);
+            Controls.Add(groupBoxTransport);
+            Controls.Add(buttonAddTransport);
+            Controls.Add(buttonRemoveTransport);
             ForeColor = Color.Bisque;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "BasicForm";
         }
 
-        private void addTransportButtonClick(object sender, EventArgs e)
-        {
-            DataForm DataForm = new DataForm();
-            DataForm.Show();
-        }
-
-        private void removeTransportButtonClick(object sender, EventArgs e)
-        {
-            if (gridControl.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = gridControl.SelectedRows[0];
-
-                gridControl.Rows.Remove(selectedRow);
-            }
-            else
-            {
-                MessageBox.Show("Выберите строку для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
         #endregion
     }
 }
