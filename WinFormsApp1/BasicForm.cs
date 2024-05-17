@@ -9,14 +9,11 @@ namespace View
     public partial class BasicForm : System.Windows.Forms.Form
     {
         private GroupBox groupBoxTransport;
-
         private DataGridView gridControlTransport;
-
         private Button buttonAddTransport;
-
         private Button buttonRemoveTransport;
 
-        private List<TransportBase> transportList = new List<TransportBase>();
+        private BindingList<TransportBase> transportList = new BindingList<TransportBase>();
 
         /// <summary>
         /// Конструктор BasicForm.
@@ -24,6 +21,10 @@ namespace View
         public BasicForm()
         {
             InitializeComponent();
+            FillingDataGridView();
+            buttonAddTransport.Click += new EventHandler(AddTransportButtonClick);
+            buttonRemoveTransport.Click += new EventHandler(RemoveTransportButtonClick);
+
         }
 
         /// <summary>
@@ -73,13 +74,11 @@ namespace View
         /// Метод заполнения таблицы "Список транспорта".
         /// </summary>
         /// <param name="distance">Расстояние пути.</param>
-        public void FillingDataGridView(double distance)
+        private void FillingDataGridView()
         {
-            gridControlTransport.Rows.Clear();
-            foreach (var transport in transportList)
-            {
-                gridControlTransport.Rows.Add(transport.GetType().Name, distance, transport.CalculateFuel(distance));
-            }
+            gridControlTransport.DataSource = transportList;
         }
+
+
     }
 }

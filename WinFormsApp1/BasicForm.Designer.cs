@@ -40,7 +40,7 @@ namespace View
             gridControlTransport = new DataGridView();
             buttonAddTransport = new Button();
             buttonRemoveTransport = new Button();
-            SuspendLayout();
+            //SuspendLayout();
             // 
             // gridControlTransport
             // 
@@ -49,9 +49,9 @@ namespace View
             gridControlTransport.Dock = DockStyle.Fill;
             gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
-            gridControlTransport.Columns.Add("TypeTransport", "Вид транспорта");
-            gridControlTransport.Columns.Add("Distance", "Расстояние");
-            gridControlTransport.Columns.Add("FuelConsumption", "Расход топлива");
+            //gridControlTransport.Columns.Add("TypeTransport", "Вид транспорта");
+            //gridControlTransport.Columns.Add("Distance", "Расстояние");
+            //gridControlTransport.Columns.Add("FuelConsumption", "Расход топлива");
             // 
             // buttonAddTransport
             // 
@@ -63,7 +63,6 @@ namespace View
             buttonAddTransport.TabIndex = 1;
             buttonAddTransport.Text = "Добавить";
             buttonAddTransport.UseVisualStyleBackColor = false;
-            buttonAddTransport.Click += AddTransportButtonClick;
             // 
             // buttonRemoveTransport
             // 
@@ -75,7 +74,6 @@ namespace View
             buttonRemoveTransport.TabIndex = 2;
             buttonRemoveTransport.Text = "Удалить";
             buttonRemoveTransport.UseVisualStyleBackColor = false;
-            buttonRemoveTransport.Click += RemoveTransportButtonClick;
             // 
             // groupBoxTransport
             // 

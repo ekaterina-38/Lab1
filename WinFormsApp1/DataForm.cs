@@ -81,16 +81,10 @@ namespace View
 
             double distance = Convert.ToDouble(textBoxDistance.Text);
 
+            TransportAdded?.Invoke(this, new TransportAddedEventArgs(car));
 
-            BasicForm basicForm = Application.OpenForms.OfType<BasicForm>().FirstOrDefault();
-            if (basicForm != null)
-            {
-                //basicForm.transportList.Add(car);
-                //basicForm.gridControlTransport.Rows.Add(car.GetType().Name, distance, car.CalculateFuel(distance));
-                TransportAdded?.Invoke(this, new TransportAddedEventArgs(car));
-            }
 
-            Close();
+            //Close();
         }
 
         /// <summary>
@@ -100,7 +94,7 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void CancelButtonClick(object sender, EventArgs e)
         {
-            Close();
+           // Close();
         }
 
 
