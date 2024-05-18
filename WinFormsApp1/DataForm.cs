@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography.Xml;
 using TransportLibrary;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace View
 {
@@ -11,10 +12,6 @@ namespace View
         private Button buttonAgree;
 
         private Button buttonCancel;
-
-        private Panel panelInputs;
-
-        private GroupBox groupBoxDataCar;
         
         private GroupBox groupBoxData;
 
@@ -24,15 +21,11 @@ namespace View
 
         private ComboBox comboBoxTransport;
 
-        private ComboBox comboBoxFuelCar;
-        private ComboBox comboBoxFuelHybridCar;
-        private ComboBox comboBoxFuelHelicopter;
+        private ComboBox comboBoxFuel;
 
         private TextBox textBoxСapacity;
 
         private TextBox textBoxMass;
-
-        private TextBox textBoxDistance;
 
         public EventHandler TransportAdded;
 
@@ -42,8 +35,10 @@ namespace View
         public DataForm()
         {
             InitializeComponent();
-
+            FillComboBox(["Машина", "Гибридная машина", "Вертолет"],
+                comboBoxTransport);
             comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
+            comboBoxTransport.SelectedIndexChanged += new EventHandler(FillComboBoxFuel);
         }
 
         /// <summary>
@@ -65,7 +60,7 @@ namespace View
                     
                     Motor motor = new Motor();
                     
-                    string typeFuel = comboBoxFuelCar.Text;
+                    string typeFuel = comboBoxFuel.Text;
                     
                     switch (typeFuel)
                     {
@@ -110,7 +105,7 @@ namespace View
 
                     Motor motor = new Motor();
 
-                    string typeFuel = comboBoxFuelCar.Text;
+                    string typeFuel = comboBoxFuel.Text;
 
                     switch (typeFuel)
                     {
@@ -154,7 +149,7 @@ namespace View
 
                     Motor motor = new Motor();
 
-                    string typeFuel = comboBoxFuelCar.Text;
+                    string typeFuel = comboBoxFuel.Text;
 
                     switch (typeFuel)
                     {
@@ -197,7 +192,6 @@ namespace View
             {
                 case "Машина":
                     {
-                        groupBoxDataCar.Visible = true;
                         groupBoxDataHybridCar.Visible = false;
                         groupBoxDataHelicopter.Visible = false;
                     }
@@ -205,7 +199,6 @@ namespace View
 
                 case "Гибридная машина":
                     {
-                        groupBoxDataCar.Visible = false;
                         groupBoxDataHybridCar.Visible = true;
                         groupBoxDataHelicopter.Visible = false;
 
@@ -214,7 +207,6 @@ namespace View
 
                 case "Вертолет":
                     {
-                        groupBoxDataCar.Visible = false;
                         groupBoxDataHybridCar.Visible = false;
                         groupBoxDataHelicopter.Visible = true;
                     }
@@ -231,5 +223,38 @@ namespace View
         {
            // Close();
         }
+
+        /// <summary>
+        /// Заполнение comboBox массивом данных comboBox.
+        /// </summary>
+        /// <param name="dataSource">Массив данных.</param>
+        /// <param name="comboBox">ComboBox.</param>
+        private void FillComboBox(object[] dataSource, ComboBox  comboBox)
+        {
+            comboBox.DataSource = dataSource;
+            comboBox.SelectedItem = dataSource.GetValue(0);
+        }
+
+        private void FillComboBoxFuel(object sender, EventArgs e)
+        {
+            object key = comboBoxTransport.SelectedItem;
+
+            Dictionary<object, object[]> fuelTypes = new()
+            {
+                {
+                    "Машина",
+                    ["Бензин", "Дизель", "Газ", "Электричество"]},
+                {
+                    "Гибридная машина",
+                    ["Бензин", "Дизель", "Газ", "Электричество"]},
+                {
+                    "Вертолет", ["Авиационный керосин", "Авиационный бензин"]
+                },
+
+            };
+
+            FillComboBox(fuelTypes[key], comboBoxFuel);
+        }
+
     }
 }

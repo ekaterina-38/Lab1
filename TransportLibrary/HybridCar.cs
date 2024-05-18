@@ -73,8 +73,8 @@ namespace TransportLibrary
             {
                 (double basicConsumption, double additionalConsumption) =
                     CalculateFuel(1, 1);
-                return $"На основном: {basicConsumption} " +
-                    $"На гибридном:{additionalConsumption}";
+                return $"{Math.Round(basicConsumption, 2)} л. на км./ " +
+                    $"{Math.Round(additionalConsumption, 2)} л. на км.";
             }
         }
 
