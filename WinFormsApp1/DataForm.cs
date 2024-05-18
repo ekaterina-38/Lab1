@@ -39,122 +39,55 @@ namespace View
             {
                 case "Машина":
                 {
-                    transport = new Car();
-                    
                     Motor motor = new Motor();
-                    
-                    string typeFuel = comboBoxFuel.Text;
-                    
-                    switch (typeFuel)
-                    {
-                        case "Бензин":
-                        {
-                            motor.TypeFuel = TypeFuel.Petrol;
-                        }
-                            break;
-                    
-                        case "Дизель":
-                        {
-                            motor.TypeFuel = TypeFuel.Diesel;
-                        }
-                            break;
-                    
-                        case "Электричество":
-                        {
-                            motor.TypeFuel = TypeFuel.Electricity;
-                        }
-                            break;
-                    
-                        case "Газ":
-                        {
-                            motor.TypeFuel = TypeFuel.Gas;
-                        }
-                            break;
-                    
-                        default:
-                            break;
-                    }
-                    
+                    motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
                     motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
+                    double mass = Convert.ToDouble(textBoxMass.Text);
 
-                    transport.Mass = Convert.ToDouble(textBoxMass.Text);
-
+                    transport = new Car()
+                    {
+                        Motor = motor,
+                        Mass = mass
+                    };
                 }
                     break;
 
                 case "Гибридная машина":
                 {
-                    transport = new HybridCar();
-
                     Motor motor = new Motor();
-
-                    string typeFuel = comboBoxFuel.Text;
-
-                    switch (typeFuel)
-                    {
-                        case "Бензин":
-                            {
-                                motor.TypeFuel = TypeFuel.Petrol;
-                            }
-                            break;
-
-                        case "Дизель":
-                            {
-                                motor.TypeFuel = TypeFuel.Diesel;
-                            }
-                            break;
-
-                        case "Электричество":
-                            {
-                                motor.TypeFuel = TypeFuel.Electricity;
-                            }
-                            break;
-
-                        case "Газ":
-                            {
-                                motor.TypeFuel = TypeFuel.Gas;
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
-
+                    motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
                     motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
 
-                    transport.Mass = Convert.ToDouble(textBoxMass.Text);
+                    Motor additionalMotor = new Motor();
+                    additionalMotor.TypeFuel = (TypeFuel)comboBoxHybridFuel.SelectedItem;
+                    additionalMotor.Capacity = Convert.ToDouble(textBoxHybridCapacity.Text);
+
+                    double mass = Convert.ToDouble(textBoxMass.Text);
+
+                    transport = new HybridCar()
+                    {
+                        Motor = motor,
+                        AdditionalMotor = additionalMotor,
+                        Mass = mass,
+                    };
+
                 }
                     break;
 
                 case "Вертолет":
                 {
-                    transport = new Helicopter();
-
                     Motor motor = new Motor();
-
-                    string typeFuel = comboBoxFuel.Text;
-
-                    switch (typeFuel)
-                    {
-                        case "Aвиационный керосин":
-                        {
-                            motor.TypeFuel = TypeFuel.Petrol;
-                        }
-                            break;
-
-                        case "Aвиационный бензин":
-                        {
-                            motor.TypeFuel = TypeFuel.Diesel;
-                        }
-                            break;
-
-                        default:
-                            break;
-                    }
-
+                    motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
                     motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
+                    double mass = Convert.ToDouble(textBoxMass.Text);
+                    double bladeLength = Convert.ToDouble(textBoxBladeLength.Text);
 
-                    transport.Mass = Convert.ToDouble(textBoxMass.Text);
+                    transport = new Helicopter()
+                    {
+                        Motor = motor,
+                        Mass = mass,
+                        BladeLength = bladeLength
+                    };
                 }
                     break;
             }
@@ -212,7 +145,7 @@ namespace View
         /// </summary>
         /// <param name="dataSource">Массив данных.</param>
         /// <param name="comboBox">ComboBox.</param>
-        private void FillComboBox(object[] dataSource, ComboBox  comboBox)
+        private void FillComboBox <T>(T[] dataSource, ComboBox  comboBox)
         {
             comboBox.DataSource = dataSource;
             comboBox.SelectedItem = dataSource.GetValue(0);
@@ -228,16 +161,17 @@ namespace View
         {
             object key = comboBoxTransport.SelectedItem;
 
-            Dictionary<object, object[]> fuelTypes = new()
+            Dictionary<object, TypeFuel[]> fuelTypes = new()
             {
                 {
                     "Машина",
-                    ["Бензин", "Дизель", "Газ", "Электричество"]},
+                    [TypeFuel.Petrol, TypeFuel.Diesel, TypeFuel.Gas, TypeFuel.Electricity]},
                 {
                     "Гибридная машина",
-                    ["Бензин", "Дизель", "Газ", "Электричество"]},
+                    [TypeFuel.Petrol, TypeFuel.Diesel, TypeFuel.Gas, TypeFuel.Electricity]},
                 {
-                    "Вертолет", ["Авиационный керосин", "Авиационный бензин"]
+                    "Вертолет",
+                    [TypeFuel.AviationKerosene, TypeFuel.AviationGasoline]
                 },
 
             };
@@ -254,15 +188,15 @@ namespace View
         private void FillComboBoxHybridFuel(object sender, EventArgs e)
         {
             if (groupBoxDataHybridCar.Visible == true)
-            { 
-                object valueComboBoxFuel = comboBoxFuel.SelectedItem;
-                object[] valuesComboBoxHybridFuel = 
-                    comboBoxFuel.Items.Cast<object>().ToArray();
+            {
+                TypeFuel valueComboBoxFuel = (TypeFuel)comboBoxFuel.SelectedItem;
+                TypeFuel[] valuesComboBoxHybridFuel = 
+                    comboBoxFuel.Items.Cast<TypeFuel>().ToArray();
                 int index = Array.IndexOf(valuesComboBoxHybridFuel, valueComboBoxFuel);
 
                 if (index > -1)
                 {
-                    object[] newArray = new object[valuesComboBoxHybridFuel.Length - 1];
+                    TypeFuel[] newArray = new TypeFuel[valuesComboBoxHybridFuel.Length - 1];
                     Array.Copy(valuesComboBoxHybridFuel, 0, newArray, 0, index);
                     Array.Copy(valuesComboBoxHybridFuel, index + 1, newArray, index,
                         valuesComboBoxHybridFuel.Length - index - 1);
