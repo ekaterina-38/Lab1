@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Windows.Forms;
 using TransportLibrary;
 
 namespace View
@@ -73,7 +74,6 @@ namespace View
         /// <summary>
         /// Метод заполнения таблицы "Список транспорта".
         /// </summary>
-        /// <param name="distance">Расстояние пути.</param>
         private void FillingDataGridView()
         {
             gridControlTransport.DataSource = transportList;

@@ -1,4 +1,5 @@
-﻿using TransportLibrary;
+﻿using System.Security.Cryptography.Xml;
+using TransportLibrary;
 
 namespace View
 {
@@ -13,11 +14,19 @@ namespace View
 
         private Panel panelInputs;
 
+        private GroupBox groupBoxDataCar;
+        
         private GroupBox groupBoxData;
+
+        private GroupBox groupBoxDataHybridCar;
+
+        private GroupBox groupBoxDataHelicopter;
 
         private ComboBox comboBoxTransport;
 
-        private ComboBox comboBoxFuel;
+        private ComboBox comboBoxFuelCar;
+        private ComboBox comboBoxFuelHybridCar;
+        private ComboBox comboBoxFuelHelicopter;
 
         private TextBox textBoxСapacity;
 
@@ -33,6 +42,8 @@ namespace View
         public DataForm()
         {
             InitializeComponent();
+
+            comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
         }
 
         /// <summary>
@@ -44,47 +55,171 @@ namespace View
         {
             string typeTransport = comboBoxTransport.Text;
 
-            Car car = new Car();
-            Motor motor = new Motor();
+            TransportBase transport = null;
 
-            string typeFuel = comboBoxFuel.Text;
-
-            switch (typeFuel)
+            switch (typeTransport)
             {
-                case "Бензин":
+                case "Машина":
+                {
+                    transport = new Car();
+                    
+                    Motor motor = new Motor();
+                    
+                    string typeFuel = comboBoxFuelCar.Text;
+                    
+                    switch (typeFuel)
                     {
-                        motor.TypeFuel = TypeFuel.Petrol;
+                        case "Бензин":
+                        {
+                            motor.TypeFuel = TypeFuel.Petrol;
+                        }
+                            break;
+                    
+                        case "Дизель":
+                        {
+                            motor.TypeFuel = TypeFuel.Diesel;
+                        }
+                            break;
+                    
+                        case "Электричество":
+                        {
+                            motor.TypeFuel = TypeFuel.Electricity;
+                        }
+                            break;
+                    
+                        case "Газ":
+                        {
+                            motor.TypeFuel = TypeFuel.Gas;
+                        }
+                            break;
+                    
+                        default:
+                            break;
                     }
+                    
+                    motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+
+                    transport.Mass = Convert.ToDouble(textBoxMass.Text);
+
+                }
                     break;
-                case "Дизель":
+
+                case "Гибридная машина":
+                {
+                    transport = new HybridCar();
+
+                    Motor motor = new Motor();
+
+                    string typeFuel = comboBoxFuelCar.Text;
+
+                    switch (typeFuel)
                     {
-                        motor.TypeFuel = TypeFuel.Diesel;
+                        case "Бензин":
+                            {
+                                motor.TypeFuel = TypeFuel.Petrol;
+                            }
+                            break;
+
+                        case "Дизель":
+                            {
+                                motor.TypeFuel = TypeFuel.Diesel;
+                            }
+                            break;
+
+                        case "Электричество":
+                            {
+                                motor.TypeFuel = TypeFuel.Electricity;
+                            }
+                            break;
+
+                        case "Газ":
+                            {
+                                motor.TypeFuel = TypeFuel.Gas;
+                            }
+                            break;
+
+                        default:
+                            break;
                     }
+
+                    motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+
+                    transport.Mass = Convert.ToDouble(textBoxMass.Text);
+                }
                     break;
-                case "Электричество":
+
+                case "Вертолет":
+                {
+                    transport = new Helicopter();
+
+                    Motor motor = new Motor();
+
+                    string typeFuel = comboBoxFuelCar.Text;
+
+                    switch (typeFuel)
                     {
-                        motor.TypeFuel = TypeFuel.Electricity;
+                        case "Aвиационный керосин":
+                        {
+                            motor.TypeFuel = TypeFuel.Petrol;
+                        }
+                            break;
+
+                        case "Aвиационный бензин":
+                        {
+                            motor.TypeFuel = TypeFuel.Diesel;
+                        }
+                            break;
+
+                        default:
+                            break;
                     }
-                    break;
-                case "Газ":
-                    {
-                        motor.TypeFuel = TypeFuel.Gas;
-                    }
-                    break;
-                default:
+
+                    motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+
+                    transport.Mass = Convert.ToDouble(textBoxMass.Text);
+                }
                     break;
             }
+            
+            TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
+        }
 
-            motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddGroupBoxData(object sender, EventArgs e)
+        {
+            string typeTransport = comboBoxTransport.Text;
 
-            car.Mass = Convert.ToDouble(textBoxMass.Text);
+            switch (typeTransport)
+            {
+                case "Машина":
+                    {
+                        groupBoxDataCar.Visible = true;
+                        groupBoxDataHybridCar.Visible = false;
+                        groupBoxDataHelicopter.Visible = false;
+                    }
+                    break;
 
-            double distance = Convert.ToDouble(textBoxDistance.Text);
+                case "Гибридная машина":
+                    {
+                        groupBoxDataCar.Visible = false;
+                        groupBoxDataHybridCar.Visible = true;
+                        groupBoxDataHelicopter.Visible = false;
 
-            TransportAdded?.Invoke(this, new TransportAddedEventArgs(car));
+                    }
+                    break;
 
-
-            //Close();
+                case "Вертолет":
+                    {
+                        groupBoxDataCar.Visible = false;
+                        groupBoxDataHybridCar.Visible = false;
+                        groupBoxDataHelicopter.Visible = true;
+                    }
+                    break;
+            }
         }
 
         /// <summary>
@@ -96,7 +231,5 @@ namespace View
         {
            // Close();
         }
-
-
     }
 }

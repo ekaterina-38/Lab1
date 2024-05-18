@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace TransportLibrary
 {
     /// <summary>
@@ -13,6 +15,7 @@ namespace TransportLibrary
         /// <summary>
         /// Свойство Масса.
         /// </summary>
+        [Browsable(false)]
         public double Mass
         {
             get => _mass;
@@ -29,18 +32,21 @@ namespace TransportLibrary
         }
 
         /// <summary>
-        /// Информация о транспорте.
-        /// </summary>
-        public abstract string Info { get; }
-
-        /// <summary>
         /// Тип транспорта.
         /// </summary>
+        [DisplayName("Вид транспорта")]
         public abstract string TypeTransport { get; }
+
+        /// <summary>
+        /// Информация о транспорте.
+        /// </summary>
+        [DisplayName("Основная информация")]
+        public abstract string Info { get; }
 
         /// <summary>
         /// Расход топлива.
         /// </summary>
+        [DisplayName("Расход топлива")]
         public abstract string FuelConsumption { get; }
 
         /// <summary>

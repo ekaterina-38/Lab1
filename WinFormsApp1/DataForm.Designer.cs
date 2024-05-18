@@ -39,11 +39,21 @@ namespace View
 
             comboBoxTransport = new ComboBox();
 
-            comboBoxFuel = new ComboBox();
+            comboBoxFuelCar = new ComboBox();
+
+            comboBoxFuelHybridCar = new ComboBox();
+
+            comboBoxFuelHelicopter = new ComboBox();
 
             panelInputs = new Panel();
 
             groupBoxData = new GroupBox();
+
+            groupBoxDataCar = new GroupBox();
+
+            groupBoxDataHybridCar = new GroupBox();
+
+            groupBoxDataHelicopter = new GroupBox();
 
             textBoxСapacity = new TextBox();
 
@@ -58,7 +68,6 @@ namespace View
             Label labelDistance = new Label();
 
             SuspendLayout();
-
             // 
             // buttonAgree
             // 
@@ -89,36 +98,54 @@ namespace View
             comboBoxTransport.Items.Add("Вертолет");
             comboBoxTransport.SelectedIndex = 0;
             // 
-            // comboBoxFuel
+            // comboBoxFuelCar
             //
-            comboBoxFuel.Location = new Point(20, 40);
-            comboBoxFuel.Size = new Size(150, 30);
-            comboBoxFuel.Items.Add("Бензин");
-            comboBoxFuel.Items.Add("Дизель");
-            comboBoxFuel.Items.Add("Электричество");
-            comboBoxFuel.Items.Add("Газ");
-            comboBoxFuel.SelectedIndex = 0;
+            comboBoxFuelCar.Location = new Point(20, 20);
+            comboBoxFuelCar.Size = new Size(150, 30);
+            comboBoxFuelCar.Items.Add("Бензин");
+            comboBoxFuelCar.Items.Add("Дизель");
+            comboBoxFuelCar.Items.Add("Электричество");
+            comboBoxFuelCar.Items.Add("Газ");
+            comboBoxFuelCar.SelectedIndex = 0;
+            // 
+            // comboBoxFuelHybridCar
+            //
+            comboBoxFuelHybridCar.Location = new Point(20, 20);
+            comboBoxFuelHybridCar.Size = new Size(150, 30);
+            comboBoxFuelHybridCar.Items.Add("Бензин");
+            comboBoxFuelHybridCar.Items.Add("Дизель");
+            comboBoxFuelHybridCar.Items.Add("Электричество");
+            comboBoxFuelHybridCar.Items.Add("Газ");
+            comboBoxFuelHybridCar.SelectedIndex = 0;
+            // 
+            // comboBoxFuelHelicopter
+            //
+            comboBoxFuelHelicopter.Location = new Point(20, 20);
+            comboBoxFuelHelicopter.Size = new Size(150, 30);
+            comboBoxFuelHelicopter.Items.Add("Aвиационный керосин");
+            comboBoxFuelHelicopter.Items.Add("Aвиационный бензин");
+            comboBoxFuelHelicopter.SelectedIndex = 0;
             // 
             // labelCapacity
             //
-            labelCapacity.Location = new Point(20, 80);
+            labelCapacity.Location = new Point(20, 20);
             labelCapacity.Size = new Size(150, 20);
             labelCapacity.Text = "Мощность л.с.";
             // 
             // textBoxСapacity
             //
-            textBoxСapacity.Location = new Point(20, 100);
+            textBoxСapacity.Location = new Point(20, 60);
             textBoxСapacity.Size = new Size(150, 20);
             // 
             // labelMass
             //
-            labelMass.Location = new Point(20, 140);
+            labelMass.Location = new Point(20, 100);
             labelMass.Size = new Size(150, 20);
             labelMass.Text = "Масса т.";
             // 
             // textBoxMass
             //
-            textBoxMass.Location = new Point(20, 160);
+            textBoxMass.Location = new Point(20, 140);
             textBoxMass.Size = new Size(150, 20);
             // 
             // labelDistance
@@ -132,21 +159,39 @@ namespace View
             textBoxDistance.Location = new Point(20, 220);
             textBoxDistance.Size = new Size(150, 20);
             // 
-            // groupBoxData
-            // 
-            groupBoxData.Location = new Point(230, 50);
-            groupBoxData.Name = "groupBox";
-            groupBoxData.Size = new Size(220, 260);
+            // groupBoxDataBasic
+            //
+            groupBoxData.Location = new Point(230, 120);
+            groupBoxData.Name = "groupBoxDataCar";
+            groupBoxData.Size = new Size(220, 200);
             groupBoxData.TabIndex = 0;
             groupBoxData.TabStop = false;
             groupBoxData.Text = "Ввод данных";
-            groupBoxData.Controls.Add(comboBoxFuel);
             groupBoxData.Controls.Add(labelCapacity);
             groupBoxData.Controls.Add(textBoxСapacity);
             groupBoxData.Controls.Add(labelMass);
             groupBoxData.Controls.Add(textBoxMass);
-            groupBoxData.Controls.Add(labelDistance);
-            groupBoxData.Controls.Add(textBoxDistance);
+            // 
+            // groupBoxDataCar
+            // 
+            groupBoxDataCar.Location = new Point(230, 50);
+            groupBoxDataCar.Name = "groupBoxDataCar";
+            groupBoxDataCar.Size = new Size(220, 60);
+            groupBoxDataCar.Controls.Add(comboBoxFuelCar);
+            // 
+            // groupBoxDataHybridCar
+            // 
+            groupBoxDataHybridCar.Location = new Point(230, 50);
+            groupBoxDataHybridCar.Name = "groupBoxDataHybridCar";
+            groupBoxDataHybridCar.Size = new Size(220, 60);
+            groupBoxDataHybridCar.Controls.Add(comboBoxFuelHybridCar);
+            // 
+            // groupBoxDataHelicopter
+            // 
+            groupBoxDataHelicopter.Location = new Point(230, 50);
+            groupBoxDataHelicopter.Name = "groupBoxDataHelicopter";
+            groupBoxDataHelicopter.Size = new Size(220, 60);
+            groupBoxDataHelicopter.Controls.Add(comboBoxFuelHelicopter);
             // 
             // DataForm
             // 
@@ -157,6 +202,9 @@ namespace View
             Controls.Add(buttonCancel);
             Controls.Add(comboBoxTransport);
             Controls.Add(groupBoxData);
+            Controls.Add(groupBoxDataCar);
+            Controls.Add(groupBoxDataHybridCar);
+            Controls.Add(groupBoxDataHelicopter);
             Controls.Add(panelInputs);
             Name = "DataForm";
             Text = "Ввод данных";

@@ -40,7 +40,6 @@ namespace View
             gridControlTransport = new DataGridView();
             buttonAddTransport = new Button();
             buttonRemoveTransport = new Button();
-            //SuspendLayout();
             // 
             // gridControlTransport
             // 
@@ -48,10 +47,7 @@ namespace View
             gridControlTransport.Name = "gridControl";
             gridControlTransport.Dock = DockStyle.Fill;
             gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
-            //gridControlTransport.Columns.Add("TypeTransport", "Вид транспорта");
-            //gridControlTransport.Columns.Add("Distance", "Расстояние");
-            //gridControlTransport.Columns.Add("FuelConsumption", "Расход топлива");
+            gridControlTransport.DefaultCellStyle.ForeColor = Color.Black; 
             // 
             // buttonAddTransport
             // 
