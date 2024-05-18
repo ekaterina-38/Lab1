@@ -9,24 +9,6 @@ namespace View
     /// </summary>
     public partial class DataForm : Form
     {
-        private Button buttonAgree;
-
-        private Button buttonCancel;
-        
-        private GroupBox groupBoxData;
-
-        private GroupBox groupBoxDataHybridCar;
-
-        private GroupBox groupBoxDataHelicopter;
-
-        private ComboBox comboBoxTransport;
-
-        private ComboBox comboBoxFuel;
-
-        private TextBox textBoxСapacity;
-
-        private TextBox textBoxMass;
-
         public EventHandler TransportAdded;
 
         /// <summary>
@@ -39,6 +21,7 @@ namespace View
                 comboBoxTransport);
             comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
             comboBoxTransport.SelectedIndexChanged += new EventHandler(FillComboBoxFuel);
+            comboBoxFuel.SelectedIndexChanged += new EventHandler(FillComboBoxHybridFuel);
         }
 
         /// <summary>
@@ -92,7 +75,7 @@ namespace View
                             break;
                     }
                     
-                    motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+                    motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
 
                     transport.Mass = Convert.ToDouble(textBoxMass.Text);
 
@@ -137,7 +120,7 @@ namespace View
                             break;
                     }
 
-                    motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+                    motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
 
                     transport.Mass = Convert.ToDouble(textBoxMass.Text);
                 }
@@ -169,7 +152,7 @@ namespace View
                             break;
                     }
 
-                    motor.Capacity = Convert.ToDouble(textBoxСapacity.Text);
+                    motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
 
                     transport.Mass = Convert.ToDouble(textBoxMass.Text);
                 }
@@ -235,6 +218,12 @@ namespace View
             comboBox.SelectedItem = dataSource.GetValue(0);
         }
 
+        /// <summary>
+        /// Заполнение ComboBoxFuel массивом данных
+        /// в соответствии с выбранным типом транспорта.
+        /// </summary>
+        /// <param name="sender">.</param>
+        /// <param name="e">.</param>
         private void FillComboBoxFuel(object sender, EventArgs e)
         {
             object key = comboBoxTransport.SelectedItem;
@@ -254,6 +243,37 @@ namespace View
             };
 
             FillComboBox(fuelTypes[key], comboBoxFuel);
+        }
+
+        /// <summary>
+        /// Заполнение ComboBoxHybridFuel массивом данных
+        /// в соответствии с выбранным ComboBoxHybrid.
+        /// </summary>
+        /// <param name="sender">.</param>
+        /// <param name="e">.</param>
+        private void FillComboBoxHybridFuel(object sender, EventArgs e)
+        {
+            if (groupBoxDataHybridCar.Visible == true)
+            { 
+                object valueComboBoxFuel = comboBoxFuel.SelectedItem;
+                object[] valuesComboBoxHybridFuel = 
+                    comboBoxFuel.Items.Cast<object>().ToArray();
+                int index = Array.IndexOf(valuesComboBoxHybridFuel, valueComboBoxFuel);
+
+                if (index > -1)
+                {
+                    object[] newArray = new object[valuesComboBoxHybridFuel.Length - 1];
+                    Array.Copy(valuesComboBoxHybridFuel, 0, newArray, 0, index);
+                    Array.Copy(valuesComboBoxHybridFuel, index + 1, newArray, index,
+                        valuesComboBoxHybridFuel.Length - index - 1);
+
+                    FillComboBox(newArray, comboBoxHybridFuel);
+                    return;
+                }
+                FillComboBox(valuesComboBoxHybridFuel, comboBoxHybridFuel);
+            }
+
+            
         }
 
     }

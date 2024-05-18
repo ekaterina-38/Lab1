@@ -13,6 +13,22 @@ namespace View
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        private Button buttonAgree;
+        private Button buttonCancel;
+        
+        private ComboBox comboBoxTransport;
+        private ComboBox comboBoxFuel;
+        private ComboBox comboBoxHybridFuel;
+
+        private GroupBox groupBoxData;
+        private GroupBox groupBoxDataHybridCar;
+        private GroupBox groupBoxDataHelicopter;
+
+        private TextBox textBoxCapacity;
+        private TextBox textBoxMass;
+        private TextBox textBoxHybridCapacity;
+        private TextBox textBoxBladeLength;
+
         /// <summary>
         /// Метод для явного освобождения ресурсов.
         /// </summary>
@@ -38,12 +54,15 @@ namespace View
 
             comboBoxTransport = new ComboBox();
             comboBoxFuel = new ComboBox();
+            comboBoxHybridFuel = new ComboBox();
 
             Label labelCapacity = new Label();
             Label labelMass = new Label();
 
-            textBoxСapacity = new TextBox();
+            textBoxCapacity = new TextBox();
             textBoxMass = new TextBox();
+            textBoxHybridCapacity = new TextBox();
+            textBoxBladeLength = new TextBox();
 
             groupBoxData = new GroupBox();
             groupBoxDataHybridCar = new GroupBox();
@@ -81,6 +100,11 @@ namespace View
             comboBoxFuel.Location = new Point(20, 30);
             comboBoxFuel.Size = new Size(150, 30);
             // 
+            // comboBoxHybridFuel
+            //
+            comboBoxHybridFuel.Location = new Point(20, 30);
+            comboBoxHybridFuel.Size = new Size(150, 30);
+            // 
             // labelCapacity
             //
             labelCapacity.Location = new Point(20, 70);
@@ -93,15 +117,25 @@ namespace View
             labelMass.Size = new Size(150, 20);
             labelMass.Text = "Масса т.";
             // 
-            // textBoxСapacity
+            // textBoxCapacity
             //
-            textBoxСapacity.Location = new Point(20, 90);
-            textBoxСapacity.Size = new Size(150, 20);
+            textBoxCapacity.Location = new Point(20, 90);
+            textBoxCapacity.Size = new Size(150, 20);
             // 
             // textBoxMass
             //
             textBoxMass.Location = new Point(20, 150);
             textBoxMass.Size = new Size(150, 20);
+            // 
+            // textBoxHybridCapacity
+            //
+            textBoxHybridCapacity.Location = new Point(20, 90);
+            textBoxHybridCapacity.Size = new Size(150, 20);
+            // 
+            // textBoxBladeLength
+            //
+            textBoxBladeLength.Location = new Point(20, 30);
+            textBoxBladeLength.Size = new Size(150, 20);
             // 
             // groupBoxData
             //
@@ -112,7 +146,7 @@ namespace View
             groupBoxData.TabStop = false;
             groupBoxData.Text = "Ввод данных";
             groupBoxData.Controls.Add(labelCapacity);
-            groupBoxData.Controls.Add(textBoxСapacity);
+            groupBoxData.Controls.Add(textBoxCapacity);
             groupBoxData.Controls.Add(labelMass);
             groupBoxData.Controls.Add(textBoxMass);
             groupBoxData.Controls.Add(comboBoxFuel);
@@ -121,13 +155,18 @@ namespace View
             // 
             groupBoxDataHybridCar.Location = new Point(460, 50);
             groupBoxDataHybridCar.Name = "groupBoxDataHybridCar";
-            groupBoxDataHybridCar.Size = new Size(200, 60);
+            groupBoxDataHybridCar.Size = new Size(200, 200);
+            groupBoxDataHybridCar.Visible = false;
+            groupBoxDataHybridCar.Controls.Add(comboBoxHybridFuel);
+            groupBoxDataHybridCar.Controls.Add(textBoxHybridCapacity);
             // 
             // groupBoxDataHelicopter
             // 
-            groupBoxDataHelicopter.Location = new Point(230, 50);
+            groupBoxDataHelicopter.Location = new Point(460, 50);
             groupBoxDataHelicopter.Name = "groupBoxDataHelicopter";
-            groupBoxDataHelicopter.Size = new Size(220, 60);
+            groupBoxDataHelicopter.Size = new Size(200, 60);
+            groupBoxDataHelicopter.Visible = false;
+            groupBoxDataHelicopter.Controls.Add(textBoxBladeLength);
             // 
             // DataForm
             // 
