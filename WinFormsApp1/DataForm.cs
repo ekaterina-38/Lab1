@@ -25,8 +25,9 @@ namespace View
             comboBoxFuel.SelectedIndexChanged += new EventHandler(FillComboBoxHybridFuel);
             buttonAgree.Click += new EventHandler(AgreeButtonClick);
             buttonCancel.Click += new EventHandler(CancelButtonClick);
+#if DEBUG
             buttonRandom.Click += new EventHandler(RandomButtonClick);
-
+#endif
             textBoxCapacity.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
             textBoxMass.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
             textBoxHybridCapacity.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
@@ -288,17 +289,24 @@ namespace View
             }
         }
 
+#if DEBUG
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RandomButtonClick(object sender, EventArgs e)
         {
             Random random = new Random();
 
-            textBoxCapacity.Text = random.Next(1, 300).ToString();
+            int mass = Convert.ToInt32(textBoxMass.Text = random.Next(1, 15).ToString());
 
-            textBoxHybridCapacity.Text = random.Next(1, 300).ToString();
+            textBoxCapacity.Text = Convert.ToString(mass * 100);
 
-            textBoxMass.Text = random.Next(1, 15).ToString();
+            textBoxHybridCapacity.Text = Convert.ToString(mass * 80);
 
             textBoxBladeLength.Text = random.Next(10, 20).ToString();
         }
+#endif
     }
 }

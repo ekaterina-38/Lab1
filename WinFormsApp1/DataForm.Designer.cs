@@ -52,8 +52,9 @@ namespace View
         {
             buttonAgree = new Button();
             buttonCancel = new Button();
+#if DEBUG
             buttonRandom = new Button();
-
+#endif
             comboBoxTransport = new ComboBox();
             comboBoxFuel = new ComboBox();
             comboBoxHybridFuel = new ComboBox();
@@ -91,6 +92,7 @@ namespace View
             buttonCancel.Size = new Size(100, 30);
             buttonCancel.Text = "Отмена";
             buttonCancel.UseVisualStyleBackColor = false;
+#if DEBUG
             // 
             // buttonRandom 
             // 
@@ -101,6 +103,7 @@ namespace View
             buttonRandom.Size = new Size(100, 30);
             buttonRandom.Text = "Заполнить";
             buttonRandom.UseVisualStyleBackColor = false;
+#endif
             // 
             // comboBoxTransport
             // 
@@ -203,7 +206,9 @@ namespace View
             ClientSize = new Size(730, 300);
             Controls.Add(buttonAgree);
             Controls.Add(buttonCancel);
+#if DEBUG
             Controls.Add(buttonRandom);
+#endif
             Controls.Add(comboBoxTransport);
             Controls.Add(groupBoxData);
             Controls.Add(groupBoxData);
@@ -214,6 +219,6 @@ namespace View
             ResumeLayout(false);
         }
 
-        #endregion
+#endregion
     }
 }
