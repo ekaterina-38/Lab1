@@ -25,7 +25,18 @@ namespace View
             FillingDataGridView();
             buttonAddTransport.Click += new EventHandler(AddTransportButtonClick);
             buttonRemoveTransport.Click += new EventHandler(RemoveTransportButtonClick);
+        }
 
+        /// <summary>
+        /// ־בנאבמעקטך מעלוםû.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="transportBase"></param>
+        private void CancelTransport(object sender, EventArgs transportBase)
+        {
+            TransportAddedEventArgs addedEventArgs = transportBase as TransportAddedEventArgs;
+
+            transportList.Remove(addedEventArgs?.TransportBase);
         }
 
         /// <summary>
@@ -33,7 +44,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="transportBase"></param>
-        private void TransportAdded(object sender, EventArgs transportBase)
+        private void AddedTransport(object sender, EventArgs transportBase)
         {
             TransportAddedEventArgs addedEventArgs = transportBase as TransportAddedEventArgs;
 
@@ -48,7 +59,8 @@ namespace View
         private void AddTransportButtonClick(object sender, EventArgs e)
         {
             DataForm DataForm = new DataForm();
-            DataForm.TransportAdded += new EventHandler(TransportAdded);
+            DataForm.TransportAdded += new EventHandler(AddedTransport);
+            DataForm.TransportCancel += new EventHandler(CancelTransport);
             DataForm.Show();
         }
 

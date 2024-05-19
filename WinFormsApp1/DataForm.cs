@@ -9,7 +9,6 @@ namespace View
     /// </summary>
     public partial class DataForm : Form
     {
-        public EventHandler TransportAdded;
 
         /// <summary>
         /// Конструктор DataForm.
@@ -22,6 +21,36 @@ namespace View
             comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
             comboBoxTransport.SelectedIndexChanged += new EventHandler(FillComboBoxFuel);
             comboBoxFuel.SelectedIndexChanged += new EventHandler(FillComboBoxHybridFuel);
+            buttonAgree.Click += new EventHandler(AgreeButtonClick);
+            buttonCancel.Click += new EventHandler(CancelButtonClick);
+            //comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
+        }
+
+        /// <summary>
+        /// Свойство  для обработки события добавления.
+        /// </summary>
+        public EventHandler TransportAdded
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Свойство  для обработки события отмена.
+        /// </summary>
+        public EventHandler TransportCancel
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Свойство для хранения последнего добавленного объекта.
+        /// </summary>
+        private TransportBase LastTransport
+        {
+            get;
+            set;
         }
 
         /// <summary>
@@ -93,13 +122,15 @@ namespace View
             }
             
             TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
+
+            LastTransport = transport;
         }
 
         /// <summary>
-        /// 
+        /// Метод добавления GroupBox на форму.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
         private void AddGroupBoxData(object sender, EventArgs e)
         {
             string typeTransport = comboBoxTransport.Text;
@@ -107,25 +138,25 @@ namespace View
             switch (typeTransport)
             {
                 case "Машина":
-                    {
-                        groupBoxDataHybridCar.Visible = false;
-                        groupBoxDataHelicopter.Visible = false;
-                    }
+                {
+                    groupBoxDataHybridCar.Visible = false;
+                    groupBoxDataHelicopter.Visible = false;
+                }
                     break;
 
                 case "Гибридная машина":
-                    {
-                        groupBoxDataHybridCar.Visible = true;
-                        groupBoxDataHelicopter.Visible = false;
+                {
+                    groupBoxDataHybridCar.Visible = true;
+                    groupBoxDataHelicopter.Visible = false;
 
-                    }
+                }
                     break;
 
                 case "Вертолет":
-                    {
-                        groupBoxDataHybridCar.Visible = false;
-                        groupBoxDataHelicopter.Visible = true;
-                    }
+                {
+                    groupBoxDataHybridCar.Visible = false;
+                    groupBoxDataHelicopter.Visible = true;
+                }
                     break;
             }
         }
@@ -137,7 +168,10 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void CancelButtonClick(object sender, EventArgs e)
         {
-           // Close();
+            if (LastTransport != null)
+            {
+                TransportCancel?.Invoke(this, new TransportAddedEventArgs(LastTransport));
+            }   
         }
 
         /// <summary>
@@ -152,11 +186,11 @@ namespace View
         }
 
         /// <summary>
-        /// Заполнение ComboBoxFuel массивом данных
+        /// Заполнение ComboBoxFuel массивом данных.
         /// в соответствии с выбранным типом транспорта.
         /// </summary>
-        /// <param name="sender">.</param>
-        /// <param name="e">.</param>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
         private void FillComboBoxFuel(object sender, EventArgs e)
         {
             object key = comboBoxTransport.SelectedItem;
@@ -183,8 +217,8 @@ namespace View
         /// Заполнение ComboBoxHybridFuel массивом данных
         /// в соответствии с выбранным ComboBoxHybrid.
         /// </summary>
-        /// <param name="sender">.</param>
-        /// <param name="e">.</param>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
         private void FillComboBoxHybridFuel(object sender, EventArgs e)
         {
             if (groupBoxDataHybridCar.Visible == true)
@@ -204,11 +238,9 @@ namespace View
                     FillComboBox(newArray, comboBoxHybridFuel);
                     return;
                 }
+
                 FillComboBox(valuesComboBoxHybridFuel, comboBoxHybridFuel);
-            }
-
-            
+            }            
         }
-
     }
 }
