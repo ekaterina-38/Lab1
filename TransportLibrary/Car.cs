@@ -60,7 +60,7 @@ namespace TransportLibrary
         /// <inheritdoc/>
         public override string FuelConsumption
         {
-            get => $"{Math.Round(CalculateFuel(1), 2)} л. на км.";
+            get => $"{Math.Round(CalculateFuel(100), 2)} л. на 100 км.";
         }
 
         /// <summary>

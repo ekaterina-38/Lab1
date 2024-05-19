@@ -15,7 +15,8 @@ namespace View
 
         private Button buttonAgree;
         private Button buttonCancel;
-        
+        private Button buttonRandom;
+
         private ComboBox comboBoxTransport;
         private ComboBox comboBoxFuel;
         private ComboBox comboBoxHybridFuel;
@@ -51,6 +52,7 @@ namespace View
         {
             buttonAgree = new Button();
             buttonCancel = new Button();
+            buttonRandom = new Button();
 
             comboBoxTransport = new ComboBox();
             comboBoxFuel = new ComboBox();
@@ -89,6 +91,16 @@ namespace View
             buttonCancel.Size = new Size(100, 30);
             buttonCancel.Text = "Отмена";
             buttonCancel.UseVisualStyleBackColor = false;
+            // 
+            // buttonRandom 
+            // 
+            buttonRandom.BackColor = SystemColors.ButtonHighlight;
+            buttonRandom.ForeColor = SystemColors.ActiveCaptionText;
+            buttonRandom.Location = new Point(340, 240);
+            buttonRandom.Name = "buttonRandom";
+            buttonRandom.Size = new Size(100, 30);
+            buttonRandom.Text = "Заполнить";
+            buttonRandom.UseVisualStyleBackColor = false;
             // 
             // comboBoxTransport
             // 
@@ -191,6 +203,7 @@ namespace View
             ClientSize = new Size(730, 300);
             Controls.Add(buttonAgree);
             Controls.Add(buttonCancel);
+            Controls.Add(buttonRandom);
             Controls.Add(comboBoxTransport);
             Controls.Add(groupBoxData);
             Controls.Add(groupBoxData);
