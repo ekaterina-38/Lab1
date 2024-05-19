@@ -57,7 +57,7 @@ namespace TransportLibrary
         /// <inheritdoc/>
         public override string Info
         {
-            get => $"{base.Info}; Гибридный двигатель:{AdditionalMotor}";
+            get => $"{base.Info}\nДополнительный двигатель:\n{AdditionalMotor.Info}";
         }
 
         /// <inheritdoc/>

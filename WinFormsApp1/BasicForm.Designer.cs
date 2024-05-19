@@ -47,7 +47,9 @@ namespace View
             gridControlTransport.Name = "gridControl";
             gridControlTransport.Dock = DockStyle.Fill;
             gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridControlTransport.DefaultCellStyle.ForeColor = Color.Black; 
+            gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
+            gridControlTransport.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            gridControlTransport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 
             // buttonAddTransport
             // 

@@ -48,7 +48,7 @@ namespace TransportLibrary
         /// <inheritdoc/>
         public override string Info
         {
-            get => $"{Motor.Info} Масса:{Mass} т.";
+            get => $"{Motor.Info} \nМасса: {Mass} т.";
         }
 
         /// <inheritdoc/>

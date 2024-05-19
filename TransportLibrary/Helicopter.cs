@@ -73,7 +73,7 @@ namespace TransportLibrary
         /// <inheritdoc/>
         public override string Info
         {
-            get => $"{Motor.Info}; Масса:{Mass} т.; Длина лопастей:{BladeLength} м.";
+            get => $"{Motor.Info}\nМасса: {Mass} т.\nДлина лопастей: {BladeLength} м.";
         }
 
         /// <inheritdoc/>
@@ -85,7 +85,7 @@ namespace TransportLibrary
         /// <inheritdoc/>
         public override string FuelConsumption
         {
-            get => $"{Math.Round(CalculateFuel(1), 2)} л.в час";
+            get => $"{Math.Round(CalculateFuel(1), 2)} л. в час";
         }
 
         /// <summary>

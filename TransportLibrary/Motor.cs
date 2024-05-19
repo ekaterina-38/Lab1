@@ -58,7 +58,7 @@ namespace TransportLibrary
         /// </summary>
         public string Info
         {
-            get => $"Мощность: {Capacity} л.с.; Тип топлива:{TypeFuel}";
+            get => $"Тип топлива: {TypeFuel}\nМощность: {Capacity} л.с.";
         }
 
         /// <summary>
