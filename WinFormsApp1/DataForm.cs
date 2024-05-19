@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.Xml;
+using System.Text.RegularExpressions;
 using TransportLibrary;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 
@@ -18,12 +19,18 @@ namespace View
             InitializeComponent();
             FillComboBox(["Машина", "Гибридная машина", "Вертолет"],
                 comboBoxTransport);
+            FillComboBoxFuel();
             comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
-            comboBoxTransport.SelectedIndexChanged += new EventHandler(FillComboBoxFuel);
+            comboBoxTransport.SelectedIndexChanged += new EventHandler(comboBoxTransport_FillComboBoxFuel);
             comboBoxFuel.SelectedIndexChanged += new EventHandler(FillComboBoxHybridFuel);
             buttonAgree.Click += new EventHandler(AgreeButtonClick);
             buttonCancel.Click += new EventHandler(CancelButtonClick);
-            //comboBoxTransport.SelectedIndexChanged += new EventHandler(AddGroupBoxData);
+
+            textBoxCapacity.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
+            textBoxMass.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
+            textBoxHybridCapacity.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
+            textBoxBladeLength.KeyPress += new KeyPressEventHandler(textBoxKeyPress);
+
         }
 
         /// <summary>
@@ -60,70 +67,78 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void AgreeButtonClick(object sender, EventArgs e)
         {
-            string typeTransport = comboBoxTransport.Text;
-
-            TransportBase transport = null;
-
-            switch (typeTransport)
+            try
             {
-                case "Машина":
+                string typeTransport = comboBoxTransport.Text;
+
+                TransportBase transport = null;
+
+                switch (typeTransport)
                 {
-                    Motor motor = new Motor();
-                    motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
-                    motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
-                    double mass = Convert.ToDouble(textBoxMass.Text);
+                    case "Машина":
+                        {
+                            Motor motor = new Motor();
+                            motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
+                            motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
+                            double mass = Convert.ToDouble(textBoxMass.Text);
 
-                    transport = new Car()
-                    {
-                        Motor = motor,
-                        Mass = mass
-                    };
+                            transport = new Car()
+                            {
+                                Motor = motor,
+                                Mass = mass
+                            };
+                        }
+                        break;
+
+                    case "Гибридная машина":
+                        {
+                            Motor motor = new Motor();
+                            motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
+                            motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
+
+                            Motor additionalMotor = new Motor();
+                            additionalMotor.TypeFuel = (TypeFuel)comboBoxHybridFuel.SelectedItem;
+                            additionalMotor.Capacity = Convert.ToDouble(textBoxHybridCapacity.Text);
+
+                            double mass = Convert.ToDouble(textBoxMass.Text);
+
+                            transport = new HybridCar()
+                            {
+                                Motor = motor,
+                                AdditionalMotor = additionalMotor,
+                                Mass = mass,
+                            };
+
+                        }
+                        break;
+
+                    case "Вертолет":
+                        {
+                            Motor motor = new Motor();
+                            motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
+                            motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
+                            double mass = Convert.ToDouble(textBoxMass.Text);
+                            double bladeLength = Convert.ToDouble(textBoxBladeLength.Text);
+
+                            transport = new Helicopter()
+                            {
+                                Motor = motor,
+                                Mass = mass,
+                                BladeLength = bladeLength
+                            };
+                        }
+                        break;
                 }
-                    break;
 
-                case "Гибридная машина":
-                {
-                    Motor motor = new Motor();
-                    motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
-                    motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
+                TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
 
-                    Motor additionalMotor = new Motor();
-                    additionalMotor.TypeFuel = (TypeFuel)comboBoxHybridFuel.SelectedItem;
-                    additionalMotor.Capacity = Convert.ToDouble(textBoxHybridCapacity.Text);
-
-                    double mass = Convert.ToDouble(textBoxMass.Text);
-
-                    transport = new HybridCar()
-                    {
-                        Motor = motor,
-                        AdditionalMotor = additionalMotor,
-                        Mass = mass,
-                    };
-
-                }
-                    break;
-
-                case "Вертолет":
-                {
-                    Motor motor = new Motor();
-                    motor.TypeFuel = (TypeFuel)comboBoxFuel.SelectedItem;
-                    motor.Capacity = Convert.ToDouble(textBoxCapacity.Text);
-                    double mass = Convert.ToDouble(textBoxMass.Text);
-                    double bladeLength = Convert.ToDouble(textBoxBladeLength.Text);
-
-                    transport = new Helicopter()
-                    {
-                        Motor = motor,
-                        Mass = mass,
-                        BladeLength = bladeLength
-                    };
-                }
-                    break;
+                LastTransport = transport;
             }
-            
-            TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
-
-            LastTransport = transport;
+            catch
+            {
+                MessageBox.Show("Введите данные.", "Предупреждение", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
@@ -191,7 +206,11 @@ namespace View
         /// </summary>
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
-        private void FillComboBoxFuel(object sender, EventArgs e)
+        private void comboBoxTransport_FillComboBoxFuel(object sender, EventArgs e)
+        {
+            FillComboBoxFuel();
+        }
+        private void FillComboBoxFuel()
         {
             object key = comboBoxTransport.SelectedItem;
 
@@ -241,6 +260,31 @@ namespace View
 
                 FillComboBox(valuesComboBoxHybridFuel, comboBoxHybridFuel);
             }            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxKeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == ',' && textBox.Text.Contains(","))
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '0' && string.IsNullOrEmpty(textBox.Text.Trim('0')))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
