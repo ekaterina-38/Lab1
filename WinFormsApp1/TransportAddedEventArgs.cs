@@ -7,6 +7,7 @@ namespace View
     /// </summary>
     internal class TransportAddedEventArgs : EventArgs
     {
+        //TODO: XML
         public TransportBase TransportBase { get; }
 
         /// <summary>

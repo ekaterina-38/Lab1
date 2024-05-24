@@ -17,6 +17,7 @@ namespace View
         {
             InitializeComponent();
 
+            //TODO: refactor string keys
             FillComboBox(["Машина", "Гибридная машина", "Вертолет"],
                 _comboBoxTransport);
 
@@ -52,7 +53,7 @@ namespace View
                 KeyPressEventHandler(TextBoxKeyPress);
 
         }
-
+        //TODO: 
         /// <summary>
         /// Свойство  для обработки события добавления.
         /// </summary>
@@ -61,7 +62,7 @@ namespace View
             get;
             set;
         }
-
+        //TODO: 
         /// <summary>
         /// Свойство  для обработки события отмена.
         /// </summary>
@@ -95,6 +96,7 @@ namespace View
 
                 switch (typeTransport)
                 {
+                    //TODO: refactor string keys
                     case "Машина":
                     {
                         Motor motor = new Motor();
@@ -107,8 +109,9 @@ namespace View
                             Motor = motor,
                             Mass = mass
                         };
-                    }
                         break;
+                    }
+                        
 
                     case "Гибридная машина":
                     {
@@ -130,6 +133,7 @@ namespace View
                         };
 
                     }
+                        //TODO: 
                         break;
 
                     case "Вертолет":
@@ -147,6 +151,7 @@ namespace View
                             BladeLength = bladeLength
                         };
                     }
+                        //TODO: 
                         break;
                 }
 
@@ -172,6 +177,7 @@ namespace View
 
             switch (typeTransport)
             {
+                //TODO: refactor string keys
                 case "Машина":
                 {
                     _groupBoxDataHybridCar.Visible = false;
@@ -242,6 +248,7 @@ namespace View
             Dictionary<object, TypeFuel[]> fuelTypes = new()
             {
                 {
+                    //TODO: refactor string keys
                     "Машина",
                     [TypeFuel.Petrol, TypeFuel.Diesel, TypeFuel.Gas, TypeFuel.Electricity]},
                 {
