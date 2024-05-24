@@ -16,72 +16,73 @@ namespace View
         /// <summary>
         /// Кнопка "Добавить".
         /// </summary>
-        private Button buttonAgree;
+        private Button _buttonAgree;
         
         /// <summary>
         /// Кнопка "Отменить".
         /// </summary>
-        private Button buttonCancel;
+        private Button _buttonCancel;
 
         /// <summary>
         /// Кнопка "Заполнить".
         /// </summary>
-        private Button buttonRandom;
+        private Button _buttonRandom;
 
         /// <summary>
         /// ComboBox выбор транспорта.
         /// </summary>
-        private ComboBox comboBoxTransport;
+        private ComboBox _comboBoxTransport;
 
         /// <summary>
         /// ComboBox выбор основного топлива.
         /// </summary>
-        private ComboBox comboBoxFuel;
+        private ComboBox _comboBoxFuel;
 
         /// <summary>
         /// ComboBox выбор дополнительного топлива.
         /// </summary>
-        private ComboBox comboBoxHybridFuel;
+        private ComboBox _comboBoxHybridFuel;
 
         /// <summary>
         /// GroupBox для основных данных(топливо, мощность, масса).
         /// </summary>
-        private GroupBox groupBoxData;
+        private GroupBox _groupBoxData;
 
         /// <summary>
         /// GroupBox для дополнительных данных(топливо, мощность).
         /// </summary>
-        private GroupBox groupBoxDataHybridCar;
+        private GroupBox _groupBoxDataHybridCar;
 
         /// <summary>
         /// GroupBox для дополнительных данных(длина лопастей).
         /// </summary>
-        private GroupBox groupBoxDataHelicopter;
+        private GroupBox _groupBoxDataHelicopter;
 
         /// <summary>
         /// TextBox для ввода мощности.
         /// </summary>
-        private TextBox textBoxCapacity;
+        private TextBox _textBoxCapacity;
 
         /// <summary>
         /// TextBox для ввода массы.
         /// </summary>
-        private TextBox textBoxMass;
+        private TextBox _textBoxMass;
 
         /// <summary>
         /// TextBox для ввода мощности гибридной машины.
         /// </summary>
-        private TextBox textBoxHybridCapacity;
+        private TextBox _textBoxHybridCapacity;
 
         /// <summary>
         /// TextBox для ввода длины лопастей вертолета.
         /// </summary>
-        private TextBox textBoxBladeLength;
+        private TextBox _textBoxBladeLength;
 
         /// <summary>
         /// Метод для явного освобождения ресурсов.
         /// </summary>
-        /// <param name="disposing">true если ресурсы необходимо удалить,иначе false.</param>
+        /// <param name="disposing">true если ресурсы необходимо
+        /// удалить,иначе false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -98,75 +99,75 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            buttonAgree = new Button();
-            buttonCancel = new Button();
+            _buttonAgree = new Button();
+            _buttonCancel = new Button();
 #if DEBUG
-            buttonRandom = new Button();
+            _buttonRandom = new Button();
 #endif
-            comboBoxTransport = new ComboBox();
-            comboBoxFuel = new ComboBox();
-            comboBoxHybridFuel = new ComboBox();
+            _comboBoxTransport = new ComboBox();
+            _comboBoxFuel = new ComboBox();
+            _comboBoxHybridFuel = new ComboBox();
 
             Label labelCapacity = new Label();
             Label labelMass = new Label();
             Label labelHybridCapacity = new Label();
             Label labelBladeLength = new Label();
 
-            textBoxCapacity = new TextBox();
-            textBoxMass = new TextBox();
-            textBoxHybridCapacity = new TextBox();
-            textBoxBladeLength = new TextBox();
+            _textBoxCapacity = new TextBox();
+            _textBoxMass = new TextBox();
+            _textBoxHybridCapacity = new TextBox();
+            _textBoxBladeLength = new TextBox();
 
-            groupBoxData = new GroupBox();
-            groupBoxDataHybridCar = new GroupBox();
-            groupBoxDataHelicopter = new GroupBox();
+            _groupBoxData = new GroupBox();
+            _groupBoxDataHybridCar = new GroupBox();
+            _groupBoxDataHelicopter = new GroupBox();
 
             SuspendLayout();
             // 
             // buttonAgree
             // 
-            buttonAgree.BackColor = SystemColors.ButtonHighlight;
-            buttonAgree.ForeColor = SystemColors.ActiveCaptionText;
-            buttonAgree.Location = new Point(460, 240);
-            buttonAgree.Name = "agreeButton";
-            buttonAgree.Size = new Size(100, 30);
-            buttonAgree.Text = "Ок";
-            buttonAgree.UseVisualStyleBackColor = false;
+            _buttonAgree.BackColor = SystemColors.ButtonHighlight;
+            _buttonAgree.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonAgree.Location = new Point(460, 240);
+            _buttonAgree.Name = "agreeButton";
+            _buttonAgree.Size = new Size(100, 30);
+            _buttonAgree.Text = "Ок";
+            _buttonAgree.UseVisualStyleBackColor = false;
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(580, 240);
-            buttonCancel.Name = "cancelButton";
-            buttonCancel.Size = new Size(100, 30);
-            buttonCancel.Text = "Отмена";
-            buttonCancel.UseVisualStyleBackColor = false;
+            _buttonCancel.Location = new Point(580, 240);
+            _buttonCancel.Name = "cancelButton";
+            _buttonCancel.Size = new Size(100, 30);
+            _buttonCancel.Text = "Отмена";
+            _buttonCancel.UseVisualStyleBackColor = false;
 #if DEBUG
             // 
             // buttonRandom 
             // 
-            buttonRandom.BackColor = SystemColors.ButtonHighlight;
-            buttonRandom.ForeColor = SystemColors.ActiveCaptionText;
-            buttonRandom.Location = new Point(340, 240);
-            buttonRandom.Name = "buttonRandom";
-            buttonRandom.Size = new Size(100, 30);
-            buttonRandom.Text = "Заполнить";
-            buttonRandom.UseVisualStyleBackColor = false;
+            _buttonRandom.BackColor = SystemColors.ButtonHighlight;
+            _buttonRandom.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonRandom.Location = new Point(340, 240);
+            _buttonRandom.Name = "buttonRandom";
+            _buttonRandom.Size = new Size(100, 30);
+            _buttonRandom.Text = "Заполнить";
+            _buttonRandom.UseVisualStyleBackColor = false;
 #endif
             // 
             // comboBoxTransport
             // 
-            comboBoxTransport.Location = new Point(50, 30);
-            comboBoxTransport.Size = new Size(150, 30);
+            _comboBoxTransport.Location = new Point(50, 30);
+            _comboBoxTransport.Size = new Size(150, 30);
             // 
             // comboBoxFuel
             //
-            comboBoxFuel.Location = new Point(20, 30);
-            comboBoxFuel.Size = new Size(150, 30);
+            _comboBoxFuel.Location = new Point(20, 30);
+            _comboBoxFuel.Size = new Size(150, 30);
             // 
             // comboBoxHybridFuel
             //
-            comboBoxHybridFuel.Location = new Point(20, 30);
-            comboBoxHybridFuel.Size = new Size(150, 30);
+            _comboBoxHybridFuel.Location = new Point(20, 30);
+            _comboBoxHybridFuel.Size = new Size(150, 30);
             // 
             // labelCapacity
             //
@@ -194,74 +195,74 @@ namespace View
             // 
             // textBoxCapacity
             //
-            textBoxCapacity.Location = new Point(20, 90);
-            textBoxCapacity.Size = new Size(150, 20);
+            _textBoxCapacity.Location = new Point(20, 90);
+            _textBoxCapacity.Size = new Size(150, 20);
             // 
             // textBoxMass
             //
-            textBoxMass.Location = new Point(20, 150);
-            textBoxMass.Size = new Size(150, 20);
+            _textBoxMass.Location = new Point(20, 150);
+            _textBoxMass.Size = new Size(150, 20);
             // 
             // textBoxHybridCapacity
             //
-            textBoxHybridCapacity.Location = new Point(20, 90);
-            textBoxHybridCapacity.Size = new Size(150, 20);
+            _textBoxHybridCapacity.Location = new Point(20, 90);
+            _textBoxHybridCapacity.Size = new Size(150, 20);
             // 
             // textBoxBladeLength
             //
-            textBoxBladeLength.Location = new Point(20, 50);
-            textBoxBladeLength.Size = new Size(150, 20);
+            _textBoxBladeLength.Location = new Point(20, 50);
+            _textBoxBladeLength.Size = new Size(150, 20);
             // 
             // groupBoxData
             //
-            groupBoxData.Location = new Point(230, 30);
-            groupBoxData.Name = "groupBoxDataCar";
-            groupBoxData.Size = new Size(220, 200);
-            groupBoxData.TabIndex = 0;
-            groupBoxData.TabStop = false;
-            groupBoxData.Text = "Ввод данных о двигателе и массе";
-            groupBoxData.Controls.Add(labelCapacity);
-            groupBoxData.Controls.Add(textBoxCapacity);
-            groupBoxData.Controls.Add(labelMass);
-            groupBoxData.Controls.Add(textBoxMass);
-            groupBoxData.Controls.Add(comboBoxFuel);
+            _groupBoxData.Location = new Point(230, 30);
+            _groupBoxData.Name = "groupBoxDataCar";
+            _groupBoxData.Size = new Size(220, 200);
+            _groupBoxData.TabIndex = 0;
+            _groupBoxData.TabStop = false;
+            _groupBoxData.Text = "Ввод данных о двигателе и массе";
+            _groupBoxData.Controls.Add(labelCapacity);
+            _groupBoxData.Controls.Add(_textBoxCapacity);
+            _groupBoxData.Controls.Add(labelMass);
+            _groupBoxData.Controls.Add(_textBoxMass);
+            _groupBoxData.Controls.Add(_comboBoxFuel);
             // 
             // groupBoxDataHybridCar
             // 
-            groupBoxDataHybridCar.Location = new Point(460, 30);
-            groupBoxDataHybridCar.Name = "groupBoxDataHybridCar";
-            groupBoxDataHybridCar.Size = new Size(220, 200);
-            groupBoxDataHybridCar.Text = "Ввод данных о 2-ом двигателе";
-            groupBoxDataHybridCar.Visible = false;
-            groupBoxDataHybridCar.Controls.Add(comboBoxHybridFuel);
-            groupBoxDataHybridCar.Controls.Add(textBoxHybridCapacity);
-            groupBoxDataHybridCar.Controls.Add(labelHybridCapacity);
+            _groupBoxDataHybridCar.Location = new Point(460, 30);
+            _groupBoxDataHybridCar.Name = "groupBoxDataHybridCar";
+            _groupBoxDataHybridCar.Size = new Size(220, 200);
+            _groupBoxDataHybridCar.Text = "Ввод данных о 2-ом двигателе";
+            _groupBoxDataHybridCar.Visible = false;
+            _groupBoxDataHybridCar.Controls.Add(_comboBoxHybridFuel);
+            _groupBoxDataHybridCar.Controls.Add(_textBoxHybridCapacity);
+            _groupBoxDataHybridCar.Controls.Add(labelHybridCapacity);
             // 
             // groupBoxDataHelicopter
             // 
-            groupBoxDataHelicopter.Location = new Point(460, 30);
-            groupBoxDataHelicopter.Name = "groupBoxDataHelicopter";
-            groupBoxDataHelicopter.Size = new Size(220, 100);
-            groupBoxDataHelicopter.Text = "Ввод дополнительных данных";
-            groupBoxDataHelicopter.Visible = false;
-            groupBoxDataHelicopter.Controls.Add(textBoxBladeLength);
-            groupBoxDataHelicopter.Controls.Add(labelBladeLength);
+            _groupBoxDataHelicopter.Location = new Point(460, 30);
+            _groupBoxDataHelicopter.Name = "groupBoxDataHelicopter";
+            _groupBoxDataHelicopter.Size = new Size(220, 100);
+            _groupBoxDataHelicopter.Text = "Ввод дополнительных данных";
+            _groupBoxDataHelicopter.Visible = false;
+            _groupBoxDataHelicopter.Controls.Add(_textBoxBladeLength);
+            _groupBoxDataHelicopter.Controls.Add(labelBladeLength);
             // 
             // DataForm
             // 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(730, 300);
-            Controls.Add(buttonAgree);
-            Controls.Add(buttonCancel);
+            Controls.Add(_buttonAgree);
+            Controls.Add(_buttonCancel);
 #if DEBUG
-            Controls.Add(buttonRandom);
+            Controls.Add(_buttonRandom);
 #endif
-            Controls.Add(comboBoxTransport);
-            Controls.Add(groupBoxData);
-            Controls.Add(groupBoxData);
-            Controls.Add(groupBoxDataHybridCar);
-            Controls.Add(groupBoxDataHelicopter);
+            Controls.Add(_comboBoxTransport);
+            Controls.Add(_groupBoxData);
+            Controls.Add(_groupBoxData);
+            Controls.Add(_groupBoxDataHybridCar);
+            Controls.Add(_groupBoxDataHelicopter);
             Name = "DataForm";
             Text = "Ввод данных";
             ResumeLayout(false);

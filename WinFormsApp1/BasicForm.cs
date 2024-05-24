@@ -12,7 +12,8 @@ namespace View
         /// <summary>
         /// Лист для заполнения таблицы.
         /// </summary>
-        private BindingList<TransportBase> transportList = new BindingList<TransportBase>();
+        private BindingList<TransportBase> _transportList = new
+            BindingList<TransportBase>();
 
         /// <summary>
         /// Конструктор BasicForm.
@@ -20,9 +21,14 @@ namespace View
         public BasicForm()
         {
             InitializeComponent();
+
             FillingDataGridView();
-            buttonAddTransport.Click += new EventHandler(AddTransportButtonClick);
-            buttonRemoveTransport.Click += new EventHandler(RemoveTransportButtonClick);
+
+            _buttonAddTransport.Click += new
+                EventHandler(AddTransportButtonClick);
+
+            _buttonRemoveTransport.Click += new
+                EventHandler(RemoveTransportButtonClick);
         }
 
         /// <summary>
@@ -32,9 +38,10 @@ namespace View
         /// <param name="transportBase"></param>
         private void CancelTransport(object sender, EventArgs transportBase)
         {
-            TransportAddedEventArgs addedEventArgs = transportBase as TransportAddedEventArgs;
+            TransportAddedEventArgs addedEventArgs = transportBase as
+                TransportAddedEventArgs;
 
-            transportList.Remove(addedEventArgs?.TransportBase);
+            _transportList.Remove(addedEventArgs?.TransportBase);
         }
 
         /// <summary>
@@ -44,9 +51,10 @@ namespace View
         /// <param name="transportBase"></param>
         private void AddedTransport(object sender, EventArgs transportBase)
         {
-            TransportAddedEventArgs addedEventArgs = transportBase as TransportAddedEventArgs;
+            TransportAddedEventArgs addedEventArgs = transportBase as
+                TransportAddedEventArgs;
 
-            transportList.Add(addedEventArgs?.TransportBase);
+            _transportList.Add(addedEventArgs?.TransportBase);
         }
 
         /// <summary>
@@ -69,15 +77,16 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void RemoveTransportButtonClick(object sender, EventArgs e)
         {
-            if (gridControlTransport.SelectedRows.Count > 0)
+            if (_gridControlTransport.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = gridControlTransport.SelectedRows[0];
+                DataGridViewRow selectedRow = _gridControlTransport.SelectedRows[0];
 
-                gridControlTransport.Rows.Remove(selectedRow);
+                _gridControlTransport.Rows.Remove(selectedRow);
             }
             else
             {
-                MessageBox.Show("Выберите строку для удаления.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Выберите строку для удаления.",
+                    "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -86,7 +95,7 @@ namespace View
         /// </summary>
         private void FillingDataGridView()
         {
-            gridControlTransport.DataSource = transportList;
+            _gridControlTransport.DataSource = _transportList;
         }
     }
 }

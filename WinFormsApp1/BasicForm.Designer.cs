@@ -16,32 +16,33 @@ namespace View
         /// <summary>
         /// Кнопка "Добавить".
         /// </summary>
-        private Button buttonAddTransport;
+        private Button _buttonAddTransport;
 
         /// <summary>
         /// Кнопка "Удалить".
         /// </summary>
-        private Button buttonRemoveTransport;
+        private Button _buttonRemoveTransport;
 
         /// <summary>
         /// Кнопка "Фильтр".
         /// </summary>
-        private Button buttonFilterTransport;
+        private Button _buttonFilterTransport;
 
         /// <summary>
         /// Таблица для транспорта.
         /// </summary>
-        private DataGridView gridControlTransport;
+        private DataGridView _gridControlTransport;
 
         /// <summary>
         /// GroupBox для транспорта.
         /// </summary>
-        private GroupBox groupBoxTransport;
+        private GroupBox _groupBoxTransport;
 
         /// <summary>
         ///  Метод для явного освобождения ресурсов.
         /// </summary>
-        /// <param name="disposing">true если ресурсы необходимо удалить,иначе false.</param>
+        /// <param name="disposing">true если ресурсы необходимо
+        /// удалить,иначе false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -58,66 +59,66 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            groupBoxTransport = new GroupBox();
-            gridControlTransport = new DataGridView();
+            _groupBoxTransport = new GroupBox();
+            _gridControlTransport = new DataGridView();
             
-            buttonAddTransport = new Button();
-            buttonRemoveTransport = new Button();
-            buttonFilterTransport = new Button();
+            _buttonAddTransport = new Button();
+            _buttonRemoveTransport = new Button();
+            _buttonFilterTransport = new Button();
 
             // 
             // gridControlTransport
             // 
-            gridControlTransport.BackgroundColor = SystemColors.ButtonHighlight;
-            gridControlTransport.Name = "gridControl";
-            gridControlTransport.Dock = DockStyle.Fill;
-            gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
-            gridControlTransport.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            gridControlTransport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            _gridControlTransport.BackgroundColor = SystemColors.ButtonHighlight;
+            _gridControlTransport.Name = "gridControl";
+            _gridControlTransport.Dock = DockStyle.Fill;
+            _gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
+            _gridControlTransport.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            _gridControlTransport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 
             // buttonAddTransport
             // 
-            buttonAddTransport.BackColor = SystemColors.ButtonHighlight;
-            buttonAddTransport.ForeColor = SystemColors.ActiveCaptionText;
-            buttonAddTransport.Location = new Point(525, 390);
-            buttonAddTransport.Name = "addTransportButton";
-            buttonAddTransport.Size = new Size(100, 30);
-            buttonAddTransport.TabIndex = 1;
-            buttonAddTransport.Text = "Добавить";
-            buttonAddTransport.UseVisualStyleBackColor = false;
+            _buttonAddTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonAddTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonAddTransport.Location = new Point(525, 390);
+            _buttonAddTransport.Name = "addTransportButton";
+            _buttonAddTransport.Size = new Size(100, 30);
+            _buttonAddTransport.TabIndex = 1;
+            _buttonAddTransport.Text = "Добавить";
+            _buttonAddTransport.UseVisualStyleBackColor = false;
             // 
             // buttonRemoveTransport
             // 
-            buttonRemoveTransport.BackColor = SystemColors.ButtonHighlight;
-            buttonRemoveTransport.ForeColor = SystemColors.ActiveCaptionText;
-            buttonRemoveTransport.Location = new Point(650, 390);
-            buttonRemoveTransport.Name = "removeTransportButton";
-            buttonRemoveTransport.Size = new Size(100, 30);
-            buttonRemoveTransport.TabIndex = 2;
-            buttonRemoveTransport.Text = "Удалить";
-            buttonRemoveTransport.UseVisualStyleBackColor = false;
+            _buttonRemoveTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonRemoveTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonRemoveTransport.Location = new Point(650, 390);
+            _buttonRemoveTransport.Name = "removeTransportButton";
+            _buttonRemoveTransport.Size = new Size(100, 30);
+            _buttonRemoveTransport.TabIndex = 2;
+            _buttonRemoveTransport.Text = "Удалить";
+            _buttonRemoveTransport.UseVisualStyleBackColor = false;
             // 
             // buttonFilterTransport
             // 
-            buttonFilterTransport.BackColor = SystemColors.ButtonHighlight;
-            buttonFilterTransport.ForeColor = SystemColors.ActiveCaptionText;
-            buttonFilterTransport.Location = new Point(650, 20);
-            buttonFilterTransport.Name = "removeTransportButton";
-            buttonFilterTransport.Size = new Size(100, 30);
-            buttonFilterTransport.TabIndex = 2;
-            buttonFilterTransport.Text = "Фильтр";
-            buttonFilterTransport.UseVisualStyleBackColor = false;
+            _buttonFilterTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonFilterTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonFilterTransport.Location = new Point(650, 20);
+            _buttonFilterTransport.Name = "removeTransportButton";
+            _buttonFilterTransport.Size = new Size(100, 30);
+            _buttonFilterTransport.TabIndex = 2;
+            _buttonFilterTransport.Text = "Фильтр";
+            _buttonFilterTransport.UseVisualStyleBackColor = false;
             // 
             // groupBoxTransport
             // 
-            groupBoxTransport.Location = new Point(50, 50);
-            groupBoxTransport.Name = "groupBox";
-            groupBoxTransport.Size = new Size(700, 320);
-            groupBoxTransport.TabIndex = 0;
-            groupBoxTransport.TabStop = false;
-            groupBoxTransport.Text = "Список транспорта";
-            groupBoxTransport.Controls.Add(gridControlTransport);
+            _groupBoxTransport.Location = new Point(50, 50);
+            _groupBoxTransport.Name = "groupBox";
+            _groupBoxTransport.Size = new Size(700, 320);
+            _groupBoxTransport.TabIndex = 0;
+            _groupBoxTransport.TabStop = false;
+            _groupBoxTransport.Text = "Список транспорта";
+            _groupBoxTransport.Controls.Add(_gridControlTransport);
             // 
             // BasicForm
             // 
@@ -125,10 +126,10 @@ namespace View
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
-            Controls.Add(groupBoxTransport);
-            Controls.Add(buttonAddTransport);
-            Controls.Add(buttonRemoveTransport);
-            Controls.Add(buttonFilterTransport);
+            Controls.Add(_groupBoxTransport);
+            Controls.Add(_buttonAddTransport);
+            Controls.Add(_buttonRemoveTransport);
+            Controls.Add(_buttonFilterTransport);
             ForeColor = Color.Bisque;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "BasicForm";
