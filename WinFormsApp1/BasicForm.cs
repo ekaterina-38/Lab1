@@ -8,12 +8,10 @@ namespace View
     /// Класс BasicForm.
     /// </summary>
     public partial class BasicForm : System.Windows.Forms.Form
-    {
-        private GroupBox groupBoxTransport;
-        private DataGridView gridControlTransport;
-        private Button buttonAddTransport;
-        private Button buttonRemoveTransport;
-
+    {   
+        /// <summary>
+        /// Лист для заполнения таблицы.
+        /// </summary>
         private BindingList<TransportBase> transportList = new BindingList<TransportBase>();
 
         /// <summary>
@@ -28,7 +26,7 @@ namespace View
         }
 
         /// <summary>
-        /// Обработчик отмены.
+        /// Обработчик отмены добавления данных в лист.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="transportBase"></param>
@@ -40,7 +38,7 @@ namespace View
         }
 
         /// <summary>
-        /// Обработчик.
+        /// Обработчик добавления данных в лист.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="transportBase"></param>

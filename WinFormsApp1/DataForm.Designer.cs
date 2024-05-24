@@ -13,21 +13,69 @@ namespace View
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Кнопка "Добавить".
+        /// </summary>
         private Button buttonAgree;
+        
+        /// <summary>
+        /// Кнопка "Отменить".
+        /// </summary>
         private Button buttonCancel;
+
+        /// <summary>
+        /// Кнопка "Заполнить".
+        /// </summary>
         private Button buttonRandom;
 
+        /// <summary>
+        /// ComboBox выбор транспорта.
+        /// </summary>
         private ComboBox comboBoxTransport;
+
+        /// <summary>
+        /// ComboBox выбор основного топлива.
+        /// </summary>
         private ComboBox comboBoxFuel;
+
+        /// <summary>
+        /// ComboBox выбор дополнительного топлива.
+        /// </summary>
         private ComboBox comboBoxHybridFuel;
 
+        /// <summary>
+        /// GroupBox для основных данных(топливо, мощность, масса).
+        /// </summary>
         private GroupBox groupBoxData;
+
+        /// <summary>
+        /// GroupBox для дополнительных данных(топливо, мощность).
+        /// </summary>
         private GroupBox groupBoxDataHybridCar;
+
+        /// <summary>
+        /// GroupBox для дополнительных данных(длина лопастей).
+        /// </summary>
         private GroupBox groupBoxDataHelicopter;
 
+        /// <summary>
+        /// TextBox для ввода мощности.
+        /// </summary>
         private TextBox textBoxCapacity;
+
+        /// <summary>
+        /// TextBox для ввода массы.
+        /// </summary>
         private TextBox textBoxMass;
+
+        /// <summary>
+        /// TextBox для ввода мощности гибридной машины.
+        /// </summary>
         private TextBox textBoxHybridCapacity;
+
+        /// <summary>
+        /// TextBox для ввода длины лопастей вертолета.
+        /// </summary>
         private TextBox textBoxBladeLength;
 
         /// <summary>

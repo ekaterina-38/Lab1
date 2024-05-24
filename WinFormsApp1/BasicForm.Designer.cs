@@ -14,6 +14,26 @@ namespace View
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
+        /// Кнопка "Добавить".
+        /// </summary>
+        private Button buttonAddTransport;
+
+        /// <summary>
+        /// Кнопка "Удалить".
+        /// </summary>
+        private Button buttonRemoveTransport;
+
+        /// <summary>
+        /// Таблица для транспорта.
+        /// </summary>
+        private DataGridView gridControlTransport;
+
+        /// <summary>
+        /// GroupBox для транспорта.
+        /// </summary>
+        private GroupBox groupBoxTransport;
+
+        /// <summary>
         ///  Метод для явного освобождения ресурсов.
         /// </summary>
         /// <param name="disposing">true если ресурсы необходимо удалить,иначе false.</param>
