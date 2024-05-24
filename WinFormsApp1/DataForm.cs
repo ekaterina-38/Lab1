@@ -258,7 +258,7 @@ namespace View
 
         /// <summary>
         /// Заполнение ComboBoxHybridFuel массивом данных
-        /// в соответствии с выбранным ComboBoxHybrid.
+        /// в соответствии с выбранным ComboBoxFuel.
         /// </summary>
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
@@ -267,18 +267,23 @@ namespace View
             if (_groupBoxDataHybridCar.Visible == true)
             {
                 TypeFuel valueComboBoxFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+
                 TypeFuel[] valuesComboBoxHybridFuel = 
                     _comboBoxFuel.Items.Cast<TypeFuel>().ToArray();
+
                 int index = Array.IndexOf(valuesComboBoxHybridFuel, valueComboBoxFuel);
 
                 if (index > -1)
                 {
                     TypeFuel[] newArray = new TypeFuel[valuesComboBoxHybridFuel.Length - 1];
+
                     Array.Copy(valuesComboBoxHybridFuel, 0, newArray, 0, index);
+
                     Array.Copy(valuesComboBoxHybridFuel, index + 1, newArray, index,
                         valuesComboBoxHybridFuel.Length - index - 1);
 
                     FillComboBox(newArray, _comboBoxHybridFuel);
+
                     return;
                 }
 
