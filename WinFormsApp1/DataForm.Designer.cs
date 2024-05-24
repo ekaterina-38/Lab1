@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.Xml;
+using System.Windows.Forms;
 using TransportLibrary;
 
 namespace View
@@ -12,6 +13,14 @@ namespace View
         /// Необходимая переменная дизайнера.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        
+        private Label _labelTransport;
+        private Label _labelFuel;
+        private Label _labelCapacity;
+        private Label _labelMass;
+        private Label _labelHybridCapacity;
+        private Label _labelBladeLength;
+        private Label _labelFuelHybrid;
 
         /// <summary>
         /// Кнопка "Добавить".
@@ -101,173 +110,233 @@ namespace View
         {
             _buttonAgree = new Button();
             _buttonCancel = new Button();
-#if DEBUG
             _buttonRandom = new Button();
-#endif
             _comboBoxTransport = new ComboBox();
             _comboBoxFuel = new ComboBox();
             _comboBoxHybridFuel = new ComboBox();
-
-            Label labelCapacity = new Label();
-            Label labelMass = new Label();
-            Label labelHybridCapacity = new Label();
-            Label labelBladeLength = new Label();
-
+            _labelTransport = new Label();
+            _labelFuel = new Label();
+            _labelFuelHybrid = new Label();
+            _labelCapacity = new Label();
+            _labelMass = new Label();
+            _labelHybridCapacity = new Label();
+            _labelBladeLength = new Label();
             _textBoxCapacity = new TextBox();
             _textBoxMass = new TextBox();
             _textBoxHybridCapacity = new TextBox();
             _textBoxBladeLength = new TextBox();
-
             _groupBoxData = new GroupBox();
             _groupBoxDataHybridCar = new GroupBox();
             _groupBoxDataHelicopter = new GroupBox();
-
+            _groupBoxData.SuspendLayout();
+            _groupBoxDataHybridCar.SuspendLayout();
+            _groupBoxDataHelicopter.SuspendLayout();
             SuspendLayout();
             // 
-            // buttonAgree
+            // _buttonAgree
             // 
             _buttonAgree.BackColor = SystemColors.ButtonHighlight;
             _buttonAgree.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonAgree.Location = new Point(460, 240);
-            _buttonAgree.Name = "agreeButton";
+            _buttonAgree.Location = new Point(300, 300);
+            _buttonAgree.Name = "_buttonAgree";
             _buttonAgree.Size = new Size(100, 30);
+            _buttonAgree.TabIndex = 0;
             _buttonAgree.Text = "Ок";
             _buttonAgree.UseVisualStyleBackColor = false;
             // 
-            // buttonCancel
+            // _buttonCancel
             // 
-            _buttonCancel.Location = new Point(580, 240);
-            _buttonCancel.Name = "cancelButton";
+            _buttonCancel.Location = new Point(420, 300);
+            _buttonCancel.Name = "_buttonCancel";
             _buttonCancel.Size = new Size(100, 30);
+            _buttonCancel.TabIndex = 1;
             _buttonCancel.Text = "Отмена";
             _buttonCancel.UseVisualStyleBackColor = false;
-#if DEBUG
             // 
-            // buttonRandom 
+            // _buttonRandom
             // 
             _buttonRandom.BackColor = SystemColors.ButtonHighlight;
             _buttonRandom.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonRandom.Location = new Point(340, 240);
-            _buttonRandom.Name = "buttonRandom";
+            _buttonRandom.Location = new Point(50, 300);
+            _buttonRandom.Name = "_buttonRandom";
             _buttonRandom.Size = new Size(100, 30);
+            _buttonRandom.TabIndex = 2;
             _buttonRandom.Text = "Заполнить";
             _buttonRandom.UseVisualStyleBackColor = false;
-#endif
             // 
-            // comboBoxTransport
+            // _comboBoxTransport
             // 
-            _comboBoxTransport.Location = new Point(50, 30);
-            _comboBoxTransport.Size = new Size(150, 30);
+            _comboBoxTransport.Location = new Point(50, 40);
+            _comboBoxTransport.Name = "_comboBoxTransport";
+            _comboBoxTransport.Size = new Size(150, 23);
+            _comboBoxTransport.TabIndex = 3;
+            _comboBoxTransport.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
-            // comboBoxFuel
-            //
-            _comboBoxFuel.Location = new Point(20, 30);
-            _comboBoxFuel.Size = new Size(150, 30);
+            // _comboBoxFuel
             // 
-            // comboBoxHybridFuel
-            //
-            _comboBoxHybridFuel.Location = new Point(20, 30);
+            _comboBoxFuel.Location = new Point(20, 50);
+            _comboBoxFuel.Name = "_comboBoxFuel";
+            _comboBoxFuel.Size = new Size(150, 23);
+            _comboBoxFuel.TabIndex = 4;
+            _comboBoxFuel.DropDownStyle = ComboBoxStyle.DropDownList;
+            // 
+            // _comboBoxHybridFuel
+            // 
+            _comboBoxHybridFuel.Location = new Point(20, 50);
+            _comboBoxHybridFuel.Name = "_comboBoxHybridFuel";
             _comboBoxHybridFuel.Size = new Size(150, 30);
+            _comboBoxHybridFuel.TabIndex = 0;
+            _comboBoxHybridFuel.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
-            // labelCapacity
-            //
-            labelCapacity.Location = new Point(20, 70);
-            labelCapacity.Size = new Size(150, 20);
-            labelCapacity.Text = "Мощность л.с.";
+            // _labelTransport
             // 
-            // labelMass
-            //
-            labelMass.Location = new Point(20, 130);
-            labelMass.Size = new Size(150, 20);
-            labelMass.Text = "Масса т.";
+            _labelTransport.Location = new Point(50, 20);
+            _labelTransport.Name = "_labelTransport";
+            _labelTransport.Size = new Size(150, 20);
+            _labelTransport.TabIndex = 0;
+            _labelTransport.Text = "Транспорт";
             // 
-            // labelHybridCapacity
-            //
-            labelHybridCapacity.Location = new Point(20, 70);
-            labelHybridCapacity.Size = new Size(150, 20);
-            labelHybridCapacity.Text = "Мощность л.с.";
+            // _labelFuel
             // 
-            // labelBladeLength
-            //
-            labelBladeLength.Location = new Point(20, 30);
-            labelBladeLength.Size = new Size(150, 20);
-            labelBladeLength.Text = "Длина лопастей м.";
+            _labelFuel.Location = new Point(20, 30);
+            _labelFuel.Name = "_labelFuel";
+            _labelFuel.Size = new Size(150, 20);
+            _labelFuel.TabIndex = 0;
+            _labelFuel.Text = "Топливо";
             // 
-            // textBoxCapacity
-            //
-            _textBoxCapacity.Location = new Point(20, 90);
-            _textBoxCapacity.Size = new Size(150, 20);
+            // _labelCapacity
             // 
-            // textBoxMass
-            //
+            _labelCapacity.Location = new Point(20, 80);
+            _labelCapacity.Name = "_labelCapacity";
+            _labelCapacity.Size = new Size(150, 20);
+            _labelCapacity.TabIndex = 0;
+            _labelCapacity.Text = "Мощность л.с.";
+            // 
+            // _labelMass
+            // 
+            _labelMass.Location = new Point(20, 130);
+            _labelMass.Name = "_labelMass";
+            _labelMass.Size = new Size(150, 20);
+            _labelMass.TabIndex = 2;
+            _labelMass.Text = "Масса т.";
+            // 
+            // _labelFuelHybrid
+            // 
+            _labelFuelHybrid.Location = new Point(20, 30);
+            _labelFuelHybrid.Name = "_labelFuelHybrid";
+            _labelFuelHybrid.Size = new Size(150, 20);
+            _labelFuelHybrid.TabIndex = 0;
+            _labelFuelHybrid.Text = "Топливо";
+            // 
+            // _labelHybridCapacity
+            // 
+            _labelHybridCapacity.Location = new Point(20, 80);
+            _labelHybridCapacity.Name = "_labelHybridCapacity";
+            _labelHybridCapacity.Size = new Size(150, 20);
+            _labelHybridCapacity.TabIndex = 2;
+            _labelHybridCapacity.Text = "Мощность л.с.";
+            // 
+            // _labelBladeLength
+            // 
+            _labelBladeLength.Location = new Point(20, 30);
+            _labelBladeLength.Name = "_labelBladeLength";
+            _labelBladeLength.Size = new Size(150, 20);
+            _labelBladeLength.TabIndex = 1;
+            _labelBladeLength.Text = "Длина лопастей м.";
+            // 
+            // _textBoxCapacity
+            // 
+            _textBoxCapacity.Location = new Point(20, 100);
+            _textBoxCapacity.Name = "_textBoxCapacity";
+            _textBoxCapacity.Size = new Size(150, 23);
+            _textBoxCapacity.TabIndex = 1;
+            // 
+            // _textBoxMass
+            // 
             _textBoxMass.Location = new Point(20, 150);
-            _textBoxMass.Size = new Size(150, 20);
+            _textBoxMass.Name = "_textBoxMass";
+            _textBoxMass.Size = new Size(150, 23);
+            _textBoxMass.TabIndex = 3;
             // 
-            // textBoxHybridCapacity
-            //
-            _textBoxHybridCapacity.Location = new Point(20, 90);
-            _textBoxHybridCapacity.Size = new Size(150, 20);
+            // _textBoxHybridCapacity
             // 
-            // textBoxBladeLength
-            //
+            _textBoxHybridCapacity.Location = new Point(20, 100);
+            _textBoxHybridCapacity.Name = "_textBoxHybridCapacity";
+            _textBoxHybridCapacity.Size = new Size(150, 30);
+            _textBoxHybridCapacity.TabIndex = 1;
+            // 
+            // _textBoxBladeLength
+            // 
             _textBoxBladeLength.Location = new Point(20, 50);
-            _textBoxBladeLength.Size = new Size(150, 20);
+            _textBoxBladeLength.Name = "_textBoxBladeLength";
+            _textBoxBladeLength.Size = new Size(150, 30);
+            _textBoxBladeLength.TabIndex = 0;
             // 
-            // groupBoxData
-            //
-            _groupBoxData.Location = new Point(230, 30);
-            _groupBoxData.Name = "groupBoxDataCar";
+            // _groupBoxData
+            // 
+            _groupBoxData.Controls.Add(_labelCapacity);
+            _groupBoxData.Controls.Add(_labelFuel);
+            _groupBoxData.Controls.Add(_textBoxCapacity);
+            _groupBoxData.Controls.Add(_labelMass);
+            _groupBoxData.Controls.Add(_textBoxMass);
+            _groupBoxData.Controls.Add(_comboBoxFuel);
+            _groupBoxData.Location = new Point(50, 80);
+            _groupBoxData.Name = "_groupBoxData";
             _groupBoxData.Size = new Size(220, 200);
             _groupBoxData.TabIndex = 0;
             _groupBoxData.TabStop = false;
             _groupBoxData.Text = "Ввод данных о двигателе и массе";
-            _groupBoxData.Controls.Add(labelCapacity);
-            _groupBoxData.Controls.Add(_textBoxCapacity);
-            _groupBoxData.Controls.Add(labelMass);
-            _groupBoxData.Controls.Add(_textBoxMass);
-            _groupBoxData.Controls.Add(_comboBoxFuel);
             // 
-            // groupBoxDataHybridCar
+            // _groupBoxDataHybridCar
             // 
-            _groupBoxDataHybridCar.Location = new Point(460, 30);
-            _groupBoxDataHybridCar.Name = "groupBoxDataHybridCar";
-            _groupBoxDataHybridCar.Size = new Size(220, 200);
-            _groupBoxDataHybridCar.Text = "Ввод данных о 2-ом двигателе";
-            _groupBoxDataHybridCar.Visible = false;
             _groupBoxDataHybridCar.Controls.Add(_comboBoxHybridFuel);
             _groupBoxDataHybridCar.Controls.Add(_textBoxHybridCapacity);
-            _groupBoxDataHybridCar.Controls.Add(labelHybridCapacity);
+            _groupBoxDataHybridCar.Controls.Add(_labelHybridCapacity);
+            _groupBoxDataHybridCar.Controls.Add(_labelFuelHybrid);
+            _groupBoxDataHybridCar.Location = new Point(300, 80);
+            _groupBoxDataHybridCar.Name = "_groupBoxDataHybridCar";
+            _groupBoxDataHybridCar.Size = new Size(220, 200);
+            _groupBoxDataHybridCar.TabIndex = 4;
+            _groupBoxDataHybridCar.TabStop = false;
+            _groupBoxDataHybridCar.Text = "Ввод данных о 2-ом двигателе";
+            _groupBoxDataHybridCar.Visible = false;
             // 
-            // groupBoxDataHelicopter
+            // _groupBoxDataHelicopter
             // 
-            _groupBoxDataHelicopter.Location = new Point(460, 30);
-            _groupBoxDataHelicopter.Name = "groupBoxDataHelicopter";
+            _groupBoxDataHelicopter.Controls.Add(_textBoxBladeLength);
+            _groupBoxDataHelicopter.Controls.Add(_labelBladeLength);
+            _groupBoxDataHelicopter.Location = new Point(300, 80);
+            _groupBoxDataHelicopter.Name = "_groupBoxDataHelicopter";
             _groupBoxDataHelicopter.Size = new Size(220, 100);
+            _groupBoxDataHelicopter.TabIndex = 5;
+            _groupBoxDataHelicopter.TabStop = false;
             _groupBoxDataHelicopter.Text = "Ввод дополнительных данных";
             _groupBoxDataHelicopter.Visible = false;
-            _groupBoxDataHelicopter.Controls.Add(_textBoxBladeLength);
-            _groupBoxDataHelicopter.Controls.Add(labelBladeLength);
             // 
             // DataForm
             // 
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(730, 300);
+            ClientSize = new Size(560, 350);
+            Controls.Add(_labelTransport);
             Controls.Add(_buttonAgree);
             Controls.Add(_buttonCancel);
-#if DEBUG
             Controls.Add(_buttonRandom);
-#endif
             Controls.Add(_comboBoxTransport);
             Controls.Add(_groupBoxData);
-            Controls.Add(_groupBoxData);
             Controls.Add(_groupBoxDataHybridCar);
-            Controls.Add(_groupBoxDataHelicopter);
+            Controls.Add(_groupBoxDataHelicopter); 
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "DataForm";
             Text = "Ввод данных";
+            _groupBoxData.ResumeLayout(false);
+            _groupBoxData.PerformLayout();
+            _groupBoxDataHybridCar.ResumeLayout(false);
+            _groupBoxDataHybridCar.PerformLayout();
+            _groupBoxDataHelicopter.ResumeLayout(false);
+            _groupBoxDataHelicopter.PerformLayout();
             ResumeLayout(false);
         }
 
-#endregion
+        #endregion
     }
 }

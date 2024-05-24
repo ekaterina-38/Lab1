@@ -76,6 +76,7 @@ namespace View
             _gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
             _gridControlTransport.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             _gridControlTransport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            _gridControlTransport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // 
             // buttonAddTransport
             // 
