@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography.Xml;
 using System.Windows.Forms;
 using TransportLibrary;
+using static System.Windows.Forms.DataFormats;
 
 namespace View
 {
@@ -325,7 +326,6 @@ namespace View
             Controls.Add(_groupBoxData);
             Controls.Add(_groupBoxDataHybridCar);
             Controls.Add(_groupBoxDataHelicopter); 
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "DataForm";
             Text = "Ввод данных";
             _groupBoxData.ResumeLayout(false);
@@ -334,6 +334,9 @@ namespace View
             _groupBoxDataHybridCar.PerformLayout();
             _groupBoxDataHelicopter.ResumeLayout(false);
             _groupBoxDataHelicopter.PerformLayout();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             ResumeLayout(false);
         }
 

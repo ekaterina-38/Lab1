@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace View
 {
@@ -27,6 +28,16 @@ namespace View
         /// Кнопка "Фильтр".
         /// </summary>
         private Button _buttonFilterTransport;
+
+        /// <summary>
+        /// Кнопка "Сохранить".
+        /// </summary>
+        private Button _buttonSaveTransport;
+
+        /// <summary>
+        /// Кнопка "Открыть".
+        /// </summary>
+        private Button _buttonOpenTransport;
 
         /// <summary>
         /// Таблица для транспорта.
@@ -65,6 +76,8 @@ namespace View
             _buttonAddTransport = new Button();
             _buttonRemoveTransport = new Button();
             _buttonFilterTransport = new Button();
+            _buttonSaveTransport = new Button();
+            _buttonOpenTransport = new Button();
 
             // 
             // gridControlTransport
@@ -104,12 +117,34 @@ namespace View
             // 
             _buttonFilterTransport.BackColor = SystemColors.ButtonHighlight;
             _buttonFilterTransport.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonFilterTransport.Location = new Point(650, 20);
+            _buttonFilterTransport.Location = new Point(50, 390);
             _buttonFilterTransport.Name = "removeTransportButton";
             _buttonFilterTransport.Size = new Size(100, 30);
             _buttonFilterTransport.TabIndex = 2;
             _buttonFilterTransport.Text = "Фильтр";
             _buttonFilterTransport.UseVisualStyleBackColor = false;
+            // 
+            // _buttonSaveTransport
+            // 
+            _buttonSaveTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonSaveTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonSaveTransport.Location = new Point(50, 10);
+            _buttonSaveTransport.Name = "_buttonSaveTransport";
+            _buttonSaveTransport.Size = new Size(100, 30);
+            _buttonSaveTransport.TabIndex = 2;
+            _buttonSaveTransport.Text = "Сохранить";
+            _buttonSaveTransport.UseVisualStyleBackColor = false;
+            // 
+            // _buttonOpenTransport
+            // 
+            _buttonOpenTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonOpenTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonOpenTransport.Location = new Point(170, 10);
+            _buttonOpenTransport.Name = "_buttonSaveTransport";
+            _buttonOpenTransport.Size = new Size(100, 30);
+            _buttonOpenTransport.TabIndex = 2;
+            _buttonOpenTransport.Text = "Открыть";
+            _buttonOpenTransport.UseVisualStyleBackColor = false;
             // 
             // groupBoxTransport
             // 
@@ -131,9 +166,13 @@ namespace View
             Controls.Add(_buttonAddTransport);
             Controls.Add(_buttonRemoveTransport);
             Controls.Add(_buttonFilterTransport);
+            Controls.Add(_buttonSaveTransport);
+            Controls.Add(_buttonOpenTransport);
             ForeColor = Color.Bisque;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "BasicForm";
+            MaximizeBox = false;
+            MinimizeBox = false;
         }
 
         #endregion
