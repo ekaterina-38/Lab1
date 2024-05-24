@@ -12,8 +12,8 @@ namespace View
         /// <summary>
         /// Лист для заполнения таблицы.
         /// </summary>
-        private BindingList<TransportBase> _transportList = new
-            BindingList<TransportBase>();
+        private BindingList<TransportBase> _transportList = 
+            new BindingList<TransportBase>();
 
         /// <summary>
         /// Конструктор BasicForm.
