@@ -96,57 +96,57 @@ namespace View
                 switch (typeTransport)
                 {
                     case "Машина":
-                        {
-                            Motor motor = new Motor();
-                            motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
-                            motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
-                            double mass = Convert.ToDouble(_textBoxMass.Text);
+                    {
+                        Motor motor = new Motor();
+                        motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                        motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
+                        double mass = Convert.ToDouble(_textBoxMass.Text);
 
-                            transport = new Car()
-                            {
-                                Motor = motor,
-                                Mass = mass
-                            };
-                        }
+                        transport = new Car()
+                        {
+                            Motor = motor,
+                            Mass = mass
+                        };
+                    }
                         break;
 
                     case "Гибридная машина":
+                    {
+                        Motor motor = new Motor();
+                        motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                        motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
+
+                        Motor additionalMotor = new Motor();
+                        additionalMotor.TypeFuel = (TypeFuel)_comboBoxHybridFuel.SelectedItem;
+                        additionalMotor.Capacity = Convert.ToDouble(_textBoxHybridCapacity.Text);
+
+                        double mass = Convert.ToDouble(_textBoxMass.Text);
+
+                        transport = new HybridCar()
                         {
-                            Motor motor = new Motor();
-                            motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
-                            motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
+                            Motor = motor,
+                            AdditionalMotor = additionalMotor,
+                            Mass = mass,
+                        };
 
-                            Motor additionalMotor = new Motor();
-                            additionalMotor.TypeFuel = (TypeFuel)_comboBoxHybridFuel.SelectedItem;
-                            additionalMotor.Capacity = Convert.ToDouble(_textBoxHybridCapacity.Text);
-
-                            double mass = Convert.ToDouble(_textBoxMass.Text);
-
-                            transport = new HybridCar()
-                            {
-                                Motor = motor,
-                                AdditionalMotor = additionalMotor,
-                                Mass = mass,
-                            };
-
-                        }
+                    }
                         break;
 
                     case "Вертолет":
-                        {
-                            Motor motor = new Motor();
-                            motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
-                            motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
-                            double mass = Convert.ToDouble(_textBoxMass.Text);
-                            double bladeLength = Convert.ToDouble(_textBoxBladeLength.Text);
+                    {
+                        Motor motor = new Motor();
+                        motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                        motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
+                        double mass = Convert.ToDouble(_textBoxMass.Text);
+                        double bladeLength = Convert.ToDouble(_textBoxBladeLength.Text);
 
-                            transport = new Helicopter()
-                            {
-                                Motor = motor,
-                                Mass = mass,
-                                BladeLength = bladeLength
-                            };
-                        }
+                        transport = new Helicopter()
+                        {
+                            Motor = motor,
+                            Mass = mass,
+                            BladeLength = bladeLength
+                        };
+                    }
                         break;
                 }
 
