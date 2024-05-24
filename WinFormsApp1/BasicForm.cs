@@ -88,7 +88,5 @@ namespace View
         {
             gridControlTransport.DataSource = transportList;
         }
-
-
     }
 }

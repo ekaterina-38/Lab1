@@ -24,6 +24,11 @@ namespace View
         private Button buttonRemoveTransport;
 
         /// <summary>
+        /// Кнопка "Фильтр".
+        /// </summary>
+        private Button buttonFilterTransport;
+
+        /// <summary>
         /// Таблица для транспорта.
         /// </summary>
         private DataGridView gridControlTransport;
@@ -53,13 +58,13 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            // 
-            // groupBoxTransport
-            // 
             groupBoxTransport = new GroupBox();
             gridControlTransport = new DataGridView();
+            
             buttonAddTransport = new Button();
             buttonRemoveTransport = new Button();
+            buttonFilterTransport = new Button();
+
             // 
             // gridControlTransport
             // 
@@ -93,11 +98,22 @@ namespace View
             buttonRemoveTransport.Text = "Удалить";
             buttonRemoveTransport.UseVisualStyleBackColor = false;
             // 
+            // buttonFilterTransport
+            // 
+            buttonFilterTransport.BackColor = SystemColors.ButtonHighlight;
+            buttonFilterTransport.ForeColor = SystemColors.ActiveCaptionText;
+            buttonFilterTransport.Location = new Point(650, 20);
+            buttonFilterTransport.Name = "removeTransportButton";
+            buttonFilterTransport.Size = new Size(100, 30);
+            buttonFilterTransport.TabIndex = 2;
+            buttonFilterTransport.Text = "Фильтр";
+            buttonFilterTransport.UseVisualStyleBackColor = false;
+            // 
             // groupBoxTransport
             // 
-            groupBoxTransport.Location = new Point(50, 10);
+            groupBoxTransport.Location = new Point(50, 50);
             groupBoxTransport.Name = "groupBox";
-            groupBoxTransport.Size = new Size(700, 350);
+            groupBoxTransport.Size = new Size(700, 320);
             groupBoxTransport.TabIndex = 0;
             groupBoxTransport.TabStop = false;
             groupBoxTransport.Text = "Список транспорта";
@@ -112,6 +128,7 @@ namespace View
             Controls.Add(groupBoxTransport);
             Controls.Add(buttonAddTransport);
             Controls.Add(buttonRemoveTransport);
+            Controls.Add(buttonFilterTransport);
             ForeColor = Color.Bisque;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "BasicForm";
