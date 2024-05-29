@@ -10,6 +10,42 @@ namespace View
     /// </summary>
     public partial class DataForm : Form
     {
+        //TODO: +
+        /// <summary>
+        /// Свойство  для обработки события добавления.
+        /// </summary>
+        public EventHandler TransportAdded;
+
+        //TODO: +
+        /// <summary>
+        /// Свойство  для обработки события отмена.
+        /// </summary>
+        public EventHandler TransportCancel;
+
+        /// <summary>
+        /// Свойство для хранения последнего добавленного объекта.
+        /// </summary>
+        private TransportBase _lastTransport;
+
+        private static readonly Dictionary<string, TypeTransport> _typesTransports =
+            new()
+        {
+            {"Машина", TypeTransport.Car},
+            {"Гибридная машина", TypeTransport.HybridCar},
+            {"Вертолет", TypeTransport.Helicopter},
+        };
+
+
+        private static readonly Dictionary<string, TypeFuel> _typesFuel = new()
+        {
+            {"Бензин", TypeFuel.Petrol},
+            {"Дизель", TypeFuel.Diesel},
+            {"Электричество", TypeFuel.Electricity},
+            {"Газ", TypeFuel.Gas},
+            {"Авиационный керосин", TypeFuel.AviationKerosene},
+            {"Авиационный бензин", TypeFuel.AviationGasoline},
+        };
+
         /// <summary>
         /// Конструктор DataForm.
         /// </summary>
@@ -17,8 +53,8 @@ namespace View
         {
             InitializeComponent();
 
-            //TODO: refactor string keys
-            FillComboBox(["Машина", "Гибридная машина", "Вертолет"],
+            //TODO: refactor string keys +
+            FillComboBox(_typesTransports.Keys.ToArray(),
                 _comboBoxTransport);
 
             FillComboBoxFuel();
@@ -53,33 +89,6 @@ namespace View
                 KeyPressEventHandler(TextBoxKeyPress);
 
         }
-        //TODO: 
-        /// <summary>
-        /// Свойство  для обработки события добавления.
-        /// </summary>
-        public EventHandler TransportAdded
-        {
-            get;
-            set;
-        }
-        //TODO: 
-        /// <summary>
-        /// Свойство  для обработки события отмена.
-        /// </summary>
-        public EventHandler TransportCancel
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Свойство для хранения последнего добавленного объекта.
-        /// </summary>
-        private TransportBase LastTransport
-        {
-            get;
-            set;
-        }
 
         /// <summary>
         /// Метод нажатия на кнопку "Ок"
@@ -90,17 +99,19 @@ namespace View
         {
             try
             {
-                string typeTransport = _comboBoxTransport.Text;
+                TypeTransport typeTransport = 
+                    _typesTransports[_comboBoxTransport.Text];
 
                 TransportBase transport = null;
 
+
                 switch (typeTransport)
                 {
-                    //TODO: refactor string keys
-                    case "Машина":
+                    //TODO: refactor string keys +
+                    case TypeTransport.Car:
                     {
                         Motor motor = new Motor();
-                        motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                        motor.TypeFuel = _typesFuel[(string)_comboBoxFuel.SelectedItem];
                         motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
                         double mass = Convert.ToDouble(_textBoxMass.Text);
 
@@ -113,14 +124,14 @@ namespace View
                     }
                         
 
-                    case "Гибридная машина":
+                    case TypeTransport.HybridCar:
                     {
                         Motor motor = new Motor();
-                        motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                        motor.TypeFuel = _typesFuel[(string)_comboBoxFuel.SelectedItem];
                         motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
 
                         Motor additionalMotor = new Motor();
-                        additionalMotor.TypeFuel = (TypeFuel)_comboBoxHybridFuel.SelectedItem;
+                        additionalMotor.TypeFuel = _typesFuel[(string)_comboBoxHybridFuel.SelectedItem];
                         additionalMotor.Capacity = Convert.ToDouble(_textBoxHybridCapacity.Text);
 
                         double mass = Convert.ToDouble(_textBoxMass.Text);
@@ -131,15 +142,15 @@ namespace View
                             AdditionalMotor = additionalMotor,
                             Mass = mass,
                         };
-
-                    }
-                        //TODO: 
                         break;
+                    }
+                        //TODO: +
+                       
 
-                    case "Вертолет":
+                    case TypeTransport.Helicopter:
                     {
                         Motor motor = new Motor();
-                        motor.TypeFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                        motor.TypeFuel = _typesFuel[(string)_comboBoxFuel.SelectedItem];
                         motor.Capacity = Convert.ToDouble(_textBoxCapacity.Text);
                         double mass = Convert.ToDouble(_textBoxMass.Text);
                         double bladeLength = Convert.ToDouble(_textBoxBladeLength.Text);
@@ -150,14 +161,14 @@ namespace View
                             Mass = mass,
                             BladeLength = bladeLength
                         };
-                    }
-                        //TODO: 
                         break;
+                    }
+                        //TODO: +
                 }
 
                 TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
 
-                LastTransport = transport;
+                _lastTransport = transport;
             }
             catch
             {
@@ -173,19 +184,20 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void AddGroupBoxData(object sender, EventArgs e)
         {
-            string typeTransport = _comboBoxTransport.Text;
+            TypeTransport typeTransport =
+                    _typesTransports[_comboBoxTransport.Text];
 
             switch (typeTransport)
             {
-                //TODO: refactor string keys
-                case "Машина":
+                //TODO: refactor string keys +
+                case TypeTransport.Car:
                 {
                     _groupBoxDataHybridCar.Visible = false;
                     _groupBoxDataHelicopter.Visible = false;
                 }
                     break;
 
-                case "Гибридная машина":
+                case TypeTransport.HybridCar:
                 {
                     _groupBoxDataHybridCar.Visible = true;
                     _groupBoxDataHelicopter.Visible = false;
@@ -193,7 +205,7 @@ namespace View
                 }
                     break;
 
-                case "Вертолет":
+                case TypeTransport.Helicopter:
                 {
                     _groupBoxDataHybridCar.Visible = false;
                     _groupBoxDataHelicopter.Visible = true;
@@ -209,9 +221,9 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void CancelButtonClick(object sender, EventArgs e)
         {
-            if (LastTransport != null)
+            if (_lastTransport != null)
             {
-                TransportCancel?.Invoke(this, new TransportAddedEventArgs(LastTransport));
+                TransportCancel?.Invoke(this, new TransportAddedEventArgs(_lastTransport));
             }   
         }
 
@@ -245,22 +257,31 @@ namespace View
         {
             object key = _comboBoxTransport.SelectedItem;
 
-            Dictionary<object, TypeFuel[]> fuelTypes = new()
+            TypeTransport typeTransport =
+                _typesTransports[_comboBoxTransport.Text];
+
+            string[] namesTransports = _typesFuel.Keys.ToArray();
+
+            Dictionary<TypeTransport, string[]> fuelTypes = new()
             {
                 {
-                    //TODO: refactor string keys
-                    "Машина",
-                    [TypeFuel.Petrol, TypeFuel.Diesel, TypeFuel.Gas, TypeFuel.Electricity]},
+                    //TODO: refactor string keys +
+                    TypeTransport.Car,
+                    [namesTransports[0], namesTransports[1],
+                     namesTransports[2], namesTransports[3]]
+                },
                 {
-                    "Гибридная машина",
-                    [TypeFuel.Petrol, TypeFuel.Diesel, TypeFuel.Gas, TypeFuel.Electricity]},
+                    TypeTransport.HybridCar,
+                    [namesTransports[0], namesTransports[1],
+                     namesTransports[2], namesTransports[3]]
+                },
                 {
-                    "Вертолет",
-                    [TypeFuel.AviationKerosene, TypeFuel.AviationGasoline]
+                    TypeTransport.Helicopter,
+                    [namesTransports[4], namesTransports[5]]
                 },
             };
 
-            FillComboBox(fuelTypes[key], _comboBoxFuel);
+            FillComboBox(fuelTypes[typeTransport], _comboBoxFuel);
         }
 
         /// <summary>
@@ -273,16 +294,16 @@ namespace View
         {
             if (_groupBoxDataHybridCar.Visible == true)
             {
-                TypeFuel valueComboBoxFuel = (TypeFuel)_comboBoxFuel.SelectedItem;
+                string valueComboBoxFuel = (string)_comboBoxFuel.SelectedItem;
 
-                TypeFuel[] valuesComboBoxHybridFuel = 
-                    _comboBoxFuel.Items.Cast<TypeFuel>().ToArray();
+                string[] valuesComboBoxHybridFuel = 
+                    _comboBoxFuel.Items.Cast<string>().ToArray();
 
                 int index = Array.IndexOf(valuesComboBoxHybridFuel, valueComboBoxFuel);
 
                 if (index > -1)
                 {
-                    TypeFuel[] newArray = new TypeFuel[valuesComboBoxHybridFuel.Length - 1];
+                    string[] newArray = new string[valuesComboBoxHybridFuel.Length - 1];
 
                     Array.Copy(valuesComboBoxHybridFuel, 0, newArray, 0, index);
 

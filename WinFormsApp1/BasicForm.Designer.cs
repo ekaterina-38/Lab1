@@ -78,7 +78,6 @@ namespace View
             _buttonFilterTransport = new Button();
             _buttonSaveTransport = new Button();
             _buttonOpenTransport = new Button();
-
             // 
             // gridControlTransport
             // 
@@ -128,7 +127,7 @@ namespace View
             // 
             _buttonSaveTransport.BackColor = SystemColors.ButtonHighlight;
             _buttonSaveTransport.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonSaveTransport.Location = new Point(50, 10);
+            _buttonSaveTransport.Location = new Point(50, 20);
             _buttonSaveTransport.Name = "_buttonSaveTransport";
             _buttonSaveTransport.Size = new Size(100, 30);
             _buttonSaveTransport.TabIndex = 2;
@@ -139,7 +138,7 @@ namespace View
             // 
             _buttonOpenTransport.BackColor = SystemColors.ButtonHighlight;
             _buttonOpenTransport.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonOpenTransport.Location = new Point(170, 10);
+            _buttonOpenTransport.Location = new Point(170, 20);
             _buttonOpenTransport.Name = "_buttonSaveTransport";
             _buttonOpenTransport.Size = new Size(100, 30);
             _buttonOpenTransport.TabIndex = 2;
@@ -148,7 +147,7 @@ namespace View
             // 
             // groupBoxTransport
             // 
-            _groupBoxTransport.Location = new Point(50, 50);
+            _groupBoxTransport.Location = new Point(50, 60);
             _groupBoxTransport.Name = "groupBox";
             _groupBoxTransport.Size = new Size(700, 320);
             _groupBoxTransport.TabIndex = 0;
