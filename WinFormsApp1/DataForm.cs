@@ -12,21 +12,24 @@ namespace View
     {
         //TODO: +
         /// <summary>
-        /// Свойство  для обработки события добавления.
+        /// Поле для обработки события добавления.
         /// </summary>
         public EventHandler TransportAdded;
 
         //TODO: +
         /// <summary>
-        /// Свойство  для обработки события отмена.
+        /// Поле для обработки события отмена.
         /// </summary>
         public EventHandler TransportCancel;
 
         /// <summary>
-        /// Свойство для хранения последнего добавленного объекта.
+        /// Поле для хранения последнего добавленного объекта.
         /// </summary>
         private TransportBase _lastTransport;
 
+        /// <summary>
+        /// Словарь тип транспорта.
+        /// </summary>
         private static readonly Dictionary<string, TypeTransport> _typesTransports =
             new()
         {
@@ -35,7 +38,9 @@ namespace View
             {"Вертолет", TypeTransport.Helicopter},
         };
 
-
+        /// <summary>
+        /// Словарь тип топлива.
+        /// </summary>
         private static readonly Dictionary<string, TypeFuel> _typesFuel = new()
         {
             {"Бензин", TypeFuel.Petrol},
@@ -104,7 +109,6 @@ namespace View
 
                 TransportBase transport = null;
 
-
                 switch (typeTransport)
                 {
                     //TODO: refactor string keys +
@@ -145,8 +149,6 @@ namespace View
                         break;
                     }
                         //TODO: +
-                       
-
                     case TypeTransport.Helicopter:
                     {
                         Motor motor = new Motor();
@@ -194,23 +196,23 @@ namespace View
                 {
                     _groupBoxDataHybridCar.Visible = false;
                     _groupBoxDataHelicopter.Visible = false;
-                }
                     break;
-
+                }
+       
                 case TypeTransport.HybridCar:
                 {
                     _groupBoxDataHybridCar.Visible = true;
                     _groupBoxDataHelicopter.Visible = false;
-
-                }
                     break;
+                }
+                    
 
                 case TypeTransport.Helicopter:
                 {
                     _groupBoxDataHybridCar.Visible = false;
                     _groupBoxDataHelicopter.Visible = true;
-                }
                     break;
+                }                   
             }
         }
 

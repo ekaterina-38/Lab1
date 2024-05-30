@@ -25,9 +25,9 @@ namespace View
         private Button _buttonRemoveTransport;
 
         /// <summary>
-        /// Кнопка "Фильтр".
+        /// Кнопка "Найти".
         /// </summary>
-        private Button _buttonFilterTransport;
+        private Button _buttonFindTransport;
 
         /// <summary>
         /// Кнопка "Сохранить".
@@ -75,14 +75,14 @@ namespace View
             
             _buttonAddTransport = new Button();
             _buttonRemoveTransport = new Button();
-            _buttonFilterTransport = new Button();
+            _buttonFindTransport = new Button();
             _buttonSaveTransport = new Button();
             _buttonOpenTransport = new Button();
             // 
             // gridControlTransport
             // 
             _gridControlTransport.BackgroundColor = SystemColors.ButtonHighlight;
-            _gridControlTransport.Name = "gridControl";
+            _gridControlTransport.Name = "gridControlTransport";
             _gridControlTransport.Dock = DockStyle.Fill;
             _gridControlTransport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _gridControlTransport.DefaultCellStyle.ForeColor = Color.Black;
@@ -95,7 +95,7 @@ namespace View
             _buttonAddTransport.BackColor = SystemColors.ButtonHighlight;
             _buttonAddTransport.ForeColor = SystemColors.ActiveCaptionText;
             _buttonAddTransport.Location = new Point(525, 390);
-            _buttonAddTransport.Name = "addTransportButton";
+            _buttonAddTransport.Name = "buttonAddTransport";
             _buttonAddTransport.Size = new Size(100, 30);
             _buttonAddTransport.TabIndex = 1;
             _buttonAddTransport.Text = "Добавить";
@@ -112,16 +112,16 @@ namespace View
             _buttonRemoveTransport.Text = "Удалить";
             _buttonRemoveTransport.UseVisualStyleBackColor = false;
             // 
-            // buttonFilterTransport
+            // _buttonFindTransport
             // 
-            _buttonFilterTransport.BackColor = SystemColors.ButtonHighlight;
-            _buttonFilterTransport.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonFilterTransport.Location = new Point(50, 390);
-            _buttonFilterTransport.Name = "removeTransportButton";
-            _buttonFilterTransport.Size = new Size(100, 30);
-            _buttonFilterTransport.TabIndex = 2;
-            _buttonFilterTransport.Text = "Фильтр";
-            _buttonFilterTransport.UseVisualStyleBackColor = false;
+            _buttonFindTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonFindTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonFindTransport.Location = new Point(50, 390);
+            _buttonFindTransport.Name = "_buttonFindTransport";
+            _buttonFindTransport.Size = new Size(100, 30);
+            _buttonFindTransport.TabIndex = 2;
+            _buttonFindTransport.Text = "Найти";
+            _buttonFindTransport.UseVisualStyleBackColor = false;
             // 
             // _buttonSaveTransport
             // 
@@ -139,7 +139,7 @@ namespace View
             _buttonOpenTransport.BackColor = SystemColors.ButtonHighlight;
             _buttonOpenTransport.ForeColor = SystemColors.ActiveCaptionText;
             _buttonOpenTransport.Location = new Point(170, 20);
-            _buttonOpenTransport.Name = "_buttonSaveTransport";
+            _buttonOpenTransport.Name = "_buttonOpenTransport";
             _buttonOpenTransport.Size = new Size(100, 30);
             _buttonOpenTransport.TabIndex = 2;
             _buttonOpenTransport.Text = "Открыть";
@@ -148,7 +148,7 @@ namespace View
             // groupBoxTransport
             // 
             _groupBoxTransport.Location = new Point(50, 60);
-            _groupBoxTransport.Name = "groupBox";
+            _groupBoxTransport.Name = "groupBoxTransport";
             _groupBoxTransport.Size = new Size(700, 320);
             _groupBoxTransport.TabIndex = 0;
             _groupBoxTransport.TabStop = false;
@@ -164,7 +164,7 @@ namespace View
             Controls.Add(_groupBoxTransport);
             Controls.Add(_buttonAddTransport);
             Controls.Add(_buttonRemoveTransport);
-            Controls.Add(_buttonFilterTransport);
+            Controls.Add(_buttonFindTransport);
             Controls.Add(_buttonSaveTransport);
             Controls.Add(_buttonOpenTransport);
             ForeColor = Color.Bisque;

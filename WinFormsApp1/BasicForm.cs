@@ -16,6 +16,11 @@ namespace View
             new BindingList<TransportBase>();
 
         /// <summary>
+        ///  Переменная для хранения состояния формы DataForm
+        /// </summary>
+        private bool _isDataFormOpen = false;
+
+        /// <summary>
         /// Конструктор BasicForm.
         /// </summary>
         public BasicForm()
@@ -64,10 +69,16 @@ namespace View
         /// <param name="e">Данные о событие.</param>
         private void AddTransportButtonClick(object sender, EventArgs e)
         {
-            DataForm DataForm = new DataForm();
-            DataForm.TransportAdded += new EventHandler(AddedTransport);
-            DataForm.TransportCancel += new EventHandler(CancelTransport);
-            DataForm.Show();
+            if (!_isDataFormOpen)
+            {
+                _isDataFormOpen = true;
+
+                DataForm DataForm = new DataForm();
+                DataForm.FormClosed += (s, args) => { _isDataFormOpen = false; };
+                DataForm.TransportAdded += new EventHandler(AddedTransport);
+                DataForm.TransportCancel += new EventHandler(CancelTransport);
+                DataForm.Show();
+            }
         }
 
         /// <summary>
