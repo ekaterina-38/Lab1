@@ -30,6 +30,11 @@ namespace View
         private Button _buttonFindTransport;
 
         /// <summary>
+        /// Кнопка "Сбросить".
+        /// </summary>
+        private Button _buttonResetTransport;
+
+        /// <summary>
         /// Кнопка "Сохранить".
         /// </summary>
         private Button _buttonSaveTransport;
@@ -76,6 +81,7 @@ namespace View
             _buttonAddTransport = new Button();
             _buttonRemoveTransport = new Button();
             _buttonFindTransport = new Button();
+            _buttonResetTransport = new Button();
             _buttonSaveTransport = new Button();
             _buttonOpenTransport = new Button();
             // 
@@ -123,6 +129,17 @@ namespace View
             _buttonFindTransport.Text = "Найти";
             _buttonFindTransport.UseVisualStyleBackColor = false;
             // 
+            // _buttonResetTransport
+            // 
+            _buttonResetTransport.BackColor = SystemColors.ButtonHighlight;
+            _buttonResetTransport.ForeColor = SystemColors.ActiveCaptionText;
+            _buttonResetTransport.Location = new Point(170, 390);
+            _buttonResetTransport.Name = "_buttonResetTransport";
+            _buttonResetTransport.Size = new Size(100, 30);
+            _buttonResetTransport.TabIndex = 2;
+            _buttonResetTransport.Text = "Сбросить";
+            _buttonResetTransport.UseVisualStyleBackColor = false;
+            // 
             // _buttonSaveTransport
             // 
             _buttonSaveTransport.BackColor = SystemColors.ButtonHighlight;
@@ -165,6 +182,7 @@ namespace View
             Controls.Add(_buttonAddTransport);
             Controls.Add(_buttonRemoveTransport);
             Controls.Add(_buttonFindTransport);
+            Controls.Add(_buttonResetTransport);
             Controls.Add(_buttonSaveTransport);
             Controls.Add(_buttonOpenTransport);
             ForeColor = Color.Bisque;

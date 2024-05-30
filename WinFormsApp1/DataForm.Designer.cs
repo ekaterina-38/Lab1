@@ -311,7 +311,7 @@ namespace View
             _groupBoxDataHelicopter.Size = new Size(220, 100);
             _groupBoxDataHelicopter.TabIndex = 5;
             _groupBoxDataHelicopter.TabStop = false;
-            _groupBoxDataHelicopter.Text = "Ввод дополнительных данных";
+            _groupBoxDataHelicopter.Text = "Ввод данных о лопастях";
             _groupBoxDataHelicopter.Visible = false;
             // 
             // DataForm
@@ -327,7 +327,7 @@ namespace View
             Controls.Add(_groupBoxDataHybridCar);
             Controls.Add(_groupBoxDataHelicopter); 
             Name = "DataForm";
-            Text = "Ввод данных";
+            Text = "Добавить транспорт";
             _groupBoxData.ResumeLayout(false);
             _groupBoxData.PerformLayout();
             _groupBoxDataHybridCar.ResumeLayout(false);

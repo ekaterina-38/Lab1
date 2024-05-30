@@ -40,14 +40,13 @@ namespace View
 
             FillingDataGridView(_transportList);
 
-            _buttonAddTransport.Click += new
-                EventHandler(AddTransportButtonClick);
+            _buttonAddTransport.Click += AddTransportButtonClick;
 
-            _buttonRemoveTransport.Click += new
-                EventHandler(RemoveTransportButtonClick);
+            _buttonRemoveTransport.Click += RemoveTransportButtonClick;
 
-            _buttonFindTransport.Click += new
-                EventHandler(FindTransportButtonClick);
+            _buttonFindTransport.Click += FindTransportButtonClick;
+
+            _buttonResetTransport.Click += ResetedFilter;
         }
 
         /// <summary>
@@ -89,8 +88,8 @@ namespace View
 
                 DataForm DataForm = new DataForm();
                 DataForm.FormClosed += (s, args) => { _isDataFormOpen = false; };
-                DataForm.TransportAdded += new EventHandler(AddedTransport);
-                DataForm.TransportCancel += new EventHandler(CancelTransport);
+                DataForm.TransportAdded += AddedTransport;
+                DataForm.TransportCancel += CancelTransport;
                 DataForm.Show();
             }
         }
@@ -153,6 +152,16 @@ namespace View
             _filteredTransportList = filterEventArgs?.FilteredTransportList;
 
             FillingDataGridView(_filteredTransportList);
+        }
+
+        /// <summary>
+        /// Метод нажатия на кнопку "Сбросить".
+        /// </summary>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
+        private void ResetedFilter(object sender, EventArgs e)
+        {
+            FillingDataGridView(_transportList);
         }
     }
 }

@@ -87,7 +87,7 @@ namespace View
             BindingList<TransportBase> filteredTransportList,
             Type typeTransport)
         {
-            foreach (TransportBase transport in transportList)
+            foreach (var transport in transportList)
             {
                 if (typeTransport.IsInstanceOfType(transport))
                 {

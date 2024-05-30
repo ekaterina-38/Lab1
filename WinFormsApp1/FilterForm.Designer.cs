@@ -11,11 +11,6 @@
         private Button _buttonAgree;
 
         /// <summary>
-        /// GroupBox для критериев поиска.
-        /// </summary>
-        private GroupBox _groupBoxFilter;
-
-        /// <summary>
         /// CheckBox для машины.
         /// </summary>
         private CheckBox _checkBoxFindCar;
@@ -29,6 +24,29 @@
         /// CheckBox для вертолета.
         /// </summary>
         private CheckBox _checkBoxFindHelicopter;
+
+        /// <summary>
+        /// CheckBox для мощности.
+        /// </summary>
+        private CheckBox _checkBoxCapacity;
+
+        /// <summary>
+        /// CheckBox для массы.
+        /// </summary>
+        private CheckBox _checkBoxMass;
+
+        private TextBox _textBoxCapacity;
+        private TextBox _textBoxMass;
+
+        /// <summary>
+        /// GroupBox для поиска по типу транспорта.
+        /// </summary>
+        private GroupBox _groupBoxFilterType;
+
+        /// <summary>
+        /// GroupBox для поиска по типу транспорта.
+        /// </summary>
+        private GroupBox _groupBoxFilterData;
 
         /// <summary>
         /// Required designer variable.
@@ -61,15 +79,23 @@
             _checkBoxFindCar = new CheckBox();
             _checkBoxFindHybridCar = new CheckBox();
             _checkBoxFindHelicopter = new CheckBox();
+            _checkBoxCapacity = new CheckBox();
+            _checkBoxMass = new CheckBox();
 
-            _groupBoxFilter = new GroupBox();
+            _textBoxCapacity = new TextBox();
+            _textBoxMass = new TextBox();
 
+            _groupBoxFilterType = new GroupBox();
+            _groupBoxFilterData = new GroupBox();
+            _groupBoxFilterType.SuspendLayout();
+            _groupBoxFilterData.SuspendLayout();
+            SuspendLayout();
             // 
             // _buttonAgree
             // 
             _buttonAgree.BackColor = SystemColors.ButtonHighlight;
             _buttonAgree.ForeColor = SystemColors.ActiveCaptionText;
-            _buttonAgree.Location = new Point(150, 250);
+            _buttonAgree.Location = new Point(130, 260);
             _buttonAgree.Name = "_buttonAgree";
             _buttonAgree.Size = new Size(100, 30);
             _buttonAgree.TabIndex = 0;
@@ -78,45 +104,103 @@
             // 
             // _checkBoxFindCar
             // 
-            _checkBoxFindCar.Text = "Машина";
             _checkBoxFindCar.AutoSize = true;
-            _checkBoxFindCar.Location = new System.Drawing.Point(20, 30);
+            _checkBoxFindCar.Location = new Point(20, 30);
+            _checkBoxFindCar.Name = "_checkBoxFindCar";
+            _checkBoxFindCar.Size = new Size(74, 19);
+            _checkBoxFindCar.TabIndex = 0;
+            _checkBoxFindCar.Text = "Машина";
             // 
             // _checkBoxFindHybridCar
             // 
-            _checkBoxFindHybridCar.Text = "Гибридная машина";
             _checkBoxFindHybridCar.AutoSize = true;
-            _checkBoxFindHybridCar.Location = new System.Drawing.Point(20, 60);
+            _checkBoxFindHybridCar.Location = new Point(20, 60);
+            _checkBoxFindHybridCar.Name = "_checkBoxFindHybridCar";
+            _checkBoxFindHybridCar.Size = new Size(134, 19);
+            _checkBoxFindHybridCar.TabIndex = 1;
+            _checkBoxFindHybridCar.Text = "Гибридная машина";
             // 
             // _checkBoxFindHelicopter
             // 
-            _checkBoxFindHelicopter.Text = "Вертолет";
             _checkBoxFindHelicopter.AutoSize = true;
-            _checkBoxFindHelicopter.Location = new System.Drawing.Point(20, 90);
+            _checkBoxFindHelicopter.Location = new Point(20, 90);
+            _checkBoxFindHelicopter.Name = "_checkBoxFindHelicopter";
+            _checkBoxFindHelicopter.Size = new Size(76, 19);
+            _checkBoxFindHelicopter.TabIndex = 2;
+            _checkBoxFindHelicopter.Text = "Вертолет";
             // 
-            // _groupBoxFilter
+            // _checkBoxCapacity
             // 
-            _groupBoxFilter.Location = new Point(30, 30);
-            _groupBoxFilter.Name = "_groupBoxFilter";
-            _groupBoxFilter.Size = new Size(180, 120);
-            _groupBoxFilter.TabIndex = 0;
-            _groupBoxFilter.TabStop = false;
-            _groupBoxFilter.Text = "Поиск по типу транспорта";
-            _groupBoxFilter.Controls.Add(_checkBoxFindCar);
-            _groupBoxFilter.Controls.Add(_checkBoxFindHybridCar);
-            _groupBoxFilter.Controls.Add(_checkBoxFindHelicopter);
-
+            _checkBoxCapacity.AutoSize = true;
+            _checkBoxCapacity.Location = new Point(20, 30);
+            _checkBoxCapacity.Name = "_checkBoxCapacity";
+            _checkBoxCapacity.Size = new Size(76, 19);
+            _checkBoxCapacity.TabIndex = 2;
+            _checkBoxCapacity.Text = "Мощность л.с.";
             // 
-            // FindForm
+            // _checkBoxCapacity
+            // 
+            _checkBoxMass.AutoSize = true;
+            _checkBoxMass.Location = new Point(20, 60);
+            _checkBoxMass.Name = "_checkBoxMass";
+            _checkBoxMass.Size = new Size(76, 19);
+            _checkBoxMass.TabIndex = 2;
+            _checkBoxMass.Text = "Масса т.";
+            // 
+            // _textBoxCapacity
+            // 
+            _textBoxCapacity.Location = new Point(130, 30);
+            _textBoxCapacity.Name = "_textBoxCapacity";
+            _textBoxCapacity.Size = new Size(50, 20);
+            // 
+            // _textBoxMass
+            // 
+            _textBoxMass.Location = new Point(130, 60);
+            _textBoxMass.Name = "_textBoxMass";
+            _textBoxMass.Size = new Size(50, 20);
+            // 
+            // _groupBoxFilterType
+            // 
+            _groupBoxFilterType.Controls.Add(_checkBoxFindCar);
+            _groupBoxFilterType.Controls.Add(_checkBoxFindHybridCar);
+            _groupBoxFilterType.Controls.Add(_checkBoxFindHelicopter);
+            _groupBoxFilterType.Location = new Point(30, 20);
+            _groupBoxFilterType.Name = "_groupBoxFilterType";
+            _groupBoxFilterType.Size = new Size(200, 120);
+            _groupBoxFilterType.TabIndex = 0;
+            _groupBoxFilterType.TabStop = false;
+            _groupBoxFilterType.Text = "Поиск по типу транспорта";
+            // 
+            // _groupBoxFilterData
+            // 
+            _groupBoxFilterData.Location = new Point(30, 150);
+            _groupBoxFilterData.Name = "_groupBoxFilterData";
+            _groupBoxFilterData.Size = new Size(200, 100);
+            _groupBoxFilterData.TabIndex = 0;
+            _groupBoxFilterData.TabStop = false;
+            _groupBoxFilterData.Text = "Поиск по данным транспорта";
+            _groupBoxFilterData.Controls.Add(_checkBoxCapacity);
+            _groupBoxFilterData.Controls.Add(_checkBoxMass);
+            _groupBoxFilterData.Controls.Add(_textBoxCapacity);
+            _groupBoxFilterData.Controls.Add(_textBoxMass);
+            // 
+            // FilterForm
             // 
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(300, 300);
-            Text = "Поиск";
+            ClientSize = new Size(260, 310);
+            Controls.Add(_groupBoxFilterType);
+            Controls.Add(_groupBoxFilterData);
+            Controls.Add(_buttonAgree);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
-            Controls.Add(_groupBoxFilter);
-            Controls.Add(_buttonAgree);
+            Name = "FilterForm";
+            Text = "Найти";
+            _groupBoxFilterType.ResumeLayout(false);
+            _groupBoxFilterType.PerformLayout();
+            _groupBoxFilterData.ResumeLayout(false);
+            _groupBoxFilterData.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
