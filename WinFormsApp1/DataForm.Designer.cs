@@ -142,7 +142,7 @@ namespace View
             _buttonAgree.Name = "_buttonAgree";
             _buttonAgree.Size = new Size(100, 30);
             _buttonAgree.TabIndex = 0;
-            _buttonAgree.Text = "Ок";
+            _buttonAgree.Text = "ОК";
             _buttonAgree.UseVisualStyleBackColor = false;
             // 
             // _buttonCancel

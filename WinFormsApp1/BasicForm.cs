@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Security.Cryptography.Xml;
 using System.Windows.Forms;
 using TransportLibrary;
 
@@ -16,9 +17,19 @@ namespace View
             new BindingList<TransportBase>();
 
         /// <summary>
-        ///  Переменная для хранения состояния формы DataForm
+        /// Отфильтрованный лист для заполнения таблицы.
+        /// </summary>
+        private BindingList<TransportBase> _filteredTransportList;
+
+        /// <summary>
+        ///  Поле для хранения состояния формы DataForm
         /// </summary>
         private bool _isDataFormOpen = false;
+
+        /// <summary>
+        ///  Поле для хранения состояния формы FindForm
+        /// </summary>
+        private bool _isFindFormOpen = false;
 
         /// <summary>
         /// Конструктор BasicForm.
@@ -27,13 +38,16 @@ namespace View
         {
             InitializeComponent();
 
-            FillingDataGridView();
+            FillingDataGridView(_transportList);
 
             _buttonAddTransport.Click += new
                 EventHandler(AddTransportButtonClick);
 
             _buttonRemoveTransport.Click += new
                 EventHandler(RemoveTransportButtonClick);
+
+            _buttonFindTransport.Click += new
+                EventHandler(FindTransportButtonClick);
         }
 
         /// <summary>
@@ -104,9 +118,41 @@ namespace View
         /// <summary>
         /// Метод заполнения таблицы "Список транспорта".
         /// </summary>
-        private void FillingDataGridView()
+        private void FillingDataGridView(BindingList<TransportBase> transportList)
         {
-            _gridControlTransport.DataSource = _transportList;
+            _gridControlTransport.DataSource = transportList;
+        }
+
+        /// <summary>
+        /// Метод нажатия на кнопку "Найти"
+        /// </summary>
+        /// <param name="sender">Событие.</param>
+        /// <param name="e">Данные о событие.</param>
+        private void FindTransportButtonClick(object sender, EventArgs e)
+        {
+            if (!_isFindFormOpen)
+            {
+                _isFindFormOpen = true;
+
+                FilterForm findForm = new FilterForm(_transportList);
+                findForm.FormClosed += (s, args) => { _isFindFormOpen = false; };
+                findForm.TransportFiltered += FilteredTransport;
+                findForm.Show();
+            }
+        }
+
+        /// <summary>
+        /// Обработчик фильтрации данных.
+        /// </summary>
+        /// <param name="sender">Событие.</param>
+        /// <param name="transportList">Данные о событие.</param>
+        private void FilteredTransport(object sender, EventArgs transportList)
+        {
+            TransportFilterEventArgs filterEventArgs = transportList as TransportFilterEventArgs;
+
+            _filteredTransportList = filterEventArgs?.FilteredTransportList;
+
+            FillingDataGridView(_filteredTransportList);
         }
     }
 }
