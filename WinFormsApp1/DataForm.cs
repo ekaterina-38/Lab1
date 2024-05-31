@@ -127,7 +127,6 @@ namespace View
                         break;
                     }
                         
-
                     case TypeTransport.HybridCar:
                     {
                         Motor motor = new Motor();

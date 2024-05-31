@@ -43,42 +43,34 @@ namespace View
         /// <param name="sender">Событие.</param>
         /// <param name="e">Данные о событие.</param>
         private void AgreeButtonClick(object sender, EventArgs e)
-        {
-            try
+        {         
+            _filteredTransportList = new BindingList<TransportBase>();
+
+            if (_checkBoxFindCar.Checked)
             {
-                _filteredTransportList = new BindingList<TransportBase>();
-
-                if (_checkBoxFindCar.Checked)
-                {
-                    FilteredTypeTransport(_transportList,
-                        _filteredTransportList,
-                        typeof(Car));
-                }
-
-                if (_checkBoxFindHybridCar.Checked)
-                {
-                    FilteredTypeTransport(_transportList,
-                        _filteredTransportList,
-                        typeof(HybridCar));
-                }
-
-                if (_checkBoxFindHelicopter.Checked)
-                {
-                    FilteredTypeTransport(_transportList,
-                        _filteredTransportList,
-                        typeof(Helicopter));
-                }
-
-                CheckedData();
-
-                TransportFiltered.Invoke(this,
-                new TransportFilterEventArgs(_filteredTransportList));
+                FilteredTypeTransport(_transportList,
+                    _filteredTransportList,
+                    typeof(Car));
             }
-            catch
+
+            if (_checkBoxFindHybridCar.Checked)
             {
-                MessageBox.Show("Введите данные.", "Предупреждение",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                FilteredTypeTransport(_transportList,
+                    _filteredTransportList,
+                    typeof(HybridCar));
             }
+
+            if (_checkBoxFindHelicopter.Checked)
+            {
+                FilteredTypeTransport(_transportList,
+                    _filteredTransportList,
+                    typeof(Helicopter));
+            }
+
+            CheckedData();
+
+            TransportFiltered.Invoke(this,
+            new TransportFilterEventArgs(_filteredTransportList));
         }
 
         /// <summary>
