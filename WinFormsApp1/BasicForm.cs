@@ -56,8 +56,8 @@ namespace View
         /// <param name="transportBase"></param>
         private void CancelTransport(object sender, EventArgs transportBase)
         {
-            TransportAddedEventArgs addedEventArgs = transportBase as
-                TransportAddedEventArgs;
+            TransportAddedEventArgs addedEventArgs = 
+                transportBase as TransportAddedEventArgs;
 
             _transportList.Remove(addedEventArgs?.TransportBase);
         }
@@ -69,8 +69,8 @@ namespace View
         /// <param name="transportBase"></param>
         private void AddedTransport(object sender, EventArgs transportBase)
         {
-            TransportAddedEventArgs addedEventArgs = transportBase as
-                TransportAddedEventArgs;
+            TransportAddedEventArgs addedEventArgs = 
+                transportBase as TransportAddedEventArgs;
 
             _transportList.Add(addedEventArgs?.TransportBase);
         }
@@ -147,7 +147,8 @@ namespace View
         /// <param name="transportList">Данные о событие.</param>
         private void FilteredTransport(object sender, EventArgs transportList)
         {
-            TransportFilterEventArgs filterEventArgs = transportList as TransportFilterEventArgs;
+            TransportFilterEventArgs filterEventArgs = 
+                transportList as TransportFilterEventArgs;
 
             _filteredTransportList = filterEventArgs?.FilteredTransportList;
 

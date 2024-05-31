@@ -8,7 +8,6 @@ namespace View
     /// </summary>
     internal class TransportAddedEventArgs : EventArgs
     {
-        //TODO: XML+
         /// <summary>
         /// Свойство для получения добавленного транспорта.
         /// </summary>

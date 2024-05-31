@@ -30,7 +30,5 @@ namespace View
 
             FilteredTransportList = filterTransportList;
         }
-
-
     }
 }

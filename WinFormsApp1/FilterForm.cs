@@ -84,20 +84,10 @@ namespace View
             bool statusCheckBox = _checkBoxFindCar.Checked
                 || _checkBoxFindHybridCar.Checked
                 || _checkBoxFindHelicopter.Checked;
-
-            switch (statusCheckBox)
-            {
-                case true:
-                {
-                    transportList = [.. _filteredTransportList];
-                    break;
-                }
-                case false:
-                {
-                    transportList = [.. _transportList];
-                    break;
-                }
-            }
+            
+            transportList = statusCheckBox
+                ? [.. _filteredTransportList]
+                : [.. _transportList];
 
             if (_checkBoxMass.Checked)
             {
@@ -159,7 +149,7 @@ namespace View
         private static void FilteredMass(
             BindingList<TransportBase> transportList, double Mass)
         {
-            for (int i = transportList.Count-1; i >= 0; i--)
+            for (int i = transportList.Count - 1; i >= 0; i--)
             {
                 if (transportList[i].Mass != Mass)
                 {

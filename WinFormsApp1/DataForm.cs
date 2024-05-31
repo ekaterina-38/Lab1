@@ -10,13 +10,11 @@ namespace View
     /// </summary>
     public partial class DataForm : Form
     {
-        //TODO: +
         /// <summary>
         /// Поле для обработки события добавления.
         /// </summary>
         public EventHandler TransportAdded;
 
-        //TODO: +
         /// <summary>
         /// Поле для обработки события отмена.
         /// </summary>
@@ -58,7 +56,6 @@ namespace View
         {
             InitializeComponent();
 
-            //TODO: refactor string keys +
             FillComboBox(_typesTransports.Keys.ToArray(),
                 _comboBoxTransport);
 
@@ -111,7 +108,6 @@ namespace View
 
                 switch (typeTransport)
                 {
-                    //TODO: refactor string keys +
                     case TypeTransport.Car:
                     {
                         Motor motor = new Motor();
@@ -147,7 +143,6 @@ namespace View
                         };
                         break;
                     }
-                        //TODO: +
                     case TypeTransport.Helicopter:
                     {
                         Motor motor = new Motor();
@@ -164,7 +159,6 @@ namespace View
                         };
                         break;
                     }
-                        //TODO: +
                 }
 
                 TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
@@ -190,7 +184,6 @@ namespace View
 
             switch (typeTransport)
             {
-                //TODO: refactor string keys +
                 case TypeTransport.Car:
                 {
                     _groupBoxDataHybridCar.Visible = false;
@@ -266,7 +259,6 @@ namespace View
             Dictionary<TypeTransport, string[]> fuelTypes = new()
             {
                 {
-                    //TODO: refactor string keys +
                     TypeTransport.Car,
                     [namesTransports[0], namesTransports[1],
                      namesTransports[2], namesTransports[3]]
