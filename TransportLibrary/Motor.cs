@@ -11,6 +11,19 @@ namespace TransportLibrary
         private double _capacity;
 
         /// <summary>
+        /// Словарь тип топлива.
+        /// </summary>
+        private static readonly Dictionary<TypeFuel, string> _typesFuel = new()
+        {
+            {TypeFuel.Petrol, "Бензин"},
+            {TypeFuel.Diesel, "Дизель"},
+            {TypeFuel.Electricity, "Электричество"},
+            {TypeFuel.Gas, "Газ"},
+            {TypeFuel.AviationKerosene, "Авиационный керосин"},
+            {TypeFuel.AviationGasoline, "Авиационный бензин"},
+        };
+
+        /// <summary>
         /// Конструктор класса Двигатель.
         /// </summary>
         /// <param name="capacity">Мощность двигателя.</param>
@@ -58,7 +71,7 @@ namespace TransportLibrary
         /// </summary>
         public string Info
         {
-            get => $"Тип топлива: {TypeFuel}\nМощность: {Capacity} л.с.";
+            get => $"Тип топлива: {_typesFuel[TypeFuel]}\nМощность: {Capacity} л.с.";
         }
 
         /// <summary>
