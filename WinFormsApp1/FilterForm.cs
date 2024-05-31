@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography.Xml;
 using TransportLibrary;
 
 namespace View
@@ -49,21 +50,26 @@ namespace View
 
                 if (_checkBoxFindCar.Checked)
                 {
-                    FilteredTypeTransport(_transportList, _filteredTransportList,
+                    FilteredTypeTransport(_transportList,
+                        _filteredTransportList,
                         typeof(Car));
                 }
 
                 if (_checkBoxFindHybridCar.Checked)
                 {
-                    FilteredTypeTransport(_transportList, _filteredTransportList,
+                    FilteredTypeTransport(_transportList,
+                        _filteredTransportList,
                         typeof(HybridCar));
                 }
 
                 if (_checkBoxFindHelicopter.Checked)
                 {
-                    FilteredTypeTransport(_transportList, _filteredTransportList,
+                    FilteredTypeTransport(_transportList,
+                        _filteredTransportList,
                         typeof(Helicopter));
                 }
+
+                CheckedData();
 
                 TransportFiltered.Invoke(this,
                 new TransportFilterEventArgs(_filteredTransportList));
@@ -72,6 +78,63 @@ namespace View
             {
                 MessageBox.Show("Введите данные.", "Предупреждение",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Метод фильтрации по данным транспорта.
+        /// </summary>
+        private void CheckedData()
+        {
+            BindingList<TransportBase> transportList = 
+                new BindingList<TransportBase>();
+
+            bool statusCheckBox = _checkBoxFindCar.Checked
+                || _checkBoxFindHybridCar.Checked
+                || _checkBoxFindHelicopter.Checked;
+
+            switch (statusCheckBox)
+            {
+                case true:
+                {
+                    transportList = [.. _filteredTransportList];
+                    break;
+                }
+                case false:
+                {
+                    transportList = [.. _transportList];
+                    break;
+                }
+            }
+
+            if (_checkBoxMass.Checked)
+            {
+                if (!string.IsNullOrEmpty(_textBoxMass.Text))
+                {
+                    FilteredMass(transportList,
+                    Convert.ToDouble(_textBoxMass.Text));
+                    _filteredTransportList = transportList;
+                }
+                else
+                {
+                    MessageBox.Show("Введите массу.", "Предупреждение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+            if (_checkBoxCapacity.Checked)
+            {
+                if (!string.IsNullOrEmpty(_textBoxCapacity.Text))
+                {
+                    FilteredCapacity(transportList,
+                    Convert.ToDouble(_textBoxCapacity.Text));
+                    _filteredTransportList = transportList;
+                }
+                else
+                {
+                    MessageBox.Show("Введите мощность.", "Предупреждение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -89,9 +152,53 @@ namespace View
         {
             foreach (var transport in transportList)
             {
-                if (typeTransport.IsInstanceOfType(transport))
+                if (typeTransport == transport.GetType())
                 {
                     filteredTransportList.Add(transport);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Метод фильтрации данных по массе.
+        /// </summary>
+        /// <param name="transportList">Отфильтрованный список.</param>
+        /// <param name="Mass">Масса.</param>
+        private static void FilteredMass(
+            BindingList<TransportBase> transportList, double Mass)
+        {
+            for (int i = transportList.Count-1; i >= 0; i--)
+            {
+                if (transportList[i].Mass != Mass)
+                {
+                    transportList.RemoveAt(i);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Метод фильтрации данных по мощности.
+        /// </summary>
+        /// <param name="transportList">Исходный список.</param>
+        /// <param name="Capacity">Мощность.</param>
+        private static void FilteredCapacity(
+            BindingList<TransportBase> transportList, double Capacity)
+        {
+            for (int i = transportList.Count - 1; i >= 0; i--)
+            {
+                if (transportList[i] is Car car)
+                {
+                    if (car.Motor.Capacity != Capacity)
+                    {
+                        transportList.RemoveAt(i);
+                    }
+                }
+                else if (transportList[i] is Helicopter helicopter)
+                {
+                    if (helicopter.Motor.Capacity != Capacity)
+                    {
+                        transportList.RemoveAt(i);
+                    };
                 }
             }
         }
