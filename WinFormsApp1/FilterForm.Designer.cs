@@ -90,6 +90,7 @@
             _groupBoxFilterType.SuspendLayout();
             _groupBoxFilterData.SuspendLayout();
             SuspendLayout();
+
             // 
             // _buttonAgree
             // 
