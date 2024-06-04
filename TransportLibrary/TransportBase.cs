@@ -1,10 +1,14 @@
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace TransportLibrary
 {
     /// <summary>
     /// Абстрактный класс Транспорт.
     /// </summary>
+    [XmlInclude(typeof(Car))]
+    [XmlInclude(typeof(HybridCar))]
+    [XmlInclude(typeof(Helicopter))]
     public abstract class TransportBase
     {
         /// <summary>
@@ -21,6 +25,12 @@ namespace TransportLibrary
             get => _mass;
             set
             {
+                if (double.IsNaN(value))
+                {
+                    throw new ArgumentException
+                        ("Масса должна быть задана");
+                }
+
                 if (value <= 0)
                 {
                     throw new ArgumentException

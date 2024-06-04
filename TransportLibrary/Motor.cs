@@ -48,6 +48,12 @@ namespace TransportLibrary
             get => _capacity;
             set
             {
+                if (double.IsNaN(value))
+                {
+                    throw new ArgumentException
+                        ("Мощность должна быть задана");
+                }
+
                 if (value <= 0)
                 {
                     throw new ArgumentException

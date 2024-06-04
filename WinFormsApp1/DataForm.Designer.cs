@@ -33,10 +33,12 @@ namespace View
         /// </summary>
         private Button _buttonCancel;
 
+#if DEBUG
         /// <summary>
         /// Кнопка "Заполнить".
         /// </summary>
         private Button _buttonRandom;
+#endif
 
         /// <summary>
         /// ComboBox выбор транспорта.
@@ -111,7 +113,9 @@ namespace View
         {
             _buttonAgree = new Button();
             _buttonCancel = new Button();
+#if DEBUG
             _buttonRandom = new Button();
+#endif
             _comboBoxTransport = new ComboBox();
             _comboBoxFuel = new ComboBox();
             _comboBoxHybridFuel = new ComboBox();
@@ -153,6 +157,7 @@ namespace View
             _buttonCancel.TabIndex = 1;
             _buttonCancel.Text = "Отмена";
             _buttonCancel.UseVisualStyleBackColor = false;
+#if DEBUG
             // 
             // _buttonRandom
             // 
@@ -164,6 +169,7 @@ namespace View
             _buttonRandom.TabIndex = 2;
             _buttonRandom.Text = "Заполнить";
             _buttonRandom.UseVisualStyleBackColor = false;
+#endif
             // 
             // _comboBoxTransport
             // 
@@ -321,7 +327,9 @@ namespace View
             Controls.Add(_labelTransport);
             Controls.Add(_buttonAgree);
             Controls.Add(_buttonCancel);
+#if DEBUG
             Controls.Add(_buttonRandom);
+#endif
             Controls.Add(_comboBoxTransport);
             Controls.Add(_groupBoxData);
             Controls.Add(_groupBoxDataHybridCar);
@@ -340,6 +348,6 @@ namespace View
             ResumeLayout(false);
         }
 
-        #endregion
+#endregion
     }
 }

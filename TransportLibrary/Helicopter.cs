@@ -42,6 +42,12 @@ namespace TransportLibrary
             get => _bladeLength;
             set
             {
+                if (double.IsNaN(value))
+                {
+                    throw new ArgumentException
+                        ("Длина лопастей должна быть задана");
+                }
+
                 if (value <= 0)
                 {
                     throw new ArgumentException
