@@ -79,6 +79,8 @@ namespace View
                 if (_filteredTransportList.Count == 0
                     || _filteredTransportList is null)
                 {
+                    MessageBox.Show("Совпадений не найдено.", "Информация",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -87,8 +89,8 @@ namespace View
             }
             else
             {
-                MessageBox.Show("Выберите фильтр.", "Предупреждение",
-                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Заполните критерии поиска.", "Предупреждение",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
            
         }
