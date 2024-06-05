@@ -161,7 +161,8 @@ namespace View
                     }
                 }
 
-                TransportAdded?.Invoke(this, new TransportAddedEventArgs(transport));
+                TransportAdded?.Invoke(this,
+                    new TransportAddedEventArgs(transport));
 
                 _lastTransport = transport;
             }
@@ -321,7 +322,8 @@ namespace View
         {
             TextBox textBox = (TextBox)sender;
 
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != ',')
             {
                 e.Handled = true;
             }
@@ -331,7 +333,8 @@ namespace View
                 e.Handled = true;
             }
 
-            if (e.KeyChar == '0' && string.IsNullOrEmpty(textBox.Text.Trim('0')))
+            if (e.KeyChar == '0' &&
+                string.IsNullOrEmpty(textBox.Text.Trim('0')))
             {
                 e.Handled = true;
             }

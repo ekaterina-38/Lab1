@@ -56,7 +56,6 @@ namespace View
             _buttonSaveTransport.Click += SaveFile;
 
             _buttonOpenTransport.Click += OpenFile;
-
         }
 
         /// <summary>
@@ -116,7 +115,8 @@ namespace View
                 _gridControlTransport.SelectionMode =
                     DataGridViewSelectionMode.FullRowSelect;
 
-                foreach (DataGridViewRow row in _gridControlTransport.SelectedRows)
+                foreach (DataGridViewRow row in
+                    _gridControlTransport.SelectedRows)
                 {
                     _gridControlTransport.Rows.Remove(row);
                 }
